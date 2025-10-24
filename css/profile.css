@@ -1,0 +1,112 @@
+/* 🌈 PROFILE STYLE by Rinh Hoang */
+
+/* Font & base color */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+:root {
+  --primary: #0078ff;
+  --secondary: #00bfa6;
+  --bg: #f8fbff;
+  --text: #2c2c2c;
+  --light-text: #666;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, #eef4f8, #ffffff);
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  text-align: center;
+  font-weight: 800;
+}
+
+h1 { font-size: 2.3rem; margin-top: 1.5rem; }
+h2 { margin-top: 2.5rem; }
+
+/* Links */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+a:hover { color: var(--secondary); }
+
+/* Sections & tables */
+section, table {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 2rem;
+  margin: 2rem auto;
+  max-width: 850px;
+  transition: transform 0.3s ease;
+}
+
+section:hover, table:hover {
+  transform: translateY(-4px);
+}
+
+/* Avatar */
+img[alt="Rinh Hoang"] {
+  border-radius: 50%;
+  margin: 1rem auto;
+  display: block;
+  width: 200px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+img[alt="Rinh Hoang"]:hover {
+  transform: scale(1.05);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.9rem;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  text-align: left;
+  color: var(--primary);
+}
+
+/* Quote */
+blockquote {
+  font-style: italic;
+  color: var(--light-text);
+  text-align: center;
+  border-left: 4px solid var(--secondary);
+  padding-left: 1rem;
+  margin: 2rem auto;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { font-size: 0.95rem; }
+  section { padding: 1rem; margin: 1.2rem auto; }
+}
