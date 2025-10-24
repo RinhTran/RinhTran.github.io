@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog Lập trình Java &amp; JavaScript – Posts</title>
-    <link>https://RinhTran.github.io/posts/</link>
+    <link>https://exmaple.com/posts/</link>
     <description>Recent content in Posts on Blog Lập trình Java &amp; JavaScript</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
     <lastBuildDate>Fri, 24 Oct 2025 00:00:00 +0000</lastBuildDate>
     
-	  <atom:link href="https://RinhTran.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://exmaple.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -17,10 +17,10 @@
     
     <item>
       <title>⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android</title>
-      <link>https://RinhTran.github.io/posts/rxjava-lap-trinh-reactive-android/</link>
+      <link>https://exmaple.com/posts/rxjava-lap-trinh-reactive-android/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/rxjava-lap-trinh-reactive-android/</guid>
+      <guid>https://exmaple.com/posts/rxjava-lap-trinh-reactive-android/</guid>
       <description>
         
         
@@ -316,10 +316,10 @@ Reactive giúp bạn xử lý &lt;strong&gt;bất đồng bộ&lt;/strong&gt;, &
     
     <item>
       <title>⚡️ Các Khái Niệm JavaScript Nâng Cao Mà Mọi Lập Trình Viên Cần Biết (Chắc Chắn)</title>
-      <link>https://RinhTran.github.io/posts/cac-khai-niem-javascript-nang-cao/</link>
+      <link>https://exmaple.com/posts/cac-khai-niem-javascript-nang-cao/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/cac-khai-niem-javascript-nang-cao/</guid>
+      <guid>https://exmaple.com/posts/cac-khai-niem-javascript-nang-cao/</guid>
       <description>
         
         
@@ -599,10 +599,10 @@ Rất hữu ích trong việc &lt;strong&gt;sinh dữ liệu tuần tự hoặc 
     
     <item>
       <title>⚡️ Kỹ thuật tối ưu **JavaScript** nhằm tăng tốc độ web gấp 2 lần</title>
-      <link>https://RinhTran.github.io/posts/ky-thuat-toi-uu-javascript-tang-toc-web/</link>
+      <link>https://exmaple.com/posts/ky-thuat-toi-uu-javascript-tang-toc-web/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/ky-thuat-toi-uu-javascript-tang-toc-web/</guid>
+      <guid>https://exmaple.com/posts/ky-thuat-toi-uu-javascript-tang-toc-web/</guid>
       <description>
         
         
@@ -810,10 +810,10 @@ Khi FPS xuống dưới &lt;strong&gt;30 FPS&lt;/strong&gt;, UI bắt đầu “
     
     <item>
       <title>🌏 Kinh nghiệm xử lý thời gian và múi giờ trong JavaScript &amp; Các lỗi thường gặp</title>
-      <link>https://RinhTran.github.io/posts/xu-ly-thoi-gian-va-mui-gio/</link>
+      <link>https://exmaple.com/posts/xu-ly-thoi-gian-va-mui-gio/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/xu-ly-thoi-gian-va-mui-gio/</guid>
+      <guid>https://exmaple.com/posts/xu-ly-thoi-gian-va-mui-gio/</guid>
       <description>
         
         
@@ -1009,10 +1009,10 @@ Bạn nên sử dụng &lt;code&gt;moment-timezone&lt;/code&gt; để tự độ
     
     <item>
       <title>Lodash – Tiện ích dắt túi của dân lập trình JavaScript</title>
-      <link>https://RinhTran.github.io/posts/lodash-tien-ich-javascript/</link>
+      <link>https://exmaple.com/posts/lodash-tien-ich-javascript/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/lodash-tien-ich-javascript/</guid>
+      <guid>https://exmaple.com/posts/lodash-tien-ich-javascript/</guid>
       <description>
         
         
@@ -1064,10 +1064,10 @@ Thay vì phải tự viết hàm xử lý, chỉ cần gọi hàm Lodash là xon
     
     <item>
       <title>🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android</title>
-      <link>https://RinhTran.github.io/posts/8-ky-thuat-toi-uu-ma-nguon-java-android/</link>
+      <link>https://exmaple.com/posts/8-ky-thuat-toi-uu-ma-nguon-java-android/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/8-ky-thuat-toi-uu-ma-nguon-java-android/</guid>
+      <guid>https://exmaple.com/posts/8-ky-thuat-toi-uu-ma-nguon-java-android/</guid>
       <description>
         
         
@@ -1430,10 +1430,10 @@ Hãy dùng &lt;strong&gt;StringBuilder&lt;/strong&gt; hoặc &lt;strong&gt;Strin
     
     <item>
       <title>🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau</title>
-      <link>https://RinhTran.github.io/posts/javascript-truy-xuat-object-long-nhau/</link>
+      <link>https://exmaple.com/posts/javascript-truy-xuat-object-long-nhau/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/javascript-truy-xuat-object-long-nhau/</guid>
+      <guid>https://exmaple.com/posts/javascript-truy-xuat-object-long-nhau/</guid>
       <description>
         
         
@@ -1766,10 +1766,10 @@ Khi cấu trúc dữ liệu &lt;strong&gt;lồng nhau&lt;/strong&gt; (nested obj
     
     <item>
       <title>🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay</title>
-      <link>https://RinhTran.github.io/posts/interface-trong-java/</link>
+      <link>https://exmaple.com/posts/interface-trong-java/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/interface-trong-java/</guid>
+      <guid>https://exmaple.com/posts/interface-trong-java/</guid>
       <description>
         
         
@@ -2130,10 +2130,10 @@ Dùng rất nhiều với &lt;strong&gt;lambda&lt;/strong&gt; / &lt;strong&gt;me
     
     <item>
       <title>🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp</title>
-      <link>https://RinhTran.github.io/posts/7-sai-lam-hoc-javascript/</link>
+      <link>https://exmaple.com/posts/7-sai-lam-hoc-javascript/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/7-sai-lam-hoc-javascript/</guid>
+      <guid>https://exmaple.com/posts/7-sai-lam-hoc-javascript/</guid>
       <description>
         
         

@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog Lập trình Java &amp; JavaScript – Java</title>
-    <link>https://RinhTran.github.io/tags/java/</link>
+    <link>https://exmaple.com/tags/java/</link>
     <description>Recent content in Java on Blog Lập trình Java &amp; JavaScript</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi</language>
     <lastBuildDate>Fri, 24 Oct 2025 00:00:00 +0000</lastBuildDate>
     
-	  <atom:link href="https://RinhTran.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://exmaple.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -17,10 +17,10 @@
     
     <item>
       <title>⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android</title>
-      <link>https://RinhTran.github.io/posts/rxjava-lap-trinh-reactive-android/</link>
+      <link>https://exmaple.com/posts/rxjava-lap-trinh-reactive-android/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/posts/rxjava-lap-trinh-reactive-android/</guid>
+      <guid>https://exmaple.com/posts/rxjava-lap-trinh-reactive-android/</guid>
       <description>
         
         
@@ -316,10 +316,10 @@ Reactive giúp bạn xử lý &lt;strong&gt;bất đồng bộ&lt;/strong&gt;, &
     
     <item>
       <title>⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android</title>
-      <link>https://RinhTran.github.io/tin-tuc/rxjava-lap-trinh-reactive-android/</link>
+      <link>https://exmaple.com/tin-tuc/rxjava-lap-trinh-reactive-android/</link>
       <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://RinhTran.github.io/tin-tuc/rxjava-lap-trinh-reactive-android/</guid>
+      <guid>https://exmaple.com/tin-tuc/rxjava-lap-trinh-reactive-android/</guid>
       <description>
         
         
