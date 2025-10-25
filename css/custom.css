@@ -11,3 +11,110 @@
     color: #222 !important;
   }
 }
+
+/* --- AVATAR TO NHƯ CV CHUYÊN NGHIỆP --- */
+img[alt="Rinh Hoang"] {
+  width: 260px;                /* 🔥 to hơn, nổi bật */
+  height: 260px;
+  object-fit: cover;           /* giữ tỉ lệ khuôn mặt */
+  border-radius: 50%;          /* bo tròn hoàn toàn */
+  border: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18); /* bóng mượt */
+  transition: all 0.35s ease;
+}
+
+/* Hiệu ứng khi hover */
+img[alt="Rinh Hoang"]:hover {
+  transform: scale(1.06);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+}
+
+/* Căn giữa ảnh trong phần giới thiệu */
+[align="center"] img[alt="Rinh Hoang"] {
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* Responsive để không bị quá to trên điện thoại */
+@media (max-width: 768px) {
+  img[alt="Rinh Hoang"] {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* --- PHẦN CHỨNG CHỈ --- */
+.certificate-section {
+  text-align: center;
+  margin-top: 50px;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #f8fafc, #eef7ff);
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.certificate-section h2 {
+  font-size: 28px;
+  margin-bottom: 28px;
+  color: #222;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.certificates {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px; /* tăng khoảng cách giữa các chứng chỉ */
+}
+
+/* --- THẺ CHỨNG CHỈ TO HƠN --- */
+.certificate-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 320px;  /* tăng từ 260 → 320px */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* --- ẢNH CHỨNG CHỈ TO VÀ SẮC NÉT HƠN --- */
+.certificate-card img {
+  width: 100%;
+  height: 220px; /* tăng từ 180 → 220px */
+  object-fit: cover;
+  border-bottom: 2px solid #eaeaea;
+}
+
+/* --- TÊN CHỨNG CHỈ --- */
+.certificate-card p {
+  font-size: 17px;
+  color: #333;
+  margin: 14px 0;
+  font-weight: 600;
+}
+
+/* --- HIỆU ỨNG HOVER --- */
+.certificate-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* --- HIỆU ỨNG SÁNG ẢNH KHI DI CHUỘT --- */
+.certificate-card img:hover {
+  filter: brightness(1.08) saturate(1.15);
+  transition: all 0.3s ease;
+}
+
+/* --- RESPONSIVE TRÊN MOBILE --- */
+@media (max-width: 768px) {
+  .certificate-card {
+    width: 90%;
+  }
+  .certificate-card img {
+    height: 180px;
+  }
+}
+
+
+/* css*/
