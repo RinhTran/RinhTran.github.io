@@ -1,0 +1,18 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog Lập trình Java &amp; JavaScript – Categories</title>
+    <link>https://rinhtran.github.io/categories/</link>
+    <description>Recent content in Categories on Blog Lập trình Java &amp; JavaScript</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    
+	  <atom:link href="https://rinhtran.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+  </channel>
+</rss>

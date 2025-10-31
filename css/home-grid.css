@@ -1,0 +1,251 @@
+.home-grid {
+  display: grid;
+  grid-template-columns: 280px minmax(850px, 1fr) 260px;
+  gap: 2.5rem;
+  max-width: 1600px;        /* 👈 Giới hạn chiều rộng tổng thể */
+  width: 95%;               /* 👈 Cho có khoảng trắng 2 bên */
+  margin: 3rem auto;        /* 👈 auto để CĂN GIỮA trang */
+  padding: 0 1rem;          /* 👈 giảm padding cho đều 2 bên */
+}
+main.home-grid {
+  display: grid;
+  justify-content: center; /* 👈 ép toàn bộ grid về giữa */
+  align-items: start;
+}
+
+
+
+/* ==== PROFILE CARD ==== */
+.profile-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.profile-card img.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 1rem;
+  border: 3px solid #f1f1f1;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.profile-card p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin: 0.3rem 0;
+}
+
+.profile-card .social {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+/* ==== NÚT MỚI ==== */
+.profile-card .btn {
+  padding: 0.55rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn.linkedin {
+  background: linear-gradient(90deg, #0077b5, #0a66c2);
+  color: white;
+}
+.btn.linkedin:hover {
+  background: linear-gradient(90deg, #0a66c2, #004182);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.3);
+}
+
+.btn.github {
+  background: linear-gradient(90deg, #24292e, #1b1f23);
+  color: white;
+}
+.btn.github:hover {
+  background: linear-gradient(90deg, #2d3339, #111);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(36, 41, 46, 0.3);
+}
+
+/* ==== MAIN CONTENT ==== */
+.content-column {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+  padding: 3rem 4rem;              
+  line-height: 1.9;        
+  font-size: 1.15rem;            
+  max-width: 1100px;             
+  margin: 0 auto;              
+}
+
+.content-column img {
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ==== TOC ==== */
+.toc-column .toc-card {
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  position: sticky;
+  top: 100px;
+}
+.toc-card h3 {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+.toc-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+.toc-card li {
+  margin: 0.6rem 0;
+  line-height: 1.6;
+}
+.toc-card a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.toc-card a:hover {
+  color: #1e40af;
+}
+
+/* ==== TYPOGRAPHY ==== */
+.content-column h1, 
+.content-column h2, 
+.content-column h3 {
+  font-weight: 700;
+  color: #111827;
+  margin-top: 1.5rem;
+}
+
+.content-column h1 {
+  font-size: 2.3rem;
+  line-height: 1.3;
+}
+.content-column h2 {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+.content-column h3 {
+  font-size: 1.35rem;
+  margin-top: 1.5rem;
+}
+
+
+.content-column p {
+  color: #374151;
+  margin: 0.9rem 0;
+}
+
+/* Highlight text links */
+.content-column a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+.content-column a:hover {
+  text-decoration: underline;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 1024px) {
+  .toc-column {
+    order: 3;
+  }
+  .profile-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+
+/* ==== TABLE STYLING ==== */
+.content-column table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* ==== HEADER ==== */
+.content-column table thead {
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  color: #fff;
+  text-align: left;
+}
+
+.content-column table th {
+  padding: 0.9rem 1.2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* ==== BODY ==== */
+.content-column table td {
+  padding: 0.85rem 1.2rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.content-column table tr:nth-child(even) {
+  background-color: #f9fafb; /* hàng xen kẽ màu nhạt */
+}
+
+.content-column table tr:hover {
+  background-color: #eef2ff; /* hiệu ứng hover nhã */
+  transition: background 0.2s ease-in-out;
+}
+
+/* ==== BORDER & CORNERS ==== */
+.content-column table th:first-child,
+.content-column table td:first-child {
+  border-left: none;
+}
+.content-column table th:last-child,
+.content-column table td:last-child {
+  border-right: none;
+}

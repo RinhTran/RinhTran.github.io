@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  
+  <link rel="icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="shortcut icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="apple-touch-icon" href="../../images/logo3-v2.jpg?v=8">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp – Blog Lập trình Java &amp; JavaScript</title>
+
+  <meta name="description" content="tổng hợp 7 sai lầm lớn thường gặp khi học JS, kèm lời khuyên thực tế để bạn tránh “đi đường vòng”." /><link rel="canonical" href="https://rinhtran.github.io/tin-tuc/7-sai-lam-hoc-javascript/" itemprop="url" />
+
+<meta property="og:title" content="🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp">
+<meta
+  property="og:description"
+  content="
+    tổng hợp 7 sai lầm lớn thường gặp khi học JS, kèm lời khuyên thực tế để bạn tránh “đi đường vòng”.
+  ">
+<meta
+  property="og:type"
+  content="
+    article
+  ">
+<meta property="og:url" content="https://rinhtran.github.io/tin-tuc/7-sai-lam-hoc-javascript/"><meta property="article:section" content="tin-tuc">
+
+<meta
+  property="article:published_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+<meta
+  property="article:modified_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+
+  <meta itemprop="name" content="🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp">
+  <meta itemprop="description" content="tổng hợp 7 sai lầm lớn thường gặp khi học JS, kèm lời khuyên thực tế để bạn tránh “đi đường vòng”.">
+  <meta itemprop="datePublished" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="906">
+  <meta itemprop="keywords" content="JavaScript,Lodash,Thư Viện">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp">
+  <meta name="twitter:description" content="tổng hợp 7 sai lầm lớn thường gặp khi học JS, kèm lời khuyên thực tế để bạn tránh “đi đường vòng”.">
+
+ <link rel="preload" href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" as="style" />
+ <link href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" rel="stylesheet" />
+
+  
+  
+<link rel="stylesheet" href="../../css/output.8742859f879b4bff788e7b19f6201cda660ab4f9063175b7f06816404a59b1dc.css">
+   <link rel="stylesheet" href="../../css/home-grid.css">
+  <link rel="stylesheet" href="../../css/profile.css">
+
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-3h1K6HfR1jA2ZyPn+WvOG3lgNsH8yH5Tqv8aFz7NwNUfwxXf2E5ajbUV2dJShX5OKbK4up9M5fdb5vXhMHbGVA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  
+
+
+
+
+
+
+<script src="../../js/main-head.min.94da6f95b126542222dab3a6e07ffefe1aaf63ec3ca555e827b58b80e7d3f0b7.js"></script>
+
+
+  
+  
+  </head>
+<body class="bg-gray-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 leading-relaxed"><div class="hextra-nav-container hx:sticky hx:top-0 hx:z-20 hx:w-full hx:bg-transparent hx:print:hidden">
+  <div
+    class="hextra-nav-container-blur hx:pointer-events-none hx:absolute hx:z-[-1] hx:h-full hx:w-full hx:bg-white hx:dark:bg-dark hx:shadow-[0_2px_4px_rgba(0,0,0,.02),0_1px_0_rgba(0,0,0,.06)] hx:contrast-more:shadow-[0_0_0_1px_#000] hx:dark:shadow-[0_-1px_0_rgba(255,255,255,.1)_inset] hx:contrast-more:dark:shadow-[0_0_0_1px_#fff]"
+  ></div>
+
+  <nav class="hextra-max-navbar-width hx:mx-auto hx:flex hx:items-center hx:justify-end hx:gap-2 hx:h-16 hx:px-6">
+    <a class="hx:flex hx:items-center hx:hover:opacity-80 hx:ltr:mr-auto hx:rtl:ml-auto" href="../../">
+  <img class="hx:mr-3"
+       src="../../images/logo3-v2.jpg"
+       alt="Rinh Hoang Logo"
+       height="60"
+       width="60"
+       style="object-fit: cover; border-radius: 10px;" />
+  <span class="hx:font-extrabold hx:inline hx:text-lg hx:select-none" title="Blog Lập trình Java &amp; JavaScript">
+    Blog Lập trình Java &amp; JavaScript
+  </span>
+</a>
+<a
+  title=""
+  href="../../"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Home</span>
+</a><a
+  title=""
+  href="../../posts/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Blog</span>
+</a><a
+  title=""
+  href="../../profile/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Profile</span>
+</a><button type="button" aria-label="Menu" class="hextra-hamburger-menu hx:cursor-pointer hx:-mr-2 hx:rounded-sm hx:p-2 hx:active:bg-gray-400/20 hx:md:hidden"><svg height=24 fill="none" viewBox="0 0 24 24" stroke="currentColor"><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8H20"></path></g><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16H20"></path></g></svg></button>
+  </nav>
+</div>
+<main>
+      
+        <div class="max-w-4xl mx-auto px-6 mt-10">
+          
+  <div class='hx:mx-auto hx:flex hextra-max-page-width'>
+    <aside class="hextra-sidebar-container hx:flex hx:flex-col hx:print:hidden hx:md:top-16 hx:md:shrink-0 hx:md:w-64 hx:md:self-start hx:max-md:[transform:translate3d(0,-100%,0)] hx:md:hidden hx:xl:block">
+  
+  <div class="hx:px-4 hx:pt-4 hx:md:hidden">
+    <div class="hextra-search-wrapper hx:relative hx:md:w-64">
+  <div class="hx:relative hx:flex hx:items-center hx:text-gray-900 hx:contrast-more:text-gray-800 hx:dark:text-gray-300 hx:contrast-more:dark:text-gray-300">
+    <input
+      placeholder="Search..."
+      class="hextra-search-input hx:focus:hextra-focus hx:block hx:w-full hx:appearance-none hx:rounded-lg hx:px-3 hx:py-2 hx:transition-colors hx:text-base hx:leading-tight hx:md:text-sm hx:bg-black/[.05] hx:dark:bg-gray-50/10 hx:focus:bg-white hx:dark:focus:bg-dark hx:placeholder:text-gray-500 hx:dark:placeholder:text-gray-400 hx:contrast-more:border hx:contrast-more:border-current"
+      type="search"
+      value=""
+      spellcheck="false"
+    />
+    <kbd
+      class="hx:absolute hx:my-1.5 hx:select-none hx:ltr:right-1.5 hx:rtl:left-1.5 hx:h-5 hx:rounded-sm hx:bg-white hx:px-1.5 hx:font-mono hx:text-[10px] hx:font-medium hx:text-gray-500 hx:border hx:border-gray-200 hx:dark:border-gray-100/20 hx:dark:bg-dark/50 hx:contrast-more:border-current hx:contrast-more:text-current hx:contrast-more:dark:border-current hx:items-center hx:gap-1 hx:transition-opacity hx:pointer-events-none hx:hidden hx:sm:flex"
+    >
+      CTRL K
+    </kbd>
+  </div>
+
+  <div>
+    <ul
+      class="hextra-search-results hextra-scrollbar hx:hidden hx:border hx:border-gray-200 hx:bg-white hx:text-gray-100 hx:dark:border-neutral-800 hx:dark:bg-neutral-900 hx:absolute hx:top-full hx:z-20 hx:mt-2 hx:overflow-auto hx:overscroll-contain hx:rounded-xl hx:py-2.5 hx:shadow-xl hx:max-h-[min(calc(50vh-11rem-env(safe-area-inset-bottom)),400px)] hx:md:max-h-[min(calc(100vh-5rem-env(safe-area-inset-bottom)),400px)] hx:inset-x-0 hx:ltr:md:left-auto hx:rtl:md:right-auto hx:contrast-more:border hx:contrast-more:border-gray-900 hx:contrast-more:dark:border-gray-50 hx:w-screen hx:min-h-[100px] hx:max-w-[min(calc(100vw-2rem),calc(100%+20rem))]"
+      style="transition: max-height 0.2s ease 0s;"
+    ></ul>
+  </div>
+</div>
+
+  </div>
+  <div class="hextra-scrollbar hx:overflow-y-auto hx:overflow-x-hidden hx:p-4 hx:grow hx:md:h-[calc(100vh-var(--navbar-height)-var(--menu-height))]">
+    <ul class="hx:flex hx:flex-col hx:gap-1 hx:md:hidden">
+      
+      
+          <li class=""><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/"
+    
+  >Posts
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></span>
+    </a><div class="hx:ltr:pr-0 hx:overflow-hidden">
+        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/rxjava-lap-trinh-reactive-android/"
+    
+  >⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/cac-khai-niem-javascript-nang-cao/"
+    
+  >⚡️ Các Khái Niệm JavaScript Nâng Cao Mà Mọi Lập Trình Viên Cần Biết (Chắc Chắn)
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/ky-thuat-toi-uu-javascript-tang-toc-web/"
+    
+  >⚡️ Kỹ thuật tối ưu **JavaScript** nhằm tăng tốc độ web gấp 2 lần
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/xu-ly-thoi-gian-va-mui-gio/"
+    
+  >🌏 Kinh nghiệm xử lý thời gian và múi giờ trong JavaScript &amp; Các lỗi thường gặp
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/lodash-tien-ich-javascript/"
+    
+  >Lodash – Tiện ích dắt túi của dân lập trình JavaScript
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/8-ky-thuat-toi-uu-ma-nguon-java-android/"
+    
+  >🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/javascript-truy-xuat-object-long-nhau/"
+    
+  >🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/interface-trong-java/"
+    
+  >🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../posts/7-sai-lam-hoc-javascript/"
+    
+  >🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp
+    </a>
+              
+            </li></ul>
+      </div></li>
+          <li class="open"><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../tin-tuc/"
+    
+  >Tin tức
+        <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx:h-[18px] hx:min-w-[18px] hx:rounded-xs hx:p-0.5 hx:hover:bg-gray-800/5 hx:dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx:origin-center hx:transition-transform hx:rtl:-rotate-180"></path></svg></span>
+    </a><div class="hx:ltr:pr-0 hx:overflow-hidden">
+        <ul class='hx:relative hx:flex hx:flex-col hx:gap-1 hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:ltr:ml-3 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:mr-3 hx:rtl:pr-3 hx:rtl:before:right-0 hx:dark:before:bg-neutral-800'><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../tin-tuc/rxjava-lap-trinh-reactive-android/"
+    
+  >⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../tin-tuc/cac-khai-niem-javascript-nang-cao/"
+    
+  >⚡️ Các Khái Niệm JavaScript Nâng Cao Mà Mọi Lập Trình Viên Cần Biết (Chắc Chắn)
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../tin-tuc/ky-thuat-toi-uu-javascript-tang-toc-web/"
+    
+  >⚡️ Kỹ thuật tối ưu **JavaScript** nhằm tăng tốc độ web gấp 2 lần
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../tin-tuc/xu-ly-thoi-gian-va-mui-gio/"
+    
+  >🌏 Kinh nghiệm xử lý thời gian và múi giờ trong JavaScript &amp; Các lỗi thường gặp
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../tin-tuc/lodash-tien-ich-javascript/"
+    
+  >Lodash – Tiện ích dắt túi của dân lập trình JavaScript
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../tin-tuc/8-ky-thuat-toi-uu-ma-nguon-java-android/"
+    
+  >🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../tin-tuc/javascript-truy-xuat-object-long-nhau/"
+    
+  >🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col "><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../tin-tuc/interface-trong-java/"
+    
+  >🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay
+    </a>
+              
+            </li><li class="hx:flex hx:flex-col open"><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hextra-sidebar-active-item hx:bg-primary-100 hx:font-semibold hx:text-primary-800 hx:contrast-more:border hx:contrast-more:border-primary-500 hx:dark:bg-primary-400/10 hx:dark:text-primary-600 hx:contrast-more:dark:border-primary-500"
+    href="../../tin-tuc/7-sai-lam-hoc-javascript/"
+    
+  >🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp
+    </a>
+  
+    <ul class='hx:flex hx:flex-col hx:gap-1 hx:relative hx:before:absolute hx:before:inset-y-1 hx:before:w-px hx:before:bg-gray-200 hx:before:content-[""] hx:dark:before:bg-neutral-800 hx:ltr:pl-3 hx:ltr:before:left-0 hx:rtl:pr-3 hx:rtl:before:right-0 hx:ltr:ml-3 hx:rtl:mr-3'><li>
+              <a
+                href="#-m%e1%bb%9f-%c4%91%e1%ba%a7u"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >🔎 Mở đầu</a>
+            </li>
+          <li>
+              <a
+                href="#-m%e1%bb%a5c-l%e1%bb%a5c"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >📑 Mục lục</a>
+            </li>
+          <li>
+              <a
+                href="#1-ch%e1%bb%89-th%c3%adch-%c4%91%e1%bb%8dc-gi%e1%bb%9bi-thi%e1%bb%87u-m%c3%a0-kh%c3%b4ng-th%e1%bb%b1c-s%e1%bb%b1-b%e1%ba%aft-tay-v%c3%a0o-h%e1%bb%8dc"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >1) Chỉ thích đọc giới thiệu mà không thực sự bắt tay vào học</a>
+            </li>
+          <li>
+              <a
+                href="#2-h%e1%bb%8dc-framework-tr%c6%b0%e1%bb%9bc-khi-h%e1%bb%8dc-javascript-c%c6%a1-b%e1%ba%a3n"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >2) Học Framework trước khi học JavaScript cơ bản</a>
+            </li>
+          <li>
+              <a
+                href="#3-chuy%e1%bb%83n-sang-b%c3%a0i-m%e1%bb%9bi-khi-b%c3%a0i-hi%e1%bb%87n-t%e1%ba%a1i-c%c3%b2n-ch%c6%b0a-hi%e1%bb%83u-r%c3%b5"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >3) Chuyển sang bài mới khi bài hiện tại còn chưa hiểu rõ</a>
+            </li>
+          <li>
+              <a
+                href="#4-tham-gia-d%e1%bb%b1-%c3%a1n-l%e1%bb%9bn-qu%c3%a1-s%e1%bb%9bm"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >4) Tham gia dự án lớn quá sớm</a>
+            </li>
+          <li>
+              <a
+                href="#5-kh%c3%b4ng-th%e1%bb%b1c-h%c3%a0nh-trong-%c4%91i%e1%bb%81u-ki%e1%bb%87n-th%e1%bb%b1c-t%e1%ba%bf"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >5) Không thực hành trong điều kiện thực tế</a>
+            </li>
+          <li>
+              <a
+                href="#6-lu%c3%b4n-so-s%c3%a1nh-b%e1%ba%a3n-th%c3%a2n-v%e1%bb%9bi-ng%c6%b0%e1%bb%9di-kh%c3%a1c"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >6) Luôn so sánh bản thân với người khác</a>
+            </li>
+          <li>
+              <a
+                href="#7-h%e1%bb%8dc-theo-tutorial-m%c3%a0-kh%c3%b4ng-hi%e1%bb%83u-ho%e1%ba%b7c-kh%c3%b4ng-t%e1%bb%b1-g%c3%b5-code"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >7) Học theo tutorial mà không hiểu hoặc không tự gõ code</a>
+            </li>
+          <li>
+              <a
+                href="#-t%e1%ba%a1m-k%e1%ba%bft"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >✅ Tạm kết</a>
+            </li>
+          <li>
+              <a
+                href="#-t%c3%a0i-nguy%c3%aan-g%e1%bb%a3i-%c3%bd"
+                class="hx:flex hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [word-break:break-word] hx:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] hx:contrast-more:border hx:gap-2 hx:before:opacity-25 hx:before:content-['#'] hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:text-gray-900 hx:contrast-more:dark:text-gray-50 hx:contrast-more:border-transparent hx:contrast-more:hover:border-gray-900 hx:contrast-more:dark:hover:border-gray-50"
+              >📚 Tài nguyên gợi ý</a>
+            </li>
+          </ul>
+  
+              
+            </li></ul>
+      </div></li>
+          <li class=""><a
+    class="hx:flex hx:items-center hx:justify-between hx:gap-2 hx:cursor-pointer hx:rounded-sm hx:px-2 hx:py-1.5 hx:text-sm hx:transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx:text-gray-500 hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:contrast-more:border hx:contrast-more:border-transparent hx:contrast-more:text-gray-900 hx:contrast-more:hover:border-gray-900 hx:dark:text-neutral-400 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:contrast-more:dark:text-gray-50 hx:contrast-more:dark:hover:border-gray-50"
+    href="../../profile/"
+    
+  >Giới thiệu về tôi
+    </a></li>
+    </ul>
+
+    <div class="hx:max-xl:hidden hx:h-0 hx:w-64 hx:shrink-0"></div></div>
+  
+  
+    <div class="hx:md:hidden  hx:sticky hx:bottom-0 hx:max-h-(--menu-height) hx:bg-white hx:dark:bg-dark hx:mx-4 hx:py-4 hx:shadow-[0_-12px_16px_#fff] hx:flex hx:items-center hx:gap-2 hx:border-gray-200 hx:dark:border-neutral-800 hx:dark:shadow-[0_-12px_16px_#111] hx:contrast-more:border-neutral-400 hx:contrast-more:shadow-none hx:contrast-more:dark:shadow-none hx:border-t" data-toggle-animation="show"><div class="hx:flex hx:grow hx:flex-col"><div class="hx:flex hx:justify-items-start hx:group" data-theme="light">
+  <button
+    title="Change theme"
+    data-state="closed"
+    data-location="bottom"
+    class="hextra-theme-toggle hx:cursor-pointer hx:rounded-md hx:text-left hx:font-medium hx:h-7 hx:px-2 hx:text-xs hx:hover:bg-gray-100 hx:hover:text-gray-900 hx:dark:hover:bg-primary-100/5 hx:dark:hover:text-gray-50 hx:font-medium hx:text-gray-600 hx:transition-colors hx:dark:text-gray-400 hx:grow"
+    type="button"
+    aria-label="Change theme"
+  >
+    <div class="hx:flex hx:items-center hx:gap-2 hx:capitalize"><svg height=12 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg><span class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden">Light</span><svg height=12 class="hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><span class="hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden">Dark</span>
+<svg height=12 class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="currentColor">
+  <path d="M 11.996094,2 C 6.4986225,2.0192368 2.03125,6.5024993 2.03125,12 c 0,5.497501 4.4673725,9.980763 9.964844,10 H 12 12.0039 c 5.497471,-0.01924 9.964844,-4.502499 9.964844,-10 0,-5.4975007 -4.467373,-9.9807632 -9.964844,-10 H 12 Z M 12,4 c 4.417218,0.017598 7.96875,3.5822356 7.96875,8 0,4.417764 -3.551532,7.982402 -7.96875,8 z" />
+</svg>
+
+<span class="hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden">System</span></div>
+  </button>
+  <ul
+    class="hextra-theme-toggle-options hx:hidden hx:z-20 hx:max-h-64 hx:overflow-auto hx:rounded-md hx:ring-1 hx:ring-black/5 hx:bg-white hx:py-1 hx:text-sm hx:shadow-lg hx:dark:ring-white/20 hx:dark:bg-neutral-800"
+    style="position: fixed; inset: auto auto 0px 0px; margin: 0px; min-width: 100px;"
+    data-theme="light"
+  >
+    <li class="hx:flex hx:flex-col">
+      <p
+        data-item="light"
+        class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
+      >
+        Light
+         <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=dark]:hidden hx:group-data-[theme=system]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+      </p>
+    </li>
+    <li class="hx:flex hx:flex-col">
+      <p
+        data-item="dark"
+        class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
+      >
+        Dark
+         <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=light]:hidden hx:group-data-[theme=system]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+      </p>
+    </li>
+    <li class="hx:flex hx:flex-col">
+      <p
+        data-item="system"
+        class="hx:text-gray-800 hx:dark:text-gray-100 hx:hover:bg-primary-50 hx:hover:text-primary-600 hx:hover:dark:bg-primary-500/10 hx:hover:dark:text-primary-600 hx:relative hx:cursor-pointer hx:whitespace-nowrap hx:py-1.5 hx:transition-colors hx:ltr:pl-3 hx:ltr:pr-9 hx:rtl:pr-3 hx:rtl:pl-9"
+      >
+        System
+         <span class="hx:absolute hx:inset-y-0 hx:flex hx:items-center hx:ltr:right-3 hx:rtl:left-3 hx:group-data-[theme=dark]:hidden hx:group-data-[theme=light]:hidden"><svg height=1em width=1em xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+      </p>
+    </li>
+  </ul>
+</div></div></div></aside>
+    
+<nav class="hextra-toc hx:order-last hx:hidden hx:w-64 hx:shrink-0 hx:xl:block hx:print:hidden hx:px-4" aria-label="table of contents">
+    <div class="hextra-scrollbar hx:sticky hx:top-16 hx:overflow-y-auto hx:pr-4 hx:pt-6 hx:text-sm [hyphens:auto] hx:max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] hx:ltr:-mr-4 hx:rtl:-ml-4"><p class="hx:mb-4 hx:font-semibold hx:tracking-tight">On this page</p><ul>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#-m%e1%bb%9f-%c4%91%e1%ba%a7u">🔎 Mở đầu
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#-m%e1%bb%a5c-l%e1%bb%a5c">📑 Mục lục
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#1-ch%e1%bb%89-th%c3%adch-%c4%91%e1%bb%8dc-gi%e1%bb%9bi-thi%e1%bb%87u-m%c3%a0-kh%c3%b4ng-th%e1%bb%b1c-s%e1%bb%b1-b%e1%ba%aft-tay-v%c3%a0o-h%e1%bb%8dc">1) Chỉ thích đọc giới thiệu mà không thực sự bắt tay vào học
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#2-h%e1%bb%8dc-framework-tr%c6%b0%e1%bb%9bc-khi-h%e1%bb%8dc-javascript-c%c6%a1-b%e1%ba%a3n">2) Học Framework trước khi học JavaScript cơ bản
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#3-chuy%e1%bb%83n-sang-b%c3%a0i-m%e1%bb%9bi-khi-b%c3%a0i-hi%e1%bb%87n-t%e1%ba%a1i-c%c3%b2n-ch%c6%b0a-hi%e1%bb%83u-r%c3%b5">3) Chuyển sang bài mới khi bài hiện tại còn chưa hiểu rõ
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#4-tham-gia-d%e1%bb%b1-%c3%a1n-l%e1%bb%9bn-qu%c3%a1-s%e1%bb%9bm">4) Tham gia dự án lớn quá sớm
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#5-kh%c3%b4ng-th%e1%bb%b1c-h%c3%a0nh-trong-%c4%91i%e1%bb%81u-ki%e1%bb%87n-th%e1%bb%b1c-t%e1%ba%bf">5) Không thực hành trong điều kiện thực tế
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#6-lu%c3%b4n-so-s%c3%a1nh-b%e1%ba%a3n-th%c3%a2n-v%e1%bb%9bi-ng%c6%b0%e1%bb%9di-kh%c3%a1c">6) Luôn so sánh bản thân với người khác
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#7-h%e1%bb%8dc-theo-tutorial-m%c3%a0-kh%c3%b4ng-hi%e1%bb%83u-ho%e1%ba%b7c-kh%c3%b4ng-t%e1%bb%b1-g%c3%b5-code">7) Học theo tutorial mà không hiểu hoặc không tự gõ code
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#-t%e1%ba%a1m-k%e1%ba%bft">✅ Tạm kết
+        </a>
+      </li>
+      <li class="hx:my-2 hx:scroll-my-6 hx:scroll-py-6">
+        <a class="hx:font-medium hx:inline-block hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-300 hx:contrast-more:text-gray-900 hx:contrast-more:underline hx:contrast-more:dark:text-gray-50 hx:w-full hx:break-words" href="#-t%c3%a0i-nguy%c3%aan-g%e1%bb%a3i-%c3%bd">📚 Tài nguyên gợi ý
+        </a>
+      </li></ul>
+      <div class="hx:mt-8 hx:border-t hx:bg-white hx:pt-8 hx:shadow-[0_-12px_16px_white] hx:dark:bg-dark hx:dark:shadow-[0_-12px_16px_#111] hx:sticky hx:bottom-0 hx:flex hx:flex-col hx:items-start hx:gap-2 hx:pb-8 hx:border-gray-200 hx:dark:border-neutral-800 hx:contrast-more:border-t hx:contrast-more:border-neutral-400 hx:contrast-more:shadow-none hx:contrast-more:dark:border-neutral-400">
+        <button aria-hidden="true" id="backToTop" onClick="scrollUp();" class="hx:cursor-pointer hx:transition-all hx:duration-75 hx:opacity-0 hx:text-xs hx:font-medium hx:text-gray-500 hx:hover:text-gray-900 hx:dark:text-gray-400 hx:dark:hover:text-gray-100 hx:contrast-more:text-gray-800 hx:contrast-more:dark:text-gray-50">
+          <span>Scroll to top</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hx:inline hx:ltr:ml-1 hx:rtl:mr-1 hx:h-3.5 hx:w-3.5 hx:rounded-full hx:border hx:border-gray-500 hx:hover:border-gray-900 hx:dark:border-gray-400 hx:dark:hover:border-gray-100 hx:contrast-more:border-gray-800 hx:contrast-more:dark:border-gray-50">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+
+    <article class="hx:w-full hx:break-words hx:flex hx:min-h-[calc(100vh-var(--navbar-height))] hx:min-w-0 hx:justify-center hx:pb-8 hx:pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+      <main class="hx:w-full hx:min-w-0 hx:max-w-6xl hx:px-6 hx:pt-4 hx:md:px-12">
+        
+        <br class="hx:mt-1.5 hx:text-sm" />
+        <h1 class="hx:text-center hx:mt-2 hx:text-4xl hx:font-bold hx:tracking-tight hx:text-slate-900 hx:dark:text-slate-100">🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp</h1>
+        <div class="hx:mb-16"></div>
+        <div class="content">
+          <h2>🔎 Mở đầu<span class="hx:absolute hx:-mt-20" id="-mở-đầu"></span>
+    <a href="#-m%e1%bb%9f-%c4%91%e1%ba%a7u" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>JavaScript</strong> là một trong những ngôn ngữ phổ biến nhất hiện nay, hiện diện ở <strong>web</strong>, <strong>mobile</strong>, <strong>desktop</strong>, thậm chí cả <strong>backend</strong>. Nhưng học JS <strong>online</strong> lại không hề dễ: rất nhiều bạn <strong>nản</strong> hoặc <strong>bỏ cuộc</strong> sớm vì đi sai phương pháp.<br>
+Bài viết này tổng hợp <strong>7 sai lầm lớn</strong> thường gặp khi học JS, kèm <strong>lời khuyên thực tế</strong> để bạn tránh “đi đường vòng”.</p>
+<hr>
+<h2>📑 Mục lục<span class="hx:absolute hx:-mt-20" id="-mục-lục"></span>
+    <a href="#-m%e1%bb%a5c-l%e1%bb%a5c" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ol>
+<li><a href="#1-ch%e1%bb%89-th%c3%adch-%c4%91%e1%bb%8dc-gi%e1%bb%9bi-thi%e1%bb%87u-m%c3%a0-kh%c3%b4ng-th%e1%bb%b1c-s%e1%bb%b1-b%e1%ba%aft-tay-v%c3%a0o-h%e1%bb%8dc">Chỉ thích đọc giới thiệu mà không thực sự bắt tay vào học</a></li>
+<li><a href="#2-h%e1%bb%8dc-framework-tr%c6%b0%e1%bb%9bc-khi-h%e1%bb%8dc-javascript-c%c6%a1-b%e1%ba%a3n">Học Framework trước khi học JavaScript cơ bản</a></li>
+<li><a href="#3-chuy%e1%bb%83n-sang-b%c3%a0i-m%e1%bb%9bi-khi-b%c3%a0i-hi%e1%bb%87n-t%e1%ba%a1i-c%c3%b2n-ch%c6%b0a-hi%e1%bb%83u-r%c3%b5">Chuyển sang bài mới khi bài hiện tại còn chưa hiểu rõ</a></li>
+<li><a href="#4-tham-gia-d%e1%bb%b1-%c3%a1n-l%e1%bb%9bn-qu%c3%a1-s%e1%bb%9bm">Tham gia dự án lớn quá sớm</a></li>
+<li><a href="#5-kh%c3%b4ng-th%e1%bb%b1c-h%c3%a0nh-trong-%c4%91i%e1%bb%81u-ki%e1%bb%87n-th%e1%bb%b1c-t%e1%ba%bf">Không thực hành trong điều kiện thực tế</a></li>
+<li><a href="#6-lu%c3%b4n-so-s%c3%a1nh-b%e1%ba%a3n-th%c3%a2n-v%e1%bb%9bi-ng%c6%b0%e1%bb%9di-kh%c3%a1c">Luôn so sánh bản thân với người khác</a></li>
+<li><a href="#7-h%e1%bb%8dc-theo-tutorial-m%c3%a0-kh%c3%b4ng-hi%e1%bb%83u-ho%e1%ba%b7c-kh%c3%b4ng-t%e1%bb%b1-g%c3%b5-code">Học theo tutorial mà không hiểu hoặc không tự gõ code</a></li>
+<li><a href="#8-t%e1%ba%a1m-k%e1%ba%bft">Tạm kết</a></li>
+<li><a href="#9-t%c3%a0i-nguy%c3%aan-g%e1%bb%a3i-%c3%bd">Tài nguyên gợi ý</a></li>
+</ol>
+<hr>
+<h2>1) Chỉ thích đọc giới thiệu mà không thực sự bắt tay vào học<span class="hx:absolute hx:-mt-20" id="1-chỉ-thích-đọc-giới-thiệu-mà-không-thực-sự-bắt-tay-vào-học"></span>
+    <a href="#1-ch%e1%bb%89-th%c3%adch-%c4%91%e1%bb%8dc-gi%e1%bb%9bi-thi%e1%bb%87u-m%c3%a0-kh%c3%b4ng-th%e1%bb%b1c-s%e1%bb%b1-b%e1%ba%aft-tay-v%c3%a0o-h%e1%bb%8dc" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Bạn đọc rất nhiều về “<strong>JS thần thánh</strong>”, “framework <strong>tuyệt đỉnh</strong>”, các bài hype trend… nhưng <strong>không viết một dòng code nào</strong>.<br>
+Hệ quả: <strong>Kiến thức thụ động</strong>, không tạo được <strong>trí nhớ thao tác</strong>.</p>
+<p><strong>Lời khuyên:</strong></p>
+<ul>
+<li>Mở <strong>editor</strong> ngay và viết code, <strong>dù xấu cũng là của bạn</strong>.</li>
+<li>Áp dụng quy tắc <strong>10–20–70</strong>: <em>10%</em> đọc, <em>20%</em> xem ví dụ, <strong>70% thực hành</strong>.</li>
+<li>Thử bài tập nhỏ: “<strong>in ra 1→100, số chia hết cho 3 in &lsquo;Fizz&rsquo;</strong>”.</li>
+</ul>
+<blockquote>
+  <p>💡 <em>Bước đầu nhỏ còn hơn ngồi hoàn hảo hoá kế hoạch lớn.</em></p>
+
+</blockquote>
+<hr>
+<h2>2) Học Framework trước khi học JavaScript cơ bản<span class="hx:absolute hx:-mt-20" id="2-học-framework-trước-khi-học-javascript-cơ-bản"></span>
+    <a href="#2-h%e1%bb%8dc-framework-tr%c6%b0%e1%bb%9bc-khi-h%e1%bb%8dc-javascript-c%c6%a1-b%e1%ba%a3n" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Framework cho bạn cảm giác “<strong>làm được ngay</strong>”, nhưng nếu <strong>nền tảng JS lõm</strong>:</p>
+<ul>
+<li>Không hiểu <strong>vì sao</strong> code chạy.</li>
+<li><strong>Phụ thuộc</strong> framework, khó chuyển sang framework khác.</li>
+<li>Lúng túng khi debug những lỗi <strong>core JS</strong> (scope, hoisting, closure…).</li>
+</ul>
+<p><strong>Lời khuyên:</strong></p>
+<ul>
+<li>Học <strong>ES6+ cơ bản</strong> trước: <code>let/const</code>, arrow function, template literals, <strong>destructuring</strong>, <strong>rest/spread</strong>, <strong>module</strong>, <strong>Promise/async</strong>.</li>
+<li>Sau đó mới học <strong>React/Vue/Svelte/Angular</strong>. Bạn sẽ <strong>tiến nhanh hơn</strong> và <strong>chắc hơn</strong>.</li>
+</ul>
+<hr>
+<h2>3) Chuyển sang bài mới khi bài hiện tại còn chưa hiểu rõ<span class="hx:absolute hx:-mt-20" id="3-chuyển-sang-bài-mới-khi-bài-hiện-tại-còn-chưa-hiểu-rõ"></span>
+    <a href="#3-chuy%e1%bb%83n-sang-b%c3%a0i-m%e1%bb%9bi-khi-b%c3%a0i-hi%e1%bb%87n-t%e1%ba%a1i-c%c3%b2n-ch%c6%b0a-hi%e1%bb%83u-r%c3%b5" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Nóng vội “<strong>học lướt</strong>” dẫn đến “<strong>học trước quên sau</strong>”.</p>
+<p><strong>Ví dụ lộ trình bất cẩn:</strong> Callback → Promise (chưa chắc) → Async/Await (mơ hồ) → RxJS (choáng).</p>
+<p><strong>Lời khuyên:</strong></p>
+<ul>
+<li>Với mỗi khái niệm, hãy <strong>nghiền ngẫm – code – giải bài</strong> rồi mới chuyển bài.</li>
+<li>Checklist “đã sẵn sàng” trước khi qua bài mới:
+<ul>
+<li><input disabled="" type="checkbox"> Viết <strong>từ nhớ</strong> được API chính.</li>
+<li><input disabled="" type="checkbox"> Tự giải 2–3 <strong>bài tập</strong> liên quan.</li>
+<li><input disabled="" type="checkbox"> Tự <strong>giảng lại</strong> cho bản thân trong 3–5 phút.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>4) Tham gia dự án lớn quá sớm<span class="hx:absolute hx:-mt-20" id="4-tham-gia-dự-án-lớn-quá-sớm"></span>
+    <a href="#4-tham-gia-d%e1%bb%b1-%c3%a1n-l%e1%bb%9bn-qu%c3%a1-s%e1%bb%9bm" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Vừa học JS đã muốn làm <strong>mạng xã hội</strong>, <strong>thương mại điện tử</strong> full-stack. Rất dễ <strong>đuối</strong> và <strong>nản</strong>.</p>
+<p><strong>Lời khuyên – Lộ trình project</strong>:</p>
+<ul>
+<li><strong>Level 1:</strong> To‑do list, máy tính, đồng hồ đếm ngược.</li>
+<li><strong>Level 2:</strong> Gọi <strong>API công khai</strong> (Pokémon, GitHub), lọc/sắp xếp/paginate.</li>
+<li><strong>Level 3:</strong> Ứng dụng có <strong>auth</strong>, CRUD, routing, localStorage/IndexedDB.</li>
+<li><strong>Level 4:</strong> Bổ sung <strong>test</strong>, CI, lint/format, deploy.</li>
+</ul>
+<blockquote>
+  <p>🧱 Xây <strong>viên gạch nhỏ</strong> tốt, toà nhà lớn tự nhiên vững.</p>
+
+</blockquote>
+<hr>
+<h2>5) Không thực hành trong điều kiện thực tế<span class="hx:absolute hx:-mt-20" id="5-không-thực-hành-trong-điều-kiện-thực-tế"></span>
+    <a href="#5-kh%c3%b4ng-th%e1%bb%b1c-h%c3%a0nh-trong-%c4%91i%e1%bb%81u-ki%e1%bb%87n-th%e1%bb%b1c-t%e1%ba%bf" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Chỉ làm trong <strong>môi trường “phòng thí nghiệm”</strong> của giảng viên / playground khiến bạn sốc khi gặp dự án thật.</p>
+<p><strong>Lời khuyên (thực chiến hoá):</strong></p>
+<ul>
+<li>Tạo dự án <strong>Vite</strong>/<strong>Next.js</strong>/<strong>Nuxt</strong> (tùy stack) → cài ESLint + Prettier.</li>
+<li>Gọi <strong>API thật</strong>, xử lý <strong>lỗi mạng</strong>, <strong>loading</strong>, <strong>retry</strong>, <strong>debounce</strong>.</li>
+<li>Viết <strong>unit test</strong> (Vitest/Jest) cho hàm thuần.</li>
+<li>Tập <strong>debug</strong> bằng DevTools: breakpoint, network, performance.</li>
+</ul>
+<hr>
+<h2>6) Luôn so sánh bản thân với người khác<span class="hx:absolute hx:-mt-20" id="6-luôn-so-sánh-bản-thân-với-người-khác"></span>
+    <a href="#6-lu%c3%b4n-so-s%c3%a1nh-b%e1%ba%a3n-th%c3%a2n-v%e1%bb%9bi-ng%c6%b0%e1%bb%9di-kh%c3%a1c" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Bạn chỉ thấy <strong>kết quả bóng bẩy</strong> của người ta, không thấy <strong>quá trình</strong> của họ. So sánh chỉ khiến bạn <strong>mất động lực</strong>.</p>
+<p><strong>Lời khuyên:</strong></p>
+<ul>
+<li>So sánh <strong>mình hôm nay với mình hôm qua</strong>.</li>
+<li>Lưu <strong>journal học</strong> (log daily 5–10 dòng).</li>
+<li>Mỗi tuần tổng kết: <strong>3 điều học được</strong> + <strong>1 refactor nhỏ</strong>.</li>
+</ul>
+<hr>
+<h2>7) Học theo tutorial mà không hiểu hoặc không tự gõ code<span class="hx:absolute hx:-mt-20" id="7-học-theo-tutorial-mà-không-hiểu-hoặc-không-tự-gõ-code"></span>
+    <a href="#7-h%e1%bb%8dc-theo-tutorial-m%c3%a0-kh%c3%b4ng-hi%e1%bb%83u-ho%e1%ba%b7c-kh%c3%b4ng-t%e1%bb%b1-g%c3%b5-code" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>Copy + paste</strong> khiến bạn <strong>quên nhanh</strong> và <strong>không hiểu bản chất</strong>.</p>
+<p><strong>Lời khuyên:</strong></p>
+<ul>
+<li><strong>Tự gõ</strong> từng dòng, <strong>đổi biến/đổi dữ liệu/đổi case</strong> để kiểm tra hiểu.</li>
+<li>Thử <strong>viết lại</strong> không nhìn mẫu.</li>
+<li>Với bài dài, hãy <strong>chia chặng</strong>: mỗi chặng commit một mốc (init → render → fetch → handle error…).</li>
+</ul>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// Ví dụ “tự gõ” đơn giản: fetch user &amp; hiển thị tên
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">showUser</span>(<span style="color:#a6e22e">username</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">`https://api.github.com/users/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">username</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">ok</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Network error&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>();
+</span></span><span style="display:flex;"><span>  document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;#name&#34;</span>).<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">??</span> <span style="color:#e6db74">&#34;Ẩn danh&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">showUser</span>(<span style="color:#e6db74">&#34;octocat&#34;</span>).<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<hr>
+<h2>✅ Tạm kết<span class="hx:absolute hx:-mt-20" id="-tạm-kết"></span>
+    <a href="#-t%e1%ba%a1m-k%e1%ba%bft" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Tóm lại, để <strong>không “nước đổ lá khoai”</strong> khi học JavaScript:</p>
+<ul>
+<li><strong>Viết code ngay</strong>, tránh sa đà đọc “triết lý”.</li>
+<li><strong>Vững core JS</strong> trước, rồi hãy học framework.</li>
+<li><strong>Hiểu chắc – thực hành đủ – rồi mới sang bài mới</strong>.</li>
+<li><strong>Tiến từng project nhỏ</strong>, tích lũy dần “múi cơ bắp” thực chiến.</li>
+<li><strong>Không so sánh người – chỉ so sánh chính mình</strong>.</li>
+<li><strong>Tự gõ, tự debug, tự triển khai</strong> — kỹ năng sẽ ở lại rất lâu.</li>
+</ul>
+<p>Cứ đi <strong>đều tay</strong>, bạn sẽ <strong>lên trình</strong> nhanh hơn tưởng tượng! 🚀</p>
+<hr>
+<h2>📚 Tài nguyên gợi ý<span class="hx:absolute hx:-mt-20" id="-tài-nguyên-gợi-ý"></span>
+    <a href="#-t%c3%a0i-nguy%c3%aan-g%e1%bb%a3i-%c3%bd" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li><strong>MDN</strong> – JavaScript Guide &amp; Reference</li>
+<li><strong>Eloquent JavaScript</strong> (Marijn Haverbeke) – mở đầu rất tốt</li>
+<li><strong>You Don’t Know JS Yet</strong> (Kyle Simpson) – đào sâu core JS</li>
+<li><strong>Frontend Mentor / Codewars</strong> – luyện tập qua thử thách nhỏ</li>
+<li><strong>Awesome Public APIs</strong> – danh sách API mở để luyện fetch</li>
+</ul>
+<blockquote>
+  <p>💬 Bạn có kinh nghiệm hay mẹo học JS nào hiệu quả? Chia sẻ để mọi người cùng tiến bộ nhé!</p>
+
+</blockquote>
+
+        </div>
+        <div class="hx:mt-16"></div>
+        
+      </main>
+    </article>
+  </div>
+
+        </div>
+      
+    </main>
+
+    <div class="custom-footer-wrapper">
+  <div class="custom-footer">
+    <div class="footer-column about">
+      <h3>Blog by Trần Hoàng Rinh<h3>
+      
+       <p>Liên Hệ :</p>
+     <p class="desc">
+        📞 SĐT: <strong>1911066321</strong><br>
+        📧 Email: <a href="mailto:tranhoang3622@gmail.com">tranhoang3622@gmail.com</a>
+      </p>
+      <div class="social">
+     
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../profile/">Profile</a></li>
+        
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Content</h4>
+      <ul>
+        <li><a href="../../blog/">Blog</a></li>
+ 
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Tools & Resources</h4>
+      <ul>
+        <li><a href="#">Source Code</a></li>
+        <li><a href="#">PageSpeed Insights</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Trần Hoàng Rinh. All rights reserved.</p>
+    <div class="links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">PageSpeed</a>
+    </div>
+  </div>
+</div>
+
+    
+<script defer src="../../js/main.min.js"></script>
+
+  </body>
+</html>

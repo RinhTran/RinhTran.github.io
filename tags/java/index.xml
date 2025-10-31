@@ -1,0 +1,619 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog Lập trình Java &amp; JavaScript – Java</title>
+    <link>https://rinhtran.github.io/tags/java/</link>
+    <description>Recent content in Java on Blog Lập trình Java &amp; JavaScript</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi</language>
+    <lastBuildDate>Fri, 24 Oct 2025 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="https://rinhtran.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android</title>
+      <link>https://rinhtran.github.io/posts/rxjava-lap-trinh-reactive-android/</link>
+      <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://rinhtran.github.io/posts/rxjava-lap-trinh-reactive-android/</guid>
+      <description>
+        
+        
+        &lt;hr&gt;
+&lt;h2&gt;🚀 Mở đầu&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;-mở-đầu&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#-m%e1%bb%9f-%c4%91%e1%ba%a7u&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Tư duy &lt;strong&gt;hướng sự kiện&lt;/strong&gt; (event‑driven) vốn quen thuộc ở &lt;strong&gt;JavaScript/Node.js&lt;/strong&gt; nay đã trở thành dòng chảy chủ đạo trên &lt;strong&gt;Android&lt;/strong&gt; nhờ &lt;strong&gt;RxJava/RxAndroid&lt;/strong&gt;.&lt;br&gt;
+Reactive giúp bạn xử lý &lt;strong&gt;bất đồng bộ&lt;/strong&gt;, &lt;strong&gt;luồng dữ liệu&lt;/strong&gt; (streams) và &lt;strong&gt;biến đổi dữ liệu&lt;/strong&gt; (operators) một cách &lt;strong&gt;khai báo, súc tích&lt;/strong&gt; và &lt;strong&gt;dễ kiểm soát&lt;/strong&gt; hơn AsyncTask/Callback thuần.&lt;/p&gt;
+&lt;p&gt;Bài viết này là một hướng dẫn &lt;strong&gt;từ nền tảng đến thực chiến&lt;/strong&gt; về &lt;strong&gt;RxJava&lt;/strong&gt; cho Android.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;📑 Mục lục&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;-mục-lục&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#-m%e1%bb%a5c-l%e1%bb%a5c&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#1-rxjava-l%c3%a0-g%c3%ac&#34;&gt;RxJava là gì?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-tr%c6%b0%e1%bb%9bc-rxjava-asynctask--gi%e1%bb%9bi-h%e1%ba%a1n&#34;&gt;Trước RxJava: AsyncTask &amp;amp; giới hạn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-c%c3%a1c-kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i-observable-observer-disposable&#34;&gt;Các khái niệm cốt lõi: Observable, Observer, Disposable&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-schedulers--threading-tr%c3%aan-android&#34;&gt;Schedulers &amp;amp; threading trên Android&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-operators-ph%e1%bb%95-bi%e1%ba%bfn-map-filter-flatmap&#34;&gt;Operators phổ biến (map, filter, flatMap…)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-th%e1%bb%b1c-chi%e1%ba%bfn-c%e1%ba%adp-nh%e1%ba%adt-recyclerview-b%e1%ba%b1ng-rxjava&#34;&gt;Thực chiến: cập nhật RecyclerView bằng RxJava&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-t%c3%adch-h%e1%bb%a3p-retrofit--rxjava&#34;&gt;Tích hợp Retrofit + RxJava&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-qu%e1%ba%a3n-l%c3%bd-v%c3%b2ng-%c4%91%e1%bb%9di--tr%c3%a1nh-r%c3%b2-r%e1%bb%89-b%e1%bb%99-nh%e1%bb%9b&#34;&gt;Quản lý vòng đời &amp;amp; tránh rò rỉ bộ nhớ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-so-s%c3%a1nh-nhanh-v%e1%bb%9bi-asynctaskcallbacks&#34;&gt;So sánh nhanh với AsyncTask/Callbacks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10-best-practices--l%c6%b0u-%c3%bd&#34;&gt;Best practices &amp;amp; lưu ý&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#11-t%e1%bb%95ng-k%e1%ba%bft&#34;&gt;Tổng kết&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2&gt;1) RxJava là gì?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;1-rxjava-là-gì&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#1-rxjava-l%c3%a0-g%c3%ac&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;RxJava&lt;/strong&gt; là thư viện hiện thực &lt;strong&gt;Reactive Extensions&lt;/strong&gt; (Rx) cho Java, giúp tạo và xử lý &lt;strong&gt;streams sự kiện/dữ liệu&lt;/strong&gt; theo cách &lt;strong&gt;bất đồng bộ&lt;/strong&gt;.&lt;br&gt;
+&lt;strong&gt;RxAndroid&lt;/strong&gt; bổ sung các tiện ích riêng cho Android (như &lt;code&gt;AndroidSchedulers.mainThread()&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Mô hình cốt lõi tuân theo &lt;strong&gt;Observer Pattern&lt;/strong&gt;: &lt;em&gt;Observable/Flowable&lt;/em&gt; phát dữ liệu, &lt;em&gt;Observer&lt;/em&gt; đăng ký nhận và xử lý.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;2) Trước RxJava: AsyncTask &amp;amp; giới hạn&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;2-trước-rxjava-asynctask--giới-hạn&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#2-tr%c6%b0%e1%bb%9bc-rxjava-asynctask--gi%e1%bb%9bi-h%e1%ba%a1n&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;AsyncTask&lt;/strong&gt; từng là lựa chọn quen thuộc để chạy nền và cập nhật UI sau khi xong việc. Tuy nhiên, nó có nhiều hạn chế:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Khó quản lý &lt;strong&gt;đa luồng&lt;/strong&gt; và &lt;strong&gt;chuỗi tác vụ&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Không có&lt;/strong&gt; cơ chế biến đổi/lỗi mạch lạc (error handling rời rạc).&lt;/li&gt;
+&lt;li&gt;Dễ &lt;strong&gt;memory leak&lt;/strong&gt; nếu giữ tham chiếu &lt;code&gt;Context&lt;/code&gt; sai.&lt;/li&gt;
+&lt;li&gt;Khó &lt;strong&gt;test&lt;/strong&gt; và &lt;strong&gt;tái sử dụng&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Reactive ra đời để giải quyết những vấn đề này bằng cách &lt;strong&gt;trừu tượng hóa bất đồng bộ&lt;/strong&gt; thành &lt;strong&gt;chuỗi operators&lt;/strong&gt; rõ ràng.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;3) Các khái niệm cốt lõi: Observable, Observer, Disposable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;3-các-khái-niệm-cốt-lõi-observable-observer-disposable&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#3-c%c3%a1c-kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i-observable-observer-disposable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Observable/Flowable&lt;/strong&gt;: nguồn phát ra &lt;strong&gt;0..n&lt;/strong&gt; phần tử (items) và tín hiệu &lt;strong&gt;hoàn thành/lỗi&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Observer&lt;/strong&gt;: đăng ký để &lt;strong&gt;nhận dữ liệu&lt;/strong&gt; thông qua &lt;code&gt;onNext&lt;/code&gt;, &lt;code&gt;onError&lt;/code&gt;, &lt;code&gt;onComplete&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Disposable/CompositeDisposable&lt;/strong&gt;: đại diện cho việc &lt;strong&gt;đăng ký (subscription)&lt;/strong&gt;; cần &lt;strong&gt;dispose&lt;/strong&gt; để tránh rò rỉ.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ví dụ khởi tạo đơn giản:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Observable.&lt;span style=&#34;color:#a6e22e&#34;&gt;just&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tiger&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lion&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Elephant&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        item  &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; Log.&lt;span style=&#34;color:#a6e22e&#34;&gt;d&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RX&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;onNext: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; item),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        error &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; Log.&lt;span style=&#34;color:#a6e22e&#34;&gt;e&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RX&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;onError: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; error),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ()    &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; Log.&lt;span style=&#34;color:#a6e22e&#34;&gt;d&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RX&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;onComplete&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    );&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2&gt;4) Schedulers &amp;amp; threading trên Android&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;4-schedulers--threading-trên-android&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#4-schedulers--threading-tr%c3%aan-android&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;subscribeOn(...)&lt;/code&gt;: chỉ định &lt;strong&gt;luồng thực thi&lt;/strong&gt; phần tạo dữ liệu (upstream).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;observeOn(...)&lt;/code&gt;: chỉ định &lt;strong&gt;luồng nhận kết quả&lt;/strong&gt; (downstream).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AndroidSchedulers.mainThread()&lt;/code&gt;: nhận kết quả trên UI Thread.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Schedulers.io()&lt;/code&gt;: I/O (network, file, DB).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Schedulers.computation()&lt;/code&gt;: CPU‑bound (tính toán).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Observable.&lt;span style=&#34;color:#a6e22e&#34;&gt;fromCallable&lt;/span&gt;(() &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; heavyWork())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribeOn&lt;/span&gt;(Schedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;computation&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;observeOn&lt;/span&gt;(AndroidSchedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;mainThread&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(result &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; render(result));&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;🧠 Ghi nhớ: &lt;code&gt;subscribeOn&lt;/code&gt; &lt;strong&gt;áp dụng một lần&lt;/strong&gt; (thường đặt sớm), còn &lt;code&gt;observeOn&lt;/code&gt; có thể &lt;strong&gt;đổi nhiều lần&lt;/strong&gt; trong chain.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;5) Operators phổ biến (map, filter, flatMap…)&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;5-operators-phổ-biến-map-filter-flatmap&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#5-operators-ph%e1%bb%95-bi%e1%ba%bfn-map-filter-flatmap&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;map&lt;/code&gt;: biến đổi 1‑1.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;filter&lt;/code&gt;: lọc theo điều kiện.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;flatMap&lt;/code&gt;: biến đổi 1‑n, phẳng hóa streams lồng nhau.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;switchMap&lt;/code&gt;: hủy stream cũ khi có stream mới (hữu ích cho search).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;debounce&lt;/code&gt;, &lt;code&gt;throttleFirst&lt;/code&gt;: kiểm soát tần suất sự kiện (input, click).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;zip&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, &lt;code&gt;concat&lt;/code&gt;: phối hợp nhiều nguồn.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Observable.&lt;span style=&#34;color:#a6e22e&#34;&gt;just&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; tiger &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lion&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ELEPHANT&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt;(String::trim)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;filter&lt;/span&gt;(s &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; s.&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;() &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; 3)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt;(String::toUpperCase)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;toList&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;toObservable&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(list &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; Log.&lt;span style=&#34;color:#a6e22e&#34;&gt;d&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RX&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Animals: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; list));&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2&gt;6) Thực chiến: cập nhật RecyclerView bằng RxJava&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;6-thực-chiến-cập-nhật-recyclerview-bằng-rxjava&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#6-th%e1%bb%b1c-chi%e1%ba%bfn-c%e1%ba%adp-nh%e1%ba%adt-recyclerview-b%e1%ba%b1ng-rxjava&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;CompositeDisposable bag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; CompositeDisposable();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;List&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;String&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; animals &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Arrays.&lt;span style=&#34;color:#a6e22e&#34;&gt;asList&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tiger&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lion&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Elephant&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bag.&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Observable.&lt;span style=&#34;color:#a6e22e&#34;&gt;just&lt;/span&gt;(animals)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribeOn&lt;/span&gt;(Schedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;observeOn&lt;/span&gt;(AndroidSchedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;mainThread&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            list &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                adapter.&lt;span style=&#34;color:#a6e22e&#34;&gt;updateList&lt;/span&gt;(list);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                adapter.&lt;span style=&#34;color:#a6e22e&#34;&gt;notifyDataSetChanged&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            throwable &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                Toast.&lt;span style=&#34;color:#a6e22e&#34;&gt;makeText&lt;/span&gt;(context, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lỗi: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; throwable.&lt;span style=&#34;color:#a6e22e&#34;&gt;getMessage&lt;/span&gt;(), Toast.&lt;span style=&#34;color:#a6e22e&#34;&gt;LENGTH_SHORT&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;show&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2&gt;7) Tích hợp Retrofit + RxJava&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;7-tích-hợp-retrofit--rxjava&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#7-t%c3%adch-h%e1%bb%a3p-retrofit--rxjava&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Gradle (ví dụ RxJava 2 / RxAndroid 2):&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-gradle&#34; data-lang=&#34;gradle&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;implementation &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io.reactivex.rxjava2:rxjava:2.x.x&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;implementation &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io.reactivex.rxjava2:rxandroid:2.x.x&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;implementation &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;com.squareup.retrofit2:adapter-rxjava2:2.x.x&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Khai báo Retrofit với Rx:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Retrofit retrofit &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Retrofit.&lt;span style=&#34;color:#a6e22e&#34;&gt;Builder&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;baseUrl&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://api.example.com/&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;addConverterFactory&lt;/span&gt;(GsonConverterFactory.&lt;span style=&#34;color:#a6e22e&#34;&gt;create&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;addCallAdapterFactory&lt;/span&gt;(RxJava2CallAdapterFactory.&lt;span style=&#34;color:#a6e22e&#34;&gt;create&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;build&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Api&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@GET&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;users/{id}&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Observable&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;User&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getUser&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;@Path&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;) String id);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Api api &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; retrofit.&lt;span style=&#34;color:#a6e22e&#34;&gt;create&lt;/span&gt;(Api.&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bag.&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    api.&lt;span style=&#34;color:#a6e22e&#34;&gt;getUser&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;42&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribeOn&lt;/span&gt;(Schedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;observeOn&lt;/span&gt;(AndroidSchedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;mainThread&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            user &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; ui.&lt;span style=&#34;color:#a6e22e&#34;&gt;showUser&lt;/span&gt;(user),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            error &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; ui.&lt;span style=&#34;color:#a6e22e&#34;&gt;showError&lt;/span&gt;(error.&lt;span style=&#34;color:#a6e22e&#34;&gt;getMessage&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;🔁 Với RxJava3, thay thế dependencies/adapter tương ứng (&lt;code&gt;rxjava3&lt;/code&gt;, &lt;code&gt;adapter-rxjava3&lt;/code&gt;).&lt;/p&gt;
+
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;8) Quản lý vòng đời &amp;amp; tránh rò rỉ bộ nhớ&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;8-quản-lý-vòng-đời--tránh-rò-rỉ-bộ-nhớ&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#8-qu%e1%ba%a3n-l%c3%bd-v%c3%b2ng-%c4%91%e1%bb%9di--tr%c3%a1nh-r%c3%b2-r%e1%bb%89-b%e1%bb%99-nh%e1%bb%9b&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Dùng &lt;strong&gt;CompositeDisposable&lt;/strong&gt; và &lt;strong&gt;dispose/clear&lt;/strong&gt; ở &lt;code&gt;onDestroy()&lt;/code&gt; (Activity) hoặc &lt;code&gt;onCleared()&lt;/code&gt; (ViewModel).&lt;/li&gt;
+&lt;li&gt;Tránh giữ &lt;strong&gt;Context&lt;/strong&gt; trong stream. Nếu cần, dùng &lt;strong&gt;Application context&lt;/strong&gt; an toàn hoặc &lt;strong&gt;WeakReference&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Ưu tiên &lt;strong&gt;cold Observables&lt;/strong&gt; (tạo mới cho mỗi subscriber) trừ khi cố ý dùng &lt;strong&gt;hot&lt;/strong&gt; (Subjects).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@Override&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;onDestroy&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;super&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;onDestroy&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    bag.&lt;span style=&#34;color:#a6e22e&#34;&gt;clear&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// hoặc bag.dispose();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2&gt;9) So sánh nhanh với AsyncTask/Callbacks&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;9-so-sánh-nhanh-với-asynctaskcallbacks&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#9-so-s%c3%a1nh-nhanh-v%e1%bb%9bi-asynctaskcallbacks&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Tiêu chí&lt;/th&gt;
+          &lt;th&gt;AsyncTask/Callback&lt;/th&gt;
+          &lt;th&gt;RxJava&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Chuỗi tác vụ&lt;/td&gt;
+          &lt;td&gt;Khó, lồng callback&lt;/td&gt;
+          &lt;td&gt;Rõ ràng qua operators&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Xử lý lỗi&lt;/td&gt;
+          &lt;td&gt;Rời rạc&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;onError()&lt;/code&gt; trong cùng chain&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Threading&lt;/td&gt;
+          &lt;td&gt;Tự quản lý&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;subscribeOn/observeOn&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Huỷ tác vụ&lt;/td&gt;
+          &lt;td&gt;Thủ công, cồng kềnh&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Disposable.dispose()&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Testability&lt;/td&gt;
+          &lt;td&gt;Khó&lt;/td&gt;
+          &lt;td&gt;Dễ mock/test từng operator&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2&gt;10) Best practices &amp;amp; lưu ý&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;10-best-practices--lưu-ý&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#10-best-practices--l%c6%b0u-%c3%bd&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Đặt &lt;code&gt;subscribeOn&lt;/code&gt; sớm&lt;/strong&gt;, &lt;code&gt;observeOn&lt;/code&gt; ngay trước đoạn cập nhật UI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bắt lỗi&lt;/strong&gt; ở cuối chain (&lt;code&gt;onError&lt;/code&gt; hoặc &lt;code&gt;onErrorReturn/ResumeNext&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Sử dụng &lt;strong&gt;&lt;code&gt;CompositeDisposable&lt;/code&gt;&lt;/strong&gt; ở lớp sở hữu vòng đời.&lt;/li&gt;
+&lt;li&gt;Tránh lạm dụng &lt;strong&gt;Subjects&lt;/strong&gt;; ưu tiên &lt;strong&gt;streams thuần&lt;/strong&gt; (Observable/Flowable).&lt;/li&gt;
+&lt;li&gt;Với &lt;strong&gt;tác vụ nặng&lt;/strong&gt;, cân nhắc &lt;strong&gt;backpressure&lt;/strong&gt; (&lt;code&gt;Flowable&lt;/code&gt; thay cho &lt;code&gt;Observable&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;debounce/throttle&lt;/strong&gt; cho sự kiện UI nhiều: search, scroll, click.&lt;/li&gt;
+&lt;li&gt;Với MVVM, kết hợp &lt;strong&gt;LiveData/StateFlow&lt;/strong&gt; ở biên giới UI nếu cần.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;11) Tổng kết&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;11-tổng-kết&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#11-t%e1%bb%95ng-k%e1%ba%bft&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;RxJava&lt;/strong&gt; đem lại cách tiếp cận &lt;strong&gt;khai báo, mạch lạc&lt;/strong&gt; cho xử lý bất đồng bộ trên Android:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Code &lt;strong&gt;ngắn gọn, dễ đọc&lt;/strong&gt;, &lt;strong&gt;chuỗi hóa&lt;/strong&gt; thao tác dữ liệu rõ ràng.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Threading&lt;/strong&gt; minh bạch qua &lt;code&gt;Schedulers&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error handling&lt;/strong&gt; &amp;amp; &lt;strong&gt;lifecycle&lt;/strong&gt; quản trị tốt hơn.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Khi bạn tiến xa với &lt;strong&gt;MVP/MVVM&lt;/strong&gt;, Rx gần như là &lt;strong&gt;mảnh ghép mặc định&lt;/strong&gt; để xây dựng luồng dữ liệu &lt;strong&gt;ổn định và dễ test&lt;/strong&gt;. Hãy bắt đầu từ những bài toán nhỏ (load list, search, debounce click) rồi mở rộng ra network, caching, và phối hợp nhiều nguồn dữ liệu.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;✍️ &lt;em&gt;Reactive không chỉ là kỹ thuật, mà là cách tư duy về dòng chảy dữ liệu.&lt;/em&gt;&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android</title>
+      <link>https://rinhtran.github.io/tin-tuc/rxjava-lap-trinh-reactive-android/</link>
+      <pubDate>Fri, 24 Oct 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://rinhtran.github.io/tin-tuc/rxjava-lap-trinh-reactive-android/</guid>
+      <description>
+        
+        
+        &lt;h1&gt;⚛️ RxJava – Thời đại &lt;em&gt;Reactive Programming&lt;/em&gt; trong ứng dụng Android&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Tác giả:&lt;/strong&gt; Sơn Dương&lt;br&gt;
+&lt;strong&gt;Cập nhật:&lt;/strong&gt; 2024&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;🚀 Mở đầu&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;-mở-đầu&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#-m%e1%bb%9f-%c4%91%e1%ba%a7u&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Tư duy &lt;strong&gt;hướng sự kiện&lt;/strong&gt; (event‑driven) vốn quen thuộc ở &lt;strong&gt;JavaScript/Node.js&lt;/strong&gt; nay đã trở thành dòng chảy chủ đạo trên &lt;strong&gt;Android&lt;/strong&gt; nhờ &lt;strong&gt;RxJava/RxAndroid&lt;/strong&gt;.&lt;br&gt;
+Reactive giúp bạn xử lý &lt;strong&gt;bất đồng bộ&lt;/strong&gt;, &lt;strong&gt;luồng dữ liệu&lt;/strong&gt; (streams) và &lt;strong&gt;biến đổi dữ liệu&lt;/strong&gt; (operators) một cách &lt;strong&gt;khai báo, súc tích&lt;/strong&gt; và &lt;strong&gt;dễ kiểm soát&lt;/strong&gt; hơn AsyncTask/Callback thuần.&lt;/p&gt;
+&lt;p&gt;Bài viết này là một hướng dẫn &lt;strong&gt;từ nền tảng đến thực chiến&lt;/strong&gt; về &lt;strong&gt;RxJava&lt;/strong&gt; cho Android.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;📑 Mục lục&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;-mục-lục&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#-m%e1%bb%a5c-l%e1%bb%a5c&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#1-rxjava-l%c3%a0-g%c3%ac&#34;&gt;RxJava là gì?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#2-tr%c6%b0%e1%bb%9bc-rxjava-asynctask--gi%e1%bb%9bi-h%e1%ba%a1n&#34;&gt;Trước RxJava: AsyncTask &amp;amp; giới hạn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#3-c%c3%a1c-kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i-observable-observer-disposable&#34;&gt;Các khái niệm cốt lõi: Observable, Observer, Disposable&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#4-schedulers--threading-tr%c3%aan-android&#34;&gt;Schedulers &amp;amp; threading trên Android&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#5-operators-ph%e1%bb%95-bi%e1%ba%bfn-map-filter-flatmap&#34;&gt;Operators phổ biến (map, filter, flatMap…)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#6-th%e1%bb%b1c-chi%e1%ba%bfn-c%e1%ba%adp-nh%e1%ba%adt-recyclerview-b%e1%ba%b1ng-rxjava&#34;&gt;Thực chiến: cập nhật RecyclerView bằng RxJava&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#7-t%c3%adch-h%e1%bb%a3p-retrofit--rxjava&#34;&gt;Tích hợp Retrofit + RxJava&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#8-qu%e1%ba%a3n-l%c3%bd-v%c3%b2ng-%c4%91%e1%bb%9di--tr%c3%a1nh-r%c3%b2-r%e1%bb%89-b%e1%bb%99-nh%e1%bb%9b&#34;&gt;Quản lý vòng đời &amp;amp; tránh rò rỉ bộ nhớ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#9-so-s%c3%a1nh-nhanh-v%e1%bb%9bi-asynctaskcallbacks&#34;&gt;So sánh nhanh với AsyncTask/Callbacks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#10-best-practices--l%c6%b0u-%c3%bd&#34;&gt;Best practices &amp;amp; lưu ý&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#11-t%e1%bb%95ng-k%e1%ba%bft&#34;&gt;Tổng kết&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2&gt;1) RxJava là gì?&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;1-rxjava-là-gì&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#1-rxjava-l%c3%a0-g%c3%ac&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;RxJava&lt;/strong&gt; là thư viện hiện thực &lt;strong&gt;Reactive Extensions&lt;/strong&gt; (Rx) cho Java, giúp tạo và xử lý &lt;strong&gt;streams sự kiện/dữ liệu&lt;/strong&gt; theo cách &lt;strong&gt;bất đồng bộ&lt;/strong&gt;.&lt;br&gt;
+&lt;strong&gt;RxAndroid&lt;/strong&gt; bổ sung các tiện ích riêng cho Android (như &lt;code&gt;AndroidSchedulers.mainThread()&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Mô hình cốt lõi tuân theo &lt;strong&gt;Observer Pattern&lt;/strong&gt;: &lt;em&gt;Observable/Flowable&lt;/em&gt; phát dữ liệu, &lt;em&gt;Observer&lt;/em&gt; đăng ký nhận và xử lý.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;2) Trước RxJava: AsyncTask &amp;amp; giới hạn&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;2-trước-rxjava-asynctask--giới-hạn&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#2-tr%c6%b0%e1%bb%9bc-rxjava-asynctask--gi%e1%bb%9bi-h%e1%ba%a1n&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;AsyncTask&lt;/strong&gt; từng là lựa chọn quen thuộc để chạy nền và cập nhật UI sau khi xong việc. Tuy nhiên, nó có nhiều hạn chế:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Khó quản lý &lt;strong&gt;đa luồng&lt;/strong&gt; và &lt;strong&gt;chuỗi tác vụ&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Không có&lt;/strong&gt; cơ chế biến đổi/lỗi mạch lạc (error handling rời rạc).&lt;/li&gt;
+&lt;li&gt;Dễ &lt;strong&gt;memory leak&lt;/strong&gt; nếu giữ tham chiếu &lt;code&gt;Context&lt;/code&gt; sai.&lt;/li&gt;
+&lt;li&gt;Khó &lt;strong&gt;test&lt;/strong&gt; và &lt;strong&gt;tái sử dụng&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Reactive ra đời để giải quyết những vấn đề này bằng cách &lt;strong&gt;trừu tượng hóa bất đồng bộ&lt;/strong&gt; thành &lt;strong&gt;chuỗi operators&lt;/strong&gt; rõ ràng.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;3) Các khái niệm cốt lõi: Observable, Observer, Disposable&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;3-các-khái-niệm-cốt-lõi-observable-observer-disposable&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#3-c%c3%a1c-kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i-observable-observer-disposable&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Observable/Flowable&lt;/strong&gt;: nguồn phát ra &lt;strong&gt;0..n&lt;/strong&gt; phần tử (items) và tín hiệu &lt;strong&gt;hoàn thành/lỗi&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Observer&lt;/strong&gt;: đăng ký để &lt;strong&gt;nhận dữ liệu&lt;/strong&gt; thông qua &lt;code&gt;onNext&lt;/code&gt;, &lt;code&gt;onError&lt;/code&gt;, &lt;code&gt;onComplete&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Disposable/CompositeDisposable&lt;/strong&gt;: đại diện cho việc &lt;strong&gt;đăng ký (subscription)&lt;/strong&gt;; cần &lt;strong&gt;dispose&lt;/strong&gt; để tránh rò rỉ.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ví dụ khởi tạo đơn giản:&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Observable.&lt;span style=&#34;color:#a6e22e&#34;&gt;just&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tiger&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lion&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Elephant&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        item  &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; Log.&lt;span style=&#34;color:#a6e22e&#34;&gt;d&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RX&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;onNext: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; item),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        error &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; Log.&lt;span style=&#34;color:#a6e22e&#34;&gt;e&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RX&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;onError: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; error),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ()    &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; Log.&lt;span style=&#34;color:#a6e22e&#34;&gt;d&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RX&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;onComplete&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    );&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2&gt;4) Schedulers &amp;amp; threading trên Android&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;4-schedulers--threading-trên-android&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#4-schedulers--threading-tr%c3%aan-android&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;subscribeOn(...)&lt;/code&gt;: chỉ định &lt;strong&gt;luồng thực thi&lt;/strong&gt; phần tạo dữ liệu (upstream).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;observeOn(...)&lt;/code&gt;: chỉ định &lt;strong&gt;luồng nhận kết quả&lt;/strong&gt; (downstream).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AndroidSchedulers.mainThread()&lt;/code&gt;: nhận kết quả trên UI Thread.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Schedulers.io()&lt;/code&gt;: I/O (network, file, DB).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Schedulers.computation()&lt;/code&gt;: CPU‑bound (tính toán).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Observable.&lt;span style=&#34;color:#a6e22e&#34;&gt;fromCallable&lt;/span&gt;(() &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; heavyWork())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribeOn&lt;/span&gt;(Schedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;computation&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;observeOn&lt;/span&gt;(AndroidSchedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;mainThread&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(result &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; render(result));&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;🧠 Ghi nhớ: &lt;code&gt;subscribeOn&lt;/code&gt; &lt;strong&gt;áp dụng một lần&lt;/strong&gt; (thường đặt sớm), còn &lt;code&gt;observeOn&lt;/code&gt; có thể &lt;strong&gt;đổi nhiều lần&lt;/strong&gt; trong chain.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;5) Operators phổ biến (map, filter, flatMap…)&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;5-operators-phổ-biến-map-filter-flatmap&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#5-operators-ph%e1%bb%95-bi%e1%ba%bfn-map-filter-flatmap&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;map&lt;/code&gt;: biến đổi 1‑1.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;filter&lt;/code&gt;: lọc theo điều kiện.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;flatMap&lt;/code&gt;: biến đổi 1‑n, phẳng hóa streams lồng nhau.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;switchMap&lt;/code&gt;: hủy stream cũ khi có stream mới (hữu ích cho search).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;debounce&lt;/code&gt;, &lt;code&gt;throttleFirst&lt;/code&gt;: kiểm soát tần suất sự kiện (input, click).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;zip&lt;/code&gt;, &lt;code&gt;merge&lt;/code&gt;, &lt;code&gt;concat&lt;/code&gt;: phối hợp nhiều nguồn.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Observable.&lt;span style=&#34;color:#a6e22e&#34;&gt;just&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; tiger &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lion&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ELEPHANT&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt;(String::trim)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;filter&lt;/span&gt;(s &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; s.&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;() &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; 3)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt;(String::toUpperCase)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;toList&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;toObservable&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(list &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; Log.&lt;span style=&#34;color:#a6e22e&#34;&gt;d&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RX&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Animals: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; list));&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2&gt;6) Thực chiến: cập nhật RecyclerView bằng RxJava&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;6-thực-chiến-cập-nhật-recyclerview-bằng-rxjava&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#6-th%e1%bb%b1c-chi%e1%ba%bfn-c%e1%ba%adp-nh%e1%ba%adt-recyclerview-b%e1%ba%b1ng-rxjava&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;CompositeDisposable bag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; CompositeDisposable();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;List&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;String&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; animals &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Arrays.&lt;span style=&#34;color:#a6e22e&#34;&gt;asList&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Tiger&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lion&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Elephant&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bag.&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Observable.&lt;span style=&#34;color:#a6e22e&#34;&gt;just&lt;/span&gt;(animals)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribeOn&lt;/span&gt;(Schedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;observeOn&lt;/span&gt;(AndroidSchedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;mainThread&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            list &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                adapter.&lt;span style=&#34;color:#a6e22e&#34;&gt;updateList&lt;/span&gt;(list);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                adapter.&lt;span style=&#34;color:#a6e22e&#34;&gt;notifyDataSetChanged&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            },
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            throwable &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                Toast.&lt;span style=&#34;color:#a6e22e&#34;&gt;makeText&lt;/span&gt;(context, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Lỗi: &amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; throwable.&lt;span style=&#34;color:#a6e22e&#34;&gt;getMessage&lt;/span&gt;(), Toast.&lt;span style=&#34;color:#a6e22e&#34;&gt;LENGTH_SHORT&lt;/span&gt;).&lt;span style=&#34;color:#a6e22e&#34;&gt;show&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2&gt;7) Tích hợp Retrofit + RxJava&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;7-tích-hợp-retrofit--rxjava&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#7-t%c3%adch-h%e1%bb%a3p-retrofit--rxjava&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Gradle (ví dụ RxJava 2 / RxAndroid 2):&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-gradle&#34; data-lang=&#34;gradle&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;implementation &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io.reactivex.rxjava2:rxjava:2.x.x&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;implementation &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io.reactivex.rxjava2:rxandroid:2.x.x&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;implementation &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;com.squareup.retrofit2:adapter-rxjava2:2.x.x&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Khai báo Retrofit với Rx:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Retrofit retrofit &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; Retrofit.&lt;span style=&#34;color:#a6e22e&#34;&gt;Builder&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;baseUrl&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://api.example.com/&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;addConverterFactory&lt;/span&gt;(GsonConverterFactory.&lt;span style=&#34;color:#a6e22e&#34;&gt;create&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;addCallAdapterFactory&lt;/span&gt;(RxJava2CallAdapterFactory.&lt;span style=&#34;color:#a6e22e&#34;&gt;create&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    .&lt;span style=&#34;color:#a6e22e&#34;&gt;build&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Api&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;@GET&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;users/{id}&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Observable&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;User&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getUser&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;@Path&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;) String id);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Api api &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; retrofit.&lt;span style=&#34;color:#a6e22e&#34;&gt;create&lt;/span&gt;(Api.&lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bag.&lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    api.&lt;span style=&#34;color:#a6e22e&#34;&gt;getUser&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;42&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribeOn&lt;/span&gt;(Schedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;observeOn&lt;/span&gt;(AndroidSchedulers.&lt;span style=&#34;color:#a6e22e&#34;&gt;mainThread&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        .&lt;span style=&#34;color:#a6e22e&#34;&gt;subscribe&lt;/span&gt;(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            user &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; ui.&lt;span style=&#34;color:#a6e22e&#34;&gt;showUser&lt;/span&gt;(user),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            error &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; ui.&lt;span style=&#34;color:#a6e22e&#34;&gt;showError&lt;/span&gt;(error.&lt;span style=&#34;color:#a6e22e&#34;&gt;getMessage&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;🔁 Với RxJava3, thay thế dependencies/adapter tương ứng (&lt;code&gt;rxjava3&lt;/code&gt;, &lt;code&gt;adapter-rxjava3&lt;/code&gt;).&lt;/p&gt;
+
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2&gt;8) Quản lý vòng đời &amp;amp; tránh rò rỉ bộ nhớ&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;8-quản-lý-vòng-đời--tránh-rò-rỉ-bộ-nhớ&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#8-qu%e1%ba%a3n-l%c3%bd-v%c3%b2ng-%c4%91%e1%bb%9di--tr%c3%a1nh-r%c3%b2-r%e1%bb%89-b%e1%bb%99-nh%e1%bb%9b&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Dùng &lt;strong&gt;CompositeDisposable&lt;/strong&gt; và &lt;strong&gt;dispose/clear&lt;/strong&gt; ở &lt;code&gt;onDestroy()&lt;/code&gt; (Activity) hoặc &lt;code&gt;onCleared()&lt;/code&gt; (ViewModel).&lt;/li&gt;
+&lt;li&gt;Tránh giữ &lt;strong&gt;Context&lt;/strong&gt; trong stream. Nếu cần, dùng &lt;strong&gt;Application context&lt;/strong&gt; an toàn hoặc &lt;strong&gt;WeakReference&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Ưu tiên &lt;strong&gt;cold Observables&lt;/strong&gt; (tạo mới cho mỗi subscriber) trừ khi cố ý dùng &lt;strong&gt;hot&lt;/strong&gt; (Subjects).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code&#34;&gt;
+
+&lt;div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;@Override&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;onDestroy&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;super&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;onDestroy&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    bag.&lt;span style=&#34;color:#a6e22e&#34;&gt;clear&lt;/span&gt;(); &lt;span style=&#34;color:#75715e&#34;&gt;// hoặc bag.dispose();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&#34;hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0&#34;&gt;
+  &lt;button
+    class=&#34;hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50&#34;
+    title=&#34;Copy code&#34;
+  &gt;
+    &lt;div class=&#34;hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+&lt;div class=&#34;hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4&#34;&gt;&lt;/div&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2&gt;9) So sánh nhanh với AsyncTask/Callbacks&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;9-so-sánh-nhanh-với-asynctaskcallbacks&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#9-so-s%c3%a1nh-nhanh-v%e1%bb%9bi-asynctaskcallbacks&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Tiêu chí&lt;/th&gt;
+          &lt;th&gt;AsyncTask/Callback&lt;/th&gt;
+          &lt;th&gt;RxJava&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Chuỗi tác vụ&lt;/td&gt;
+          &lt;td&gt;Khó, lồng callback&lt;/td&gt;
+          &lt;td&gt;Rõ ràng qua operators&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Xử lý lỗi&lt;/td&gt;
+          &lt;td&gt;Rời rạc&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;onError()&lt;/code&gt; trong cùng chain&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Threading&lt;/td&gt;
+          &lt;td&gt;Tự quản lý&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;subscribeOn/observeOn&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Huỷ tác vụ&lt;/td&gt;
+          &lt;td&gt;Thủ công, cồng kềnh&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;Disposable.dispose()&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Testability&lt;/td&gt;
+          &lt;td&gt;Khó&lt;/td&gt;
+          &lt;td&gt;Dễ mock/test từng operator&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2&gt;10) Best practices &amp;amp; lưu ý&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;10-best-practices--lưu-ý&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#10-best-practices--l%c6%b0u-%c3%bd&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Đặt &lt;code&gt;subscribeOn&lt;/code&gt; sớm&lt;/strong&gt;, &lt;code&gt;observeOn&lt;/code&gt; ngay trước đoạn cập nhật UI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bắt lỗi&lt;/strong&gt; ở cuối chain (&lt;code&gt;onError&lt;/code&gt; hoặc &lt;code&gt;onErrorReturn/ResumeNext&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;Sử dụng &lt;strong&gt;&lt;code&gt;CompositeDisposable&lt;/code&gt;&lt;/strong&gt; ở lớp sở hữu vòng đời.&lt;/li&gt;
+&lt;li&gt;Tránh lạm dụng &lt;strong&gt;Subjects&lt;/strong&gt;; ưu tiên &lt;strong&gt;streams thuần&lt;/strong&gt; (Observable/Flowable).&lt;/li&gt;
+&lt;li&gt;Với &lt;strong&gt;tác vụ nặng&lt;/strong&gt;, cân nhắc &lt;strong&gt;backpressure&lt;/strong&gt; (&lt;code&gt;Flowable&lt;/code&gt; thay cho &lt;code&gt;Observable&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;debounce/throttle&lt;/strong&gt; cho sự kiện UI nhiều: search, scroll, click.&lt;/li&gt;
+&lt;li&gt;Với MVVM, kết hợp &lt;strong&gt;LiveData/StateFlow&lt;/strong&gt; ở biên giới UI nếu cần.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;11) Tổng kết&lt;span class=&#34;hx:absolute hx:-mt-20&#34; id=&#34;11-tổng-kết&#34;&gt;&lt;/span&gt;
+    &lt;a href=&#34;#11-t%e1%bb%95ng-k%e1%ba%bft&#34; class=&#34;subheading-anchor&#34; aria-label=&#34;Permalink for this section&#34;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;RxJava&lt;/strong&gt; đem lại cách tiếp cận &lt;strong&gt;khai báo, mạch lạc&lt;/strong&gt; cho xử lý bất đồng bộ trên Android:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Code &lt;strong&gt;ngắn gọn, dễ đọc&lt;/strong&gt;, &lt;strong&gt;chuỗi hóa&lt;/strong&gt; thao tác dữ liệu rõ ràng.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Threading&lt;/strong&gt; minh bạch qua &lt;code&gt;Schedulers&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Error handling&lt;/strong&gt; &amp;amp; &lt;strong&gt;lifecycle&lt;/strong&gt; quản trị tốt hơn.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Khi bạn tiến xa với &lt;strong&gt;MVP/MVVM&lt;/strong&gt;, Rx gần như là &lt;strong&gt;mảnh ghép mặc định&lt;/strong&gt; để xây dựng luồng dữ liệu &lt;strong&gt;ổn định và dễ test&lt;/strong&gt;. Hãy bắt đầu từ những bài toán nhỏ (load list, search, debounce click) rồi mở rộng ra network, caching, và phối hợp nhiều nguồn dữ liệu.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;✍️ &lt;em&gt;Reactive không chỉ là kỹ thuật, mà là cách tư duy về dòng chảy dữ liệu.&lt;/em&gt;&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

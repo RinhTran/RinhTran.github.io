@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  
+  <link rel="icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="shortcut icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="apple-touch-icon" href="../../images/logo3-v2.jpg?v=8">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau – Blog Lập trình Java &amp; JavaScript</title>
+
+  <meta name="description" content="Khi cấu trúc dữ liệu **lồng nhau** (nested object), việc truy cập trực tiếp rất dễ crash.." /><link rel="canonical" href="https://rinhtran.github.io/posts/javascript-truy-xuat-object-long-nhau/" itemprop="url" />
+
+<meta property="og:title" content="🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau">
+<meta
+  property="og:description"
+  content="
+    Khi cấu trúc dữ liệu **lồng nhau** (nested object), việc truy cập trực tiếp rất dễ crash..
+  ">
+<meta
+  property="og:type"
+  content="
+    article
+  ">
+<meta property="og:url" content="https://rinhtran.github.io/posts/javascript-truy-xuat-object-long-nhau/"><meta property="article:section" content="posts">
+
+<meta
+  property="article:published_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+<meta
+  property="article:modified_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+
+  <meta itemprop="name" content="🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau">
+  <meta itemprop="description" content="Khi cấu trúc dữ liệu **lồng nhau** (nested object), việc truy cập trực tiếp rất dễ crash..">
+  <meta itemprop="datePublished" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="905">
+  <meta itemprop="keywords" content="JavaScript,Lodash,Thư Viện">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau">
+  <meta name="twitter:description" content="Khi cấu trúc dữ liệu **lồng nhau** (nested object), việc truy cập trực tiếp rất dễ crash..">
+
+ <link rel="preload" href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" as="style" />
+ <link href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" rel="stylesheet" />
+
+  
+  
+<link rel="stylesheet" href="../../css/output.8742859f879b4bff788e7b19f6201cda660ab4f9063175b7f06816404a59b1dc.css">
+   <link rel="stylesheet" href="../../css/home-grid.css">
+  <link rel="stylesheet" href="../../css/profile.css">
+
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-3h1K6HfR1jA2ZyPn+WvOG3lgNsH8yH5Tqv8aFz7NwNUfwxXf2E5ajbUV2dJShX5OKbK4up9M5fdb5vXhMHbGVA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  
+
+
+
+
+
+
+<script src="../../js/main-head.min.94da6f95b126542222dab3a6e07ffefe1aaf63ec3ca555e827b58b80e7d3f0b7.js"></script>
+
+
+  
+  
+  </head>
+<body class="bg-gray-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 leading-relaxed"><div class="hextra-nav-container hx:sticky hx:top-0 hx:z-20 hx:w-full hx:bg-transparent hx:print:hidden">
+  <div
+    class="hextra-nav-container-blur hx:pointer-events-none hx:absolute hx:z-[-1] hx:h-full hx:w-full hx:bg-white hx:dark:bg-dark hx:shadow-[0_2px_4px_rgba(0,0,0,.02),0_1px_0_rgba(0,0,0,.06)] hx:contrast-more:shadow-[0_0_0_1px_#000] hx:dark:shadow-[0_-1px_0_rgba(255,255,255,.1)_inset] hx:contrast-more:dark:shadow-[0_0_0_1px_#fff]"
+  ></div>
+
+  <nav class="hextra-max-navbar-width hx:mx-auto hx:flex hx:items-center hx:justify-end hx:gap-2 hx:h-16 hx:px-6">
+    <a class="hx:flex hx:items-center hx:hover:opacity-80 hx:ltr:mr-auto hx:rtl:ml-auto" href="../../">
+  <img class="hx:mr-3"
+       src="../../images/logo3-v2.jpg"
+       alt="Rinh Hoang Logo"
+       height="60"
+       width="60"
+       style="object-fit: cover; border-radius: 10px;" />
+  <span class="hx:font-extrabold hx:inline hx:text-lg hx:select-none" title="Blog Lập trình Java &amp; JavaScript">
+    Blog Lập trình Java &amp; JavaScript
+  </span>
+</a>
+<a
+  title=""
+  href="../../"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Home</span>
+</a><a
+  title=""
+  href="../../posts/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Blog</span>
+</a><a
+  title=""
+  href="../../profile/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Profile</span>
+</a><button type="button" aria-label="Menu" class="hextra-hamburger-menu hx:cursor-pointer hx:-mr-2 hx:rounded-sm hx:p-2 hx:active:bg-gray-400/20 hx:md:hidden"><svg height=24 fill="none" viewBox="0 0 24 24" stroke="currentColor"><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8H20"></path></g><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16H20"></path></g></svg></button>
+  </nav>
+</div>
+<main>
+      
+        <div class="max-w-4xl mx-auto px-6 mt-10">
+          
+<div class="max-w-7xl mx-auto px-4 md:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+  
+  <aside class="lg:col-span-3 hidden lg:block">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-5">
+      <h2 class="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-4">
+        🧭 Chuyên mục
+      </h2>
+      <ul class="space-y-3">
+        
+          <li>
+            <a href="../../posts/rxjava-lap-trinh-reactive-android/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/cac-khai-niem-javascript-nang-cao/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚡️ Các Khái Niệm JavaScript Nâng Cao Mà Mọi Lập Trình Viên Cần Biết (Chắc Chắn)
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/ky-thuat-toi-uu-javascript-tang-toc-web/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚡️ Kỹ thuật tối ưu **JavaScript** nhằm tăng tốc độ web gấp 2 lần
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/xu-ly-thoi-gian-va-mui-gio/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🌏 Kinh nghiệm xử lý thời gian và múi giờ trong JavaScript &amp; Các lỗi thường gặp
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/lodash-tien-ich-javascript/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              Lodash – Tiện ích dắt túi của dân lập trình JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/8-ky-thuat-toi-uu-ma-nguon-java-android/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/javascript-truy-xuat-object-long-nhau/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/interface-trong-java/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/7-sai-lam-hoc-javascript/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+  <article class="lg:col-span-9">
+    
+    
+      
+  <img src="../../images/kinhnghiem.webp" alt="🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau" class="rounded-xl w-full h-auto object-cover mb-6 shadow-lg">
+
+
+    
+
+    
+    <h1 class="text-3xl font-extrabold mb-4 text-slate-900 dark:text-slate-100 leading-tight">
+      🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau
+    </h1>
+
+    
+    <div class="flex flex-wrap items-center gap-3 mb-8 text-sm">
+      <span class="text-slate-500">📅 October 24, 2025</span>
+      
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #JavaScript
+          </span>
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #Lodash
+          </span>
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #Thư viện
+          </span>
+        
+      
+    </div>
+
+    
+    <div class="prose prose-lg dark:prose-invert max-w-none prose-img:rounded-xl prose-img:shadow-md prose-a:text-blue-600 hover:prose-a:text-blue-500">
+      <hr>
+<h2>🔎 Giới thiệu<span class="hx:absolute hx:-mt-20" id="-giới-thiệu"></span>
+    <a href="#-gi%e1%bb%9bi-thi%e1%bb%87u" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Chắc hẳn bạn đã nhiều lần phải truy xuất thuộc tính của <strong>Object</strong> để lấy dữ liệu (API, <code>localStorage</code>, JSON…).<br>
+Khi cấu trúc dữ liệu <strong>lồng nhau</strong> (nested object), việc truy cập trực tiếp rất dễ <strong>crash</strong> nếu một tầng nào đó bị <code>undefined</code> / <code>null</code>.</p>
+<p>Bài viết này tổng hợp các <strong>cách an toàn, hiện đại</strong> để lấy giá trị từ object lồng nhau, kèm ví dụ cụ thể.</p>
+<hr>
+<h2>📑 Mục lục<span class="hx:absolute hx:-mt-20" id="-mục-lục"></span>
+    <a href="#-m%e1%bb%a5c-l%e1%bb%a5c" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ol>
+<li><a href="#1-v%c3%ad-d%e1%bb%a5-d%e1%bb%af-li%e1%bb%87u--truy-xu%e1%ba%a5t-tr%e1%bb%b1c-ti%e1%ba%bfp">Ví dụ dữ liệu &amp; truy xuất trực tiếp</a></li>
+<li><a href="#2-v%e1%ba%a5n-%c4%91%e1%bb%81-thu%e1%bb%99c-t%c3%adnh-b%e1%bb%8b-undefined">Vấn đề: thuộc tính bị <code>undefined</code></a></li>
+<li><a href="#3-c%c3%a1ch-1-d%c3%b9ng-%c4%91i%e1%bb%81u-ki%e1%bb%87n-b%e1%ba%a3o-h%e1%bb%99-guard-checks">Cách 1: Dùng điều kiện “bảo hộ” (guard checks)</a></li>
+<li><a href="#4-c%c3%a1ch-2-optional-chaining----nullish-coalescing-">Cách 2: Optional Chaining <code>?.</code> + Nullish Coalescing <code>??</code></a></li>
+<li><a href="#5-c%c3%a1ch-3-d%c3%b9ng-lodash-get">Cách 3: Dùng Lodash <code>_.get</code></a></li>
+<li><a href="#6-c%c3%a1ch-4-t%e1%bb%b1-vi%e1%ba%bft-helper-getin-thu%e1%ba%a7n-js">Cách 4: Tự viết helper <code>getIn</code> (thuần JS)</a></li>
+<li><a href="#7-bonus-x%e1%bb%ad-l%c3%bd-m%e1%ba%a3ng-dynamic-path-v%c3%a0-default-%c4%91%e1%ba%b9p">Bonus: Xử lý mảng, dynamic path, và default “đẹp”</a></li>
+<li><a href="#8-typescript-an-to%c3%a0n-ki%e1%bb%83u-d%e1%bb%af-li%e1%bb%87u">TypeScript: An toàn kiểu dữ liệu</a></li>
+<li><a href="#9-k%e1%ba%bft-lu%e1%ba%adn">Kết luận</a></li>
+</ol>
+<hr>
+<h2>1) Ví dụ dữ liệu &amp; truy xuất trực tiếp<span class="hx:absolute hx:-mt-20" id="1-ví-dụ-dữ-liệu--truy-xuất-trực-tiếp"></span>
+    <a href="#1-v%c3%ad-d%e1%bb%a5-d%e1%bb%af-li%e1%bb%87u--truy-xu%e1%ba%a5t-tr%e1%bb%b1c-ti%e1%ba%bfp" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Giả sử server trả JSON như sau (được parse thành object):</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Dương Anh Sơn&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">website</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://vntalking.com&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<p>Truy xuất trực tiếp:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">website</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">website</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">website</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// → https://vntalking.com
+</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>✅ <strong>Đúng</strong> khi <strong>mọi tầng</strong> đều tồn tại.<br>
+❌ <strong>Dễ crash</strong> nếu <code>response.data</code> hoặc <code>options</code> không có.</p>
+
+</blockquote>
+<hr>
+<h2>2) Vấn đề: thuộc tính bị <code>undefined</code><span class="hx:absolute hx:-mt-20" id="2-vấn-đề-thuộc-tính-bị-undefined"></span>
+    <a href="#2-v%e1%ba%a5n-%c4%91%e1%bb%81-thu%e1%bb%99c-t%c3%adnh-b%e1%bb%8b-undefined" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Nếu response thay đổi (ví dụ thiếu <code>options</code>):</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {} };
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// response.data.options === undefined
+</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<p>Truy cập <code>response.data.options.website</code> sẽ <strong>throw lỗi</strong> vì đang đọc <code>.website</code> của <code>undefined</code>.</p>
+<hr>
+<h2>3) Cách 1: Dùng điều kiện “bảo hộ” (guard checks)<span class="hx:absolute hx:-mt-20" id="3-cách-1-dùng-điều-kiện-bảo-hộ-guard-checks"></span>
+    <a href="#3-c%c3%a1ch-1-d%c3%b9ng-%c4%91i%e1%bb%81u-ki%e1%bb%87n-b%e1%ba%a3o-h%e1%bb%99-guard-checks" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>Cách truyền thống</strong>: kiểm tra lần lượt từng tầng trước khi chạm tới giá trị cuối.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">website</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Không biết&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">response</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">options</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">website</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">website</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">website</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">website</span>);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<ul>
+<li>Ưu: rõ ràng, không cần thư viện.</li>
+<li>Nhược: <strong>dài dòng</strong>, dễ sai sót khi sâu nhiều tầng.</li>
+</ul>
+<hr>
+<h2>4) Cách 2: Optional Chaining <code>?.</code> + Nullish Coalescing <code>??</code><span class="hx:absolute hx:-mt-20" id="4-cách-2-optional-chaining---nullish-coalescing-"></span>
+    <a href="#4-c%c3%a1ch-2-optional-chaining---nullish-coalescing-" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Từ ES2020, JavaScript hỗ trợ <strong>optional chaining</strong> và <strong>nullish coalescing</strong>:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">website</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">data</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">options</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">website</span> <span style="color:#f92672">??</span> <span style="color:#e6db74">&#34;Không biết&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">website</span>);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<ul>
+<li><code>?.</code> dừng truy cập nếu gặp <code>null/undefined</code>, trả về <code>undefined</code> thay vì crash.</li>
+<li><code>??</code> chỉ dùng <strong>default</strong> khi vế trái là <code>null</code> hoặc <code>undefined</code> (khác với <code>||</code>).</li>
+</ul>
+<h3>So sánh nhanh <code>??</code> vs <code>||</code><span class="hx:absolute hx:-mt-20" id="so-sánh-nhanh--vs-"></span>
+    <a href="#so-s%c3%a1nh-nhanh--vs-" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#f92672">??</span> <span style="color:#ae81ff">42</span>        <span style="color:#75715e">// 0        (không thay thế)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#ae81ff">42</span>        <span style="color:#75715e">// 42       (0 là falsy → bị thay thế)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">??</span> <span style="color:#e6db74">&#34;N/A&#34;</span>    <span style="color:#75715e">// &#34;&#34;       (giữ nguyên chuỗi rỗng)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;N/A&#34;</span>    <span style="color:#75715e">// &#34;N/A&#34;    (&#34;&#34; là falsy → bị thay thế)
+</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>💡 Dùng <code>??</code> khi bạn <strong>chỉ</strong> muốn thay default cho <code>null/undefined</code>.</p>
+
+</blockquote>
+<hr>
+<h2>5) Cách 3: Dùng Lodash <code>_.get</code><span class="hx:absolute hx:-mt-20" id="5-cách-3-dùng-lodash-_get"></span>
+    <a href="#5-c%c3%a1ch-3-d%c3%b9ng-lodash-_get" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Nếu dùng <strong>Lodash</strong>, <code>_.get</code> là “dao đa năng” để đọc sâu:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// npm i lodash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">_</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;lodash&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">website</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">response</span>, <span style="color:#e6db74">&#34;data.options.website&#34;</span>, <span style="color:#e6db74">&#34;Không biết&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">website</span>);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<ul>
+<li>Ưu: ngắn gọn, có <strong>default</strong> tích hợp.</li>
+<li>Nhược: thêm <strong>phụ thuộc</strong> (dependency).</li>
+</ul>
+<blockquote>
+  <p>Mẹo: Dùng <code>_.set</code>, <code>_.has</code>, <code>_.unset</code> để ghi/xóa/kiểm tra an toàn theo path.</p>
+
+</blockquote>
+<hr>
+<h2>6) Cách 4: Tự viết helper <code>getIn</code> (thuần JS)<span class="hx:absolute hx:-mt-20" id="6-cách-4-tự-viết-helper-getin-thuần-js"></span>
+    <a href="#6-c%c3%a1ch-4-t%e1%bb%b1-vi%e1%ba%bft-helper-getin-thu%e1%ba%a7n-js" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Không muốn cài thư viện? Bạn có thể tự viết hàm nhỏ gọn:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getIn</span>(<span style="color:#a6e22e">obj</span>, <span style="color:#a6e22e">path</span>, <span style="color:#a6e22e">defaultValue</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// path: chuỗi &#34;a.b.c&#34; hoặc mảng [&#34;a&#34;,&#34;b&#34;,&#34;c&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keys</span> <span style="color:#f92672">=</span> Array.<span style="color:#a6e22e">isArray</span>(<span style="color:#a6e22e">path</span>) <span style="color:#f92672">?</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">:</span> String(<span style="color:#a6e22e">path</span>).<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;.&#34;</span>).<span style="color:#a6e22e">filter</span>(Boolean);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cur</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">obj</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">k</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">keys</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">cur</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">defaultValue</span>; <span style="color:#75715e">// null hoặc undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">cur</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cur</span>[<span style="color:#a6e22e">k</span>];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cur</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">undefined</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">defaultValue</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">cur</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Ví dụ
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">website</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getIn</span>(<span style="color:#a6e22e">response</span>, <span style="color:#e6db74">&#34;data.options.website&#34;</span>, <span style="color:#e6db74">&#34;Không biết&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">website</span>);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<ul>
+<li>Ưu: <strong>nhẹ</strong>, dễ tùy biến (hỗ trợ cả mảng path).</li>
+<li>Nhược: viết thêm một chút mã nguồn.</li>
+</ul>
+<hr>
+<h2>7) Bonus: Xử lý mảng, dynamic path, và default “đẹp”<span class="hx:absolute hx:-mt-20" id="7-bonus-xử-lý-mảng-dynamic-path-và-default-đẹp"></span>
+    <a href="#7-bonus-x%e1%bb%ad-l%c3%bd-m%e1%ba%a3ng-dynamic-path-v%c3%a0-default-%c4%91%e1%ba%b9p" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><h3>7.1. Path có <strong>mảng</strong> (array)<span class="hx:absolute hx:-mt-20" id="71-path-có-mảng-array"></span>
+    <a href="#71-path-c%c3%b3-m%e1%ba%a3ng-array" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">users</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">profile</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Alice&#34;</span> } }] } };
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">res</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">data</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">users</span><span style="color:#f92672">?</span>.[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">?</span>.<span style="color:#a6e22e">profile</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">??</span> <span style="color:#e6db74">&#34;Ẩn danh&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">firstName</span>);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<h3>7.2. Path <strong>động</strong> (runtime)<span class="hx:absolute hx:-mt-20" id="72-path-động-runtime"></span>
+    <a href="#72-path-%c4%91%e1%bb%99ng-runtime" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">lang</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;vi&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getIn</span>(<span style="color:#a6e22e">response</span>, [<span style="color:#e6db74">&#34;data&#34;</span>, <span style="color:#e6db74">&#34;options&#34;</span>, <span style="color:#e6db74">&#34;i18n&#34;</span>, <span style="color:#a6e22e">lang</span>, <span style="color:#e6db74">&#34;title&#34;</span>], <span style="color:#e6db74">&#34;Không tiêu đề&#34;</span>);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<h3>7.3. Default “đẹp” với <strong>nullish coalescing</strong><span class="hx:absolute hx:-mt-20" id="73-default-đẹp-với-nullish-coalescing"></span>
+    <a href="#73-default-%c4%91%e1%ba%b9p-v%e1%bb%9bi-nullish-coalescing" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">meta</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">count</span> <span style="color:#f92672">??</span> <span style="color:#ae81ff">0</span>;       <span style="color:#75715e">// số
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isOn</span>  <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">flags</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">enabled</span> <span style="color:#f92672">??</span> <span style="color:#66d9ef">false</span>; <span style="color:#75715e">// boolean
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">list</span>  <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">items</span> <span style="color:#f92672">??</span> [];             <span style="color:#75715e">// mảng rỗng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">obj</span>   <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">config</span> <span style="color:#f92672">??</span> {};            <span style="color:#75715e">// object rỗng
+</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<hr>
+<h2>8) TypeScript: An toàn kiểu dữ liệu<span class="hx:absolute hx:-mt-20" id="8-typescript-an-toàn-kiểu-dữ-liệu"></span>
+    <a href="#8-typescript-an-to%c3%a0n-ki%e1%bb%83u-d%e1%bb%af-li%e1%bb%87u" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Với <strong>TypeScript</strong>, bạn sẽ được gợi ý kiểu và cảnh báo sớm khi truy cập sai path.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ApiResponse</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">?:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">options</span><span style="color:#f92672">?:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">website?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">declare</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span>: <span style="color:#66d9ef">ApiResponse</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">website</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">data</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">options</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">website</span> <span style="color:#f92672">??</span> <span style="color:#e6db74">&#34;Không biết&#34;</span>;</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<h3>Helper generic (TS) cho <code>getIn</code><span class="hx:absolute hx:-mt-20" id="helper-generic-ts-cho-getin"></span>
+    <a href="#helper-generic-ts-cho-getin" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// Đơn giản, không infer sâu path -&gt; Tự trả về unknown
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getIn</span>&lt;<span style="color:#f92672">T</span>&gt;(<span style="color:#a6e22e">obj</span>: <span style="color:#66d9ef">unknown</span>, <span style="color:#a6e22e">path</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> (<span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">number</span>)[], <span style="color:#a6e22e">fallback</span>: <span style="color:#66d9ef">T</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">T</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keys</span> <span style="color:#f92672">=</span> Array.<span style="color:#a6e22e">isArray</span>(<span style="color:#a6e22e">path</span>) <span style="color:#f92672">?</span> <span style="color:#a6e22e">path</span> : <span style="color:#66d9ef">String</span>(<span style="color:#a6e22e">path</span>).<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;.&#34;</span>).<span style="color:#a6e22e">filter</span>(Boolean);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// @ts-ignore - chấp nhận kiểu linh hoạt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cur</span>: <span style="color:#66d9ef">any</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">obj</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">k</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">keys</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">cur</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fallback</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cur</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cur</span>[<span style="color:#a6e22e">k</span>];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">cur</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">undefined</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">fallback</span> : <span style="color:#66d9ef">cur</span>) <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">T</span>;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>💡 Kết hợp với <strong>schema validation</strong> (như Zod, Yup) để kiểm tra dữ liệu từ API trước khi dùng.</p>
+
+</blockquote>
+<hr>
+<h2>9) Kết luận<span class="hx:absolute hx:-mt-20" id="9-kết-luận"></span>
+    <a href="#9-k%e1%ba%bft-lu%e1%ba%adn" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li><strong>Không truy cập trực tiếp</strong> vào path sâu nếu không chắc chắn cấu trúc.</li>
+<li>Ưu tiên <strong>Optional Chaining <code>?.</code></strong> + <strong>Nullish <code>??</code></strong> cho code <strong>ngắn, an toàn</strong>.</li>
+<li>Cân nhắc <strong>Lodash <code>_.get</code></strong> hoặc helper <strong><code>getIn</code></strong> khi cần path động/phức tạp.</li>
+<li>Với TypeScript, mô tả kiểu rõ ràng để <strong>tránh lỗi runtime</strong>.</li>
+</ul>
+<blockquote>
+  <p>✍️ Chia sẻ thêm mẹo hay của bạn để mọi người cùng học nhé!</p>
+
+</blockquote>
+<hr>
+<h3>📚 Đọc thêm<span class="hx:absolute hx:-mt-20" id="-đọc-thêm"></span>
+    <a href="#-%c4%91%e1%bb%8dc-th%c3%aam" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><ul>
+<li>MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining"target="_blank" rel="noopener">Optional chaining</a></li>
+<li>MDN: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator"target="_blank" rel="noopener">Nullish coalescing</a></li>
+<li>Lodash docs: <a href="https://lodash.com/docs/#get"target="_blank" rel="noopener"><code>_.get</code></a></li>
+</ul>
+
+    </div>
+
+    
+    <div class="mt-12 rounded-2xl bg-slate-50 dark:bg-slate-800/60 p-6 shadow-inner">
+      <h3 class="text-xl font-semibold text-blue-600 mb-2">✨ Cảm ơn bạn đã đọc đến đây!</h3>
+      <p class="text-slate-600 dark:text-slate-300 text-[1rem]">
+        Nếu bạn thấy bài viết hữu ích, hãy chia sẻ để lan tỏa kiến thức nhé 💙  
+        <br> Đừng quên theo dõi blog để đọc thêm các bài viết hay về Java & JavaScript 🚀
+      </p>
+    </div>
+  </article>
+</div>
+
+        </div>
+      
+    </main>
+
+    <div class="custom-footer-wrapper">
+  <div class="custom-footer">
+    <div class="footer-column about">
+      <h3>Blog by Trần Hoàng Rinh<h3>
+      
+       <p>Liên Hệ :</p>
+     <p class="desc">
+        📞 SĐT: <strong>1911066321</strong><br>
+        📧 Email: <a href="mailto:tranhoang3622@gmail.com">tranhoang3622@gmail.com</a>
+      </p>
+      <div class="social">
+     
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../profile/">Profile</a></li>
+        
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Content</h4>
+      <ul>
+        <li><a href="../../blog/">Blog</a></li>
+ 
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Tools & Resources</h4>
+      <ul>
+        <li><a href="#">Source Code</a></li>
+        <li><a href="#">PageSpeed Insights</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Trần Hoàng Rinh. All rights reserved.</p>
+    <div class="links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">PageSpeed</a>
+    </div>
+  </div>
+</div>
+
+    
+<script defer src="../../js/main.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  
+  <link rel="icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="shortcut icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="apple-touch-icon" href="../../images/logo3-v2.jpg?v=8">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android – Blog Lập trình Java &amp; JavaScript</title>
+
+  <meta name="description" content="thực tế, dễ áp dụng và đặc biệt phù hợp cho lập trình Android" /><link rel="canonical" href="https://rinhtran.github.io/posts/8-ky-thuat-toi-uu-ma-nguon-java-android/" itemprop="url" />
+
+<meta property="og:title" content="🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android">
+<meta
+  property="og:description"
+  content="
+    thực tế, dễ áp dụng và đặc biệt phù hợp cho lập trình Android
+  ">
+<meta
+  property="og:type"
+  content="
+    article
+  ">
+<meta property="og:url" content="https://rinhtran.github.io/posts/8-ky-thuat-toi-uu-ma-nguon-java-android/"><meta property="article:section" content="posts">
+
+<meta
+  property="article:published_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+<meta
+  property="article:modified_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+
+  <meta itemprop="name" content="🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android">
+  <meta itemprop="description" content="thực tế, dễ áp dụng và đặc biệt phù hợp cho lập trình Android">
+  <meta itemprop="datePublished" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1024">
+  <meta itemprop="keywords" content="JavaScript,Lodash,Thư Viện">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android">
+  <meta name="twitter:description" content="thực tế, dễ áp dụng và đặc biệt phù hợp cho lập trình Android">
+
+ <link rel="preload" href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" as="style" />
+ <link href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" rel="stylesheet" />
+
+  
+  
+<link rel="stylesheet" href="../../css/output.8742859f879b4bff788e7b19f6201cda660ab4f9063175b7f06816404a59b1dc.css">
+   <link rel="stylesheet" href="../../css/home-grid.css">
+  <link rel="stylesheet" href="../../css/profile.css">
+
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-3h1K6HfR1jA2ZyPn+WvOG3lgNsH8yH5Tqv8aFz7NwNUfwxXf2E5ajbUV2dJShX5OKbK4up9M5fdb5vXhMHbGVA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  
+
+
+
+
+
+
+<script src="../../js/main-head.min.94da6f95b126542222dab3a6e07ffefe1aaf63ec3ca555e827b58b80e7d3f0b7.js"></script>
+
+
+  
+  
+  </head>
+<body class="bg-gray-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 leading-relaxed"><div class="hextra-nav-container hx:sticky hx:top-0 hx:z-20 hx:w-full hx:bg-transparent hx:print:hidden">
+  <div
+    class="hextra-nav-container-blur hx:pointer-events-none hx:absolute hx:z-[-1] hx:h-full hx:w-full hx:bg-white hx:dark:bg-dark hx:shadow-[0_2px_4px_rgba(0,0,0,.02),0_1px_0_rgba(0,0,0,.06)] hx:contrast-more:shadow-[0_0_0_1px_#000] hx:dark:shadow-[0_-1px_0_rgba(255,255,255,.1)_inset] hx:contrast-more:dark:shadow-[0_0_0_1px_#fff]"
+  ></div>
+
+  <nav class="hextra-max-navbar-width hx:mx-auto hx:flex hx:items-center hx:justify-end hx:gap-2 hx:h-16 hx:px-6">
+    <a class="hx:flex hx:items-center hx:hover:opacity-80 hx:ltr:mr-auto hx:rtl:ml-auto" href="../../">
+  <img class="hx:mr-3"
+       src="../../images/logo3-v2.jpg"
+       alt="Rinh Hoang Logo"
+       height="60"
+       width="60"
+       style="object-fit: cover; border-radius: 10px;" />
+  <span class="hx:font-extrabold hx:inline hx:text-lg hx:select-none" title="Blog Lập trình Java &amp; JavaScript">
+    Blog Lập trình Java &amp; JavaScript
+  </span>
+</a>
+<a
+  title=""
+  href="../../"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Home</span>
+</a><a
+  title=""
+  href="../../posts/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Blog</span>
+</a><a
+  title=""
+  href="../../profile/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Profile</span>
+</a><button type="button" aria-label="Menu" class="hextra-hamburger-menu hx:cursor-pointer hx:-mr-2 hx:rounded-sm hx:p-2 hx:active:bg-gray-400/20 hx:md:hidden"><svg height=24 fill="none" viewBox="0 0 24 24" stroke="currentColor"><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8H20"></path></g><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16H20"></path></g></svg></button>
+  </nav>
+</div>
+<main>
+      
+        <div class="max-w-4xl mx-auto px-6 mt-10">
+          
+<div class="max-w-7xl mx-auto px-4 md:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+  
+  <aside class="lg:col-span-3 hidden lg:block">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-5">
+      <h2 class="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-4">
+        🧭 Chuyên mục
+      </h2>
+      <ul class="space-y-3">
+        
+          <li>
+            <a href="../../posts/rxjava-lap-trinh-reactive-android/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/cac-khai-niem-javascript-nang-cao/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚡️ Các Khái Niệm JavaScript Nâng Cao Mà Mọi Lập Trình Viên Cần Biết (Chắc Chắn)
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/ky-thuat-toi-uu-javascript-tang-toc-web/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚡️ Kỹ thuật tối ưu **JavaScript** nhằm tăng tốc độ web gấp 2 lần
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/xu-ly-thoi-gian-va-mui-gio/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🌏 Kinh nghiệm xử lý thời gian và múi giờ trong JavaScript &amp; Các lỗi thường gặp
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/lodash-tien-ich-javascript/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              Lodash – Tiện ích dắt túi của dân lập trình JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/8-ky-thuat-toi-uu-ma-nguon-java-android/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/javascript-truy-xuat-object-long-nhau/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/interface-trong-java/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/7-sai-lam-hoc-javascript/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+  <article class="lg:col-span-9">
+    
+    
+      
+  <img src="../../images/kythuat.jpg" alt="🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android" class="rounded-xl w-full h-auto object-cover mb-6 shadow-lg">
+
+
+    
+
+    
+    <h1 class="text-3xl font-extrabold mb-4 text-slate-900 dark:text-slate-100 leading-tight">
+      🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android
+    </h1>
+
+    
+    <div class="flex flex-wrap items-center gap-3 mb-8 text-sm">
+      <span class="text-slate-500">📅 October 24, 2025</span>
+      
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #JavaScript
+          </span>
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #Lodash
+          </span>
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #Thư viện
+          </span>
+        
+      
+    </div>
+
+    
+    <div class="prose prose-lg dark:prose-invert max-w-none prose-img:rounded-xl prose-img:shadow-md prose-a:text-blue-600 hover:prose-a:text-blue-500">
+      <hr>
+<h2>🚀 Giới thiệu<span class="hx:absolute hx:-mt-20" id="-giới-thiệu"></span>
+    <a href="#-gi%e1%bb%9bi-thi%e1%bb%87u" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Có thể nói <strong>Effective Java</strong> là một trong những cuốn sách “kinh điển” mà bất kỳ lập trình viên Java nào cũng nên đọc, đặc biệt là khi lập trình <strong>Android</strong>.<br>
+Nó chứa hàng trăm lời khuyên, hướng dẫn và mẫu thiết kế assssssssssssssssssssgiúp <strong>mã nguồn sạch, tối ưu và dễ bảo trì</strong>.</p>
+<p>Tuy nhiên, không phải lời khuyên nào trong sách cũng phù hợp 100% với môi trường Android.<br>
+Bài viết này tổng hợp <strong>8 kỹ thuật tối ưu mã nguồn Java hiệu quả nhất</strong> — <strong>thực tế, dễ áp dụng và đặc biệt phù hợp cho lập trình Android</strong>.</p>
+<hr>
+<h2>📑 Mục lục<span class="hx:absolute hx:-mt-20" id="-mục-lục"></span>
+    <a href="#-m%e1%bb%a5c-l%e1%bb%a5c" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ol>
+<li><a href="#1-kh%c3%b4ng-cho-t%e1%ba%a1o-instance-v%e1%bb%9bi-force-non-instantiability">Không cho tạo instance với Force Non‑Instantiability</a></li>
+<li><a href="#2-t%e1%bb%91i-%c6%b0u-v%e1%bb%9bi-static-factory-methods">Tối ưu với Static Factory Methods</a></li>
+<li><a href="#3-builder-pattern--linh-ho%e1%ba%a1t-v%c3%a0-d%e1%bb%85-%c4%91%e1%bb%8dc">Builder Pattern – Linh hoạt và dễ đọc</a></li>
+<li><a href="#4-static-member-classes">Static Member Classes</a></li>
+<li><a href="#5-generics-%e1%bb%9f-kh%e1%ba%afp-m%e1%bb%8di-n%c6%a1i">Generics ở khắp mọi nơi</a></li>
+<li><a href="#6-tr%e1%ba%a3-v%e1%bb%81-empty-thay-v%c3%ac-null">Trả về Empty thay vì Null</a></li>
+<li><a href="#7-kh%c3%b4ng-n%c3%aan-n%e1%bb%91i-string-b%e1%ba%b1ng-to%c3%a1n-t%e1%bb%ad-">Không nên nối String bằng toán tử “+”</a></li>
+<li><a href="#8-recoverable-exceptions--x%e1%bb%ad-l%c3%bd-l%e1%bb%97i-c%c3%b3-th%e1%bb%83-ph%e1%bb%a5c-h%e1%bb%93i">Recoverable Exceptions – Xử lý lỗi có thể phục hồi</a></li>
+<li><a href="#9-t%e1%ba%a1m-k%e1%ba%bft">Tạm kết</a></li>
+</ol>
+<hr>
+<h2>1️⃣ Không cho tạo instance với <strong>Force Non‑Instantiability</strong><span class="hx:absolute hx:-mt-20" id="1-không-cho-tạo-instance-với-force-noninstantiability"></span>
+    <a href="#1-kh%c3%b4ng-cho-t%e1%ba%a1o-instance-v%e1%bb%9bi-force-noninstantiability" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Nếu bạn không muốn class bị khởi tạo bằng từ khóa <code>new</code>, hãy dùng <strong>private constructor</strong>.<br>
+Điều này đặc biệt hữu ích với <strong>utility class</strong> chỉ chứa các hàm static.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MovieUtils</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">MovieUtils</span>() {} <span style="color:#75715e">// Ngăn không cho tạo instance</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">titleAndYear</span>(Movie movie) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> movie.<span style="color:#a6e22e">getTitle</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; (&#34;</span> <span style="color:#f92672">+</span> movie.<span style="color:#a6e22e">getYear</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;)&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>💡 <strong>Mẹo:</strong> Các class tiện ích (<code>Utils</code>, <code>Constants</code>, <code>Math</code>,&hellip;) nên áp dụng kỹ thuật này để tránh khởi tạo thừa.</p>
+
+</blockquote>
+<hr>
+<h2>2️⃣ Tối ưu với <strong>Static Factory Methods</strong><span class="hx:absolute hx:-mt-20" id="2-tối-ưu-với-static-factory-methods"></span>
+    <a href="#2-t%e1%bb%91i-%c6%b0u-v%e1%bb%9bi-static-factory-methods" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Thay vì sử dụng <code>new</code> trực tiếp, hãy tạo <strong>phương thức factory tĩnh</strong> (<code>static factory method</code>).<br>
+Kỹ thuật này giúp bạn <strong>đóng gói logic khởi tạo</strong> và có thể trả về <strong>subclass hoặc cache instance</strong>.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Movie</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String title;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Movie</span>(String title) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> title;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Movie <span style="color:#a6e22e">create</span>(String title) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Movie(title);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<h3>Ưu điểm:<span class="hx:absolute hx:-mt-20" id="ưu-điểm"></span>
+    <a href="#%c6%b0u-%c4%91i%e1%bb%83m" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><ul>
+<li>Không bắt buộc trả về instance mới mỗi lần gọi.</li>
+<li>Có thể đặt tên dễ hiểu hơn (ví dụ: <code>from()</code>, <code>of()</code>, <code>valueOf()</code>, <code>getInstance()</code>).</li>
+<li>Hỗ trợ cache và pooling dễ dàng.</li>
+</ul>
+<blockquote>
+  <p>⚠️ Lưu ý: Static Factory Method có thể gây khó khăn khi test (mocking).<br>
+Nếu gặp vấn đề, cân nhắc dùng <strong>Factory Interface</strong> hoặc <strong>Dependency Injection</strong>.</p>
+
+</blockquote>
+<hr>
+<h2>3️⃣ <strong>Builder Pattern</strong> – Linh hoạt và dễ đọc<span class="hx:absolute hx:-mt-20" id="3-builder-pattern--linh-hoạt-và-dễ-đọc"></span>
+    <a href="#3-builder-pattern--linh-ho%e1%ba%a1t-v%c3%a0-d%e1%bb%85-%c4%91%e1%bb%8dc" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Khi một constructor có <strong>nhiều hơn 3 tham số</strong>, hãy chuyển sang <strong>Builder Pattern</strong>.<br>
+Cách này giúp code dễ đọc, dễ mở rộng và tránh lỗi khi truyền sai thứ tự tham số.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Movie</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> String title;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> String genre;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Movie</span>(Builder builder) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">title</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">genre</span> <span style="color:#f92672">=</span> builder.<span style="color:#a6e22e">genre</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Builder</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String title;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> String genre;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Builder <span style="color:#a6e22e">withTitle</span>(String title) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> title;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Builder <span style="color:#a6e22e">withGenre</span>(String genre) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">genre</span> <span style="color:#f92672">=</span> genre;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Movie <span style="color:#a6e22e">build</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Movie(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Sử dụng:</span>
+</span></span><span style="display:flex;"><span>Movie matrix <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Movie.<span style="color:#a6e22e">Builder</span>()
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withTitle</span>(<span style="color:#e6db74">&#34;The Matrix&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">withGenre</span>(<span style="color:#e6db74">&#34;Sci-fi&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">build</span>();</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>🧩 <strong>Khi nào dùng:</strong> Khi class có nhiều tuỳ chọn hoặc các thuộc tính không bắt buộc.</p>
+
+</blockquote>
+<hr>
+<h2>4️⃣ <strong>Static Member Classes</strong><span class="hx:absolute hx:-mt-20" id="4-static-member-classes"></span>
+    <a href="#4-static-member-classes" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Nếu bạn khai báo <strong>Inner Class</strong>, hãy xem xét biến nó thành <strong>Static Class</strong> khi có thể.<br>
+Điều này giúp <strong>giảm rò rỉ bộ nhớ (Memory Leak)</strong> vì static class <strong>không giữ tham chiếu đến outer class</strong>.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Movie</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MovieAward</span> {
+</span></span><span style="display:flex;"><span>        String name;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> year;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>💡 Nếu Inner Class không cần truy cập thuộc tính outer class → luôn dùng <code>static</code>.</p>
+
+</blockquote>
+<hr>
+<h2>5️⃣ <strong>Generics ở khắp mọi nơi</strong><span class="hx:absolute hx:-mt-20" id="5-generics-ở-khắp-mọi-nơi"></span>
+    <a href="#5-generics-%e1%bb%9f-kh%e1%ba%afp-m%e1%bb%8di-n%c6%a1i" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Java hỗ trợ <strong>Type‑Safety</strong>, cho phép hạn chế lỗi kiểu khi biên dịch.<br>
+Luôn <strong>sử dụng Generics</strong> thay vì kiểu <code>Raw Type</code> để code rõ ràng và an toàn hơn.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// ❌ Không nên</span>
+</span></span><span style="display:flex;"><span>List movies <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList();
+</span></span><span style="display:flex;"><span>movies.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>String movie <span style="color:#f92672">=</span> (String) movies.<span style="color:#a6e22e">get</span>(0);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ✅ Nên</span>
+</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> movies <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>movies.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>String movie <span style="color:#f92672">=</span> movies.<span style="color:#a6e22e">get</span>(0);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<h3>✨ Hàm tổng quát:<span class="hx:absolute hx:-mt-20" id="-hàm-tổng-quát"></span>
+    <a href="#-h%c3%a0m-t%e1%bb%95ng-qu%c3%a1t" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sort</span>(List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> input) {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">[</span>...<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> input;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<h3>Bounded Wildcards:<span class="hx:absolute hx:-mt-20" id="bounded-wildcards"></span>
+    <a href="#bounded-wildcards" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Đọc dữ liệu – dùng extends</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readList</span>(List<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> Movie<span style="color:#f92672">&gt;</span> movieList) { ... }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Ghi dữ liệu – dùng super</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeList</span>(List<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> Movie<span style="color:#f92672">&gt;</span> movieList) { ... }</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<hr>
+<h2>6️⃣ Trả về <strong>Empty</strong> thay vì <strong>Null</strong><span class="hx:absolute hx:-mt-20" id="6-trả-về-empty-thay-vì-null"></span>
+    <a href="#6-tr%e1%ba%a3-v%e1%bb%81-empty-thay-v%c3%ac-null" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Trả về <code>null</code> khiến người dùng hàm <strong>phải kiểm tra null</strong> → dễ gây <code>NullPointerException</code>.<br>
+Thay vào đó, hãy trả về <strong>Collection rỗng</strong>.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Movie<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">latestMovies</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (db.<span style="color:#a6e22e">query</span>().<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Collections.<span style="color:#a6e22e">emptyList</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> db.<span style="color:#a6e22e">query</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>🛡️ Trả về <code>Collections.emptyList()</code> vừa an toàn, vừa tiết kiệm bộ nhớ.</p>
+
+</blockquote>
+<hr>
+<h2>7️⃣ Không nên nối String bằng toán tử “+”<span class="hx:absolute hx:-mt-20" id="7-không-nên-nối-string-bằng-toán-tử-"></span>
+    <a href="#7-kh%c3%b4ng-n%c3%aan-n%e1%bb%91i-string-b%e1%ba%b1ng-to%c3%a1n-t%e1%bb%ad-" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Toán tử <code>+</code> khi nối nhiều chuỗi sẽ tạo <strong>nhiều đối tượng String tạm thời</strong> → tốn bộ nhớ.<br>
+Hãy dùng <strong>StringBuilder</strong> hoặc <strong>StringBuffer</strong> thay thế.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (Movie movie : movies) {
+</span></span><span style="display:flex;"><span>    sb.<span style="color:#a6e22e">append</span>(movie.<span style="color:#a6e22e">getTitle</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> sb.<span style="color:#a6e22e">toString</span>();</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>🚀 Nếu đang trong vòng lặp, tuyệt đối <strong>tránh dùng “+”</strong> để nối chuỗi.</p>
+
+</blockquote>
+<hr>
+<h2>8️⃣ <strong>Recoverable Exceptions</strong> – Xử lý lỗi có thể phục hồi<span class="hx:absolute hx:-mt-20" id="8-recoverable-exceptions--xử-lý-lỗi-có-thể-phục-hồi"></span>
+    <a href="#8-recoverable-exceptions--x%e1%bb%ad-l%c3%bd-l%e1%bb%97i-c%c3%b3-th%e1%bb%83-ph%e1%bb%a5c-h%e1%bb%93i" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Thay vì chỉ <code>throw</code> Exception rồi bỏ mặc, hãy <strong>xác định rõ lỗi</strong> và cho phép <strong>xử lý phục hồi</strong>.<br>
+Điều này giúp ứng dụng <strong>thân thiện hơn với người dùng</strong> và dễ bảo trì.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Movie<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">latestMovies</span>() <span style="color:#66d9ef">throws</span> MoviesNotFoundException {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (db.<span style="color:#a6e22e">query</span>().<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> MoviesNotFoundException(<span style="color:#e6db74">&#34;Không tìm thấy phim mới&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> db.<span style="color:#a6e22e">query</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>💬 Hãy chỉ dùng Exception cho <strong>tình huống ngoại lệ thực sự</strong>, không dùng để điều khiển logic thông thường.</p>
+
+</blockquote>
+<hr>
+<h2>🧩 9️⃣ Tạm kết<span class="hx:absolute hx:-mt-20" id="-9-tạm-kết"></span>
+    <a href="#-9-t%e1%ba%a1m-k%e1%ba%bft" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Tối ưu mã nguồn Java không chỉ giúp app Android <strong>chạy nhanh hơn</strong>, mà còn giúp:</p>
+<ul>
+<li>Mã <strong>sạch, dễ đọc, dễ bảo trì</strong>.</li>
+<li>Giảm <strong>memory leak, bug runtime</strong>.</li>
+<li>Tăng <strong>khả năng mở rộng và test</strong>.</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>Kỹ thuật</th>
+          <th>Lợi ích chính</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Force Non‑Instantiability</td>
+          <td>Ngăn khởi tạo thừa</td>
+      </tr>
+      <tr>
+          <td>Static Factory</td>
+          <td>Đóng gói logic khởi tạo</td>
+      </tr>
+      <tr>
+          <td>Builder Pattern</td>
+          <td>Dễ đọc, dễ mở rộng</td>
+      </tr>
+      <tr>
+          <td>Static Inner Class</td>
+          <td>Giảm memory leak</td>
+      </tr>
+      <tr>
+          <td>Generics</td>
+          <td>An toàn kiểu dữ liệu</td>
+      </tr>
+      <tr>
+          <td>Return Empty</td>
+          <td>Tránh NullPointerException</td>
+      </tr>
+      <tr>
+          <td>StringBuilder</td>
+          <td>Cải thiện hiệu năng</td>
+      </tr>
+      <tr>
+          <td>Recoverable Exception</td>
+          <td>Xử lý lỗi thân thiện</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+  <p>✍️ <em>“Viết code tối ưu không phải là viết nhanh, mà là viết để người khác có thể bảo trì lâu dài.”</em></p>
+
+</blockquote>
+<hr>
+<h2>📘 Tài liệu tham khảo<span class="hx:absolute hx:-mt-20" id="-tài-liệu-tham-khảo"></span>
+    <a href="#-t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li><em>Effective Java</em> – Joshua Bloch</li>
+<li><a href="https://developer.android.com/topic/performance/memory"target="_blank" rel="noopener">Android Developers – Memory Management</a></li>
+<li><a href="https://docs.oracle.com/javase/specs/"target="_blank" rel="noopener">Java Language Specification</a></li>
+<li><a href="https://www.baeldung.com/"target="_blank" rel="noopener">Baeldung – Java Best Practices</a></li>
+</ul>
+
+    </div>
+
+    
+    <div class="mt-12 rounded-2xl bg-slate-50 dark:bg-slate-800/60 p-6 shadow-inner">
+      <h3 class="text-xl font-semibold text-blue-600 mb-2">✨ Cảm ơn bạn đã đọc đến đây!</h3>
+      <p class="text-slate-600 dark:text-slate-300 text-[1rem]">
+        Nếu bạn thấy bài viết hữu ích, hãy chia sẻ để lan tỏa kiến thức nhé 💙  
+        <br> Đừng quên theo dõi blog để đọc thêm các bài viết hay về Java & JavaScript 🚀
+      </p>
+    </div>
+  </article>
+</div>
+
+        </div>
+      
+    </main>
+
+    <div class="custom-footer-wrapper">
+  <div class="custom-footer">
+    <div class="footer-column about">
+      <h3>Blog by Trần Hoàng Rinh<h3>
+      
+       <p>Liên Hệ :</p>
+     <p class="desc">
+        📞 SĐT: <strong>1911066321</strong><br>
+        📧 Email: <a href="mailto:tranhoang3622@gmail.com">tranhoang3622@gmail.com</a>
+      </p>
+      <div class="social">
+     
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../profile/">Profile</a></li>
+        
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Content</h4>
+      <ul>
+        <li><a href="../../blog/">Blog</a></li>
+ 
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Tools & Resources</h4>
+      <ul>
+        <li><a href="#">Source Code</a></li>
+        <li><a href="#">PageSpeed Insights</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Trần Hoàng Rinh. All rights reserved.</p>
+    <div class="links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">PageSpeed</a>
+    </div>
+  </div>
+</div>
+
+    
+<script defer src="../../js/main.min.js"></script>
+
+  </body>
+</html>

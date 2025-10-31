@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  
+  <link rel="icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="shortcut icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="apple-touch-icon" href="../../images/logo3-v2.jpg?v=8">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android – Blog Lập trình Java &amp; JavaScript</title>
+
+  <meta name="description" content="hướng dẫn từ nền tảng đến thực chiến về RxJava cho Android." /><link rel="canonical" href="https://rinhtran.github.io/posts/rxjava-lap-trinh-reactive-android/" itemprop="url" />
+
+<meta property="og:title" content="⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android">
+<meta
+  property="og:description"
+  content="
+    hướng dẫn từ nền tảng đến thực chiến về RxJava cho Android.
+  ">
+<meta
+  property="og:type"
+  content="
+    article
+  ">
+<meta property="og:url" content="https://rinhtran.github.io/posts/rxjava-lap-trinh-reactive-android/"><meta property="article:section" content="posts">
+
+<meta
+  property="article:published_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+<meta
+  property="article:modified_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+
+  <meta itemprop="name" content="⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android">
+  <meta itemprop="description" content="hướng dẫn từ nền tảng đến thực chiến về RxJava cho Android.">
+  <meta itemprop="datePublished" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="920">
+  <meta itemprop="keywords" content="Java,Lodash,Thư Viện">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android">
+  <meta name="twitter:description" content="hướng dẫn từ nền tảng đến thực chiến về RxJava cho Android.">
+
+ <link rel="preload" href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" as="style" />
+ <link href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" rel="stylesheet" />
+
+  
+  
+<link rel="stylesheet" href="../../css/output.8742859f879b4bff788e7b19f6201cda660ab4f9063175b7f06816404a59b1dc.css">
+   <link rel="stylesheet" href="../../css/home-grid.css">
+  <link rel="stylesheet" href="../../css/profile.css">
+
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-3h1K6HfR1jA2ZyPn+WvOG3lgNsH8yH5Tqv8aFz7NwNUfwxXf2E5ajbUV2dJShX5OKbK4up9M5fdb5vXhMHbGVA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  
+
+
+
+
+
+
+<script src="../../js/main-head.min.94da6f95b126542222dab3a6e07ffefe1aaf63ec3ca555e827b58b80e7d3f0b7.js"></script>
+
+
+  
+  
+  </head>
+<body class="bg-gray-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 leading-relaxed"><div class="hextra-nav-container hx:sticky hx:top-0 hx:z-20 hx:w-full hx:bg-transparent hx:print:hidden">
+  <div
+    class="hextra-nav-container-blur hx:pointer-events-none hx:absolute hx:z-[-1] hx:h-full hx:w-full hx:bg-white hx:dark:bg-dark hx:shadow-[0_2px_4px_rgba(0,0,0,.02),0_1px_0_rgba(0,0,0,.06)] hx:contrast-more:shadow-[0_0_0_1px_#000] hx:dark:shadow-[0_-1px_0_rgba(255,255,255,.1)_inset] hx:contrast-more:dark:shadow-[0_0_0_1px_#fff]"
+  ></div>
+
+  <nav class="hextra-max-navbar-width hx:mx-auto hx:flex hx:items-center hx:justify-end hx:gap-2 hx:h-16 hx:px-6">
+    <a class="hx:flex hx:items-center hx:hover:opacity-80 hx:ltr:mr-auto hx:rtl:ml-auto" href="../../">
+  <img class="hx:mr-3"
+       src="../../images/logo3-v2.jpg"
+       alt="Rinh Hoang Logo"
+       height="60"
+       width="60"
+       style="object-fit: cover; border-radius: 10px;" />
+  <span class="hx:font-extrabold hx:inline hx:text-lg hx:select-none" title="Blog Lập trình Java &amp; JavaScript">
+    Blog Lập trình Java &amp; JavaScript
+  </span>
+</a>
+<a
+  title=""
+  href="../../"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Home</span>
+</a><a
+  title=""
+  href="../../posts/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Blog</span>
+</a><a
+  title=""
+  href="../../profile/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Profile</span>
+</a><button type="button" aria-label="Menu" class="hextra-hamburger-menu hx:cursor-pointer hx:-mr-2 hx:rounded-sm hx:p-2 hx:active:bg-gray-400/20 hx:md:hidden"><svg height=24 fill="none" viewBox="0 0 24 24" stroke="currentColor"><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8H20"></path></g><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16H20"></path></g></svg></button>
+  </nav>
+</div>
+<main>
+      
+        <div class="max-w-4xl mx-auto px-6 mt-10">
+          
+<div class="max-w-7xl mx-auto px-4 md:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+  
+  <aside class="lg:col-span-3 hidden lg:block">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-5">
+      <h2 class="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-4">
+        🧭 Chuyên mục
+      </h2>
+      <ul class="space-y-3">
+        
+          <li>
+            <a href="../../posts/rxjava-lap-trinh-reactive-android/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/cac-khai-niem-javascript-nang-cao/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚡️ Các Khái Niệm JavaScript Nâng Cao Mà Mọi Lập Trình Viên Cần Biết (Chắc Chắn)
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/ky-thuat-toi-uu-javascript-tang-toc-web/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚡️ Kỹ thuật tối ưu **JavaScript** nhằm tăng tốc độ web gấp 2 lần
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/xu-ly-thoi-gian-va-mui-gio/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🌏 Kinh nghiệm xử lý thời gian và múi giờ trong JavaScript &amp; Các lỗi thường gặp
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/lodash-tien-ich-javascript/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              Lodash – Tiện ích dắt túi của dân lập trình JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/8-ky-thuat-toi-uu-ma-nguon-java-android/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/javascript-truy-xuat-object-long-nhau/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/interface-trong-java/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/7-sai-lam-hoc-javascript/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+  <article class="lg:col-span-9">
+    
+    
+      
+  <img src="../../images/rxjava.jpg" alt="⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android" class="rounded-xl w-full h-auto object-cover mb-6 shadow-lg">
+
+
+    
+
+    
+    <h1 class="text-3xl font-extrabold mb-4 text-slate-900 dark:text-slate-100 leading-tight">
+      ⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android
+    </h1>
+
+    
+    <div class="flex flex-wrap items-center gap-3 mb-8 text-sm">
+      <span class="text-slate-500">📅 October 24, 2025</span>
+      
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #Java
+          </span>
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #Lodash
+          </span>
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #Thư viện
+          </span>
+        
+      
+    </div>
+
+    
+    <div class="prose prose-lg dark:prose-invert max-w-none prose-img:rounded-xl prose-img:shadow-md prose-a:text-blue-600 hover:prose-a:text-blue-500">
+      <hr>
+<h2>🚀 Mở đầu<span class="hx:absolute hx:-mt-20" id="-mở-đầu"></span>
+    <a href="#-m%e1%bb%9f-%c4%91%e1%ba%a7u" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Tư duy <strong>hướng sự kiện</strong> (event‑driven) vốn quen thuộc ở <strong>JavaScript/Node.js</strong> nay đã trở thành dòng chảy chủ đạo trên <strong>Android</strong> nhờ <strong>RxJava/RxAndroid</strong>.<br>
+Reactive giúp bạn xử lý <strong>bất đồng bộ</strong>, <strong>luồng dữ liệu</strong> (streams) và <strong>biến đổi dữ liệu</strong> (operators) một cách <strong>khai báo, súc tích</strong> và <strong>dễ kiểm soát</strong> hơn AsyncTask/Callback thuần.</p>
+<p>Bài viết này là một hướng dẫn <strong>từ nền tảng đến thực chiến</strong> về <strong>RxJava</strong> cho Android.</p>
+<hr>
+<h2>📑 Mục lục<span class="hx:absolute hx:-mt-20" id="-mục-lục"></span>
+    <a href="#-m%e1%bb%a5c-l%e1%bb%a5c" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ol>
+<li><a href="#1-rxjava-l%c3%a0-g%c3%ac">RxJava là gì?</a></li>
+<li><a href="#2-tr%c6%b0%e1%bb%9bc-rxjava-asynctask--gi%e1%bb%9bi-h%e1%ba%a1n">Trước RxJava: AsyncTask &amp; giới hạn</a></li>
+<li><a href="#3-c%c3%a1c-kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i-observable-observer-disposable">Các khái niệm cốt lõi: Observable, Observer, Disposable</a></li>
+<li><a href="#4-schedulers--threading-tr%c3%aan-android">Schedulers &amp; threading trên Android</a></li>
+<li><a href="#5-operators-ph%e1%bb%95-bi%e1%ba%bfn-map-filter-flatmap">Operators phổ biến (map, filter, flatMap…)</a></li>
+<li><a href="#6-th%e1%bb%b1c-chi%e1%ba%bfn-c%e1%ba%adp-nh%e1%ba%adt-recyclerview-b%e1%ba%b1ng-rxjava">Thực chiến: cập nhật RecyclerView bằng RxJava</a></li>
+<li><a href="#7-t%c3%adch-h%e1%bb%a3p-retrofit--rxjava">Tích hợp Retrofit + RxJava</a></li>
+<li><a href="#8-qu%e1%ba%a3n-l%c3%bd-v%c3%b2ng-%c4%91%e1%bb%9di--tr%c3%a1nh-r%c3%b2-r%e1%bb%89-b%e1%bb%99-nh%e1%bb%9b">Quản lý vòng đời &amp; tránh rò rỉ bộ nhớ</a></li>
+<li><a href="#9-so-s%c3%a1nh-nhanh-v%e1%bb%9bi-asynctaskcallbacks">So sánh nhanh với AsyncTask/Callbacks</a></li>
+<li><a href="#10-best-practices--l%c6%b0u-%c3%bd">Best practices &amp; lưu ý</a></li>
+<li><a href="#11-t%e1%bb%95ng-k%e1%ba%bft">Tổng kết</a></li>
+</ol>
+<hr>
+<h2>1) RxJava là gì?<span class="hx:absolute hx:-mt-20" id="1-rxjava-là-gì"></span>
+    <a href="#1-rxjava-l%c3%a0-g%c3%ac" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>RxJava</strong> là thư viện hiện thực <strong>Reactive Extensions</strong> (Rx) cho Java, giúp tạo và xử lý <strong>streams sự kiện/dữ liệu</strong> theo cách <strong>bất đồng bộ</strong>.<br>
+<strong>RxAndroid</strong> bổ sung các tiện ích riêng cho Android (như <code>AndroidSchedulers.mainThread()</code>).</p>
+<p>Mô hình cốt lõi tuân theo <strong>Observer Pattern</strong>: <em>Observable/Flowable</em> phát dữ liệu, <em>Observer</em> đăng ký nhận và xử lý.</p>
+<hr>
+<h2>2) Trước RxJava: AsyncTask &amp; giới hạn<span class="hx:absolute hx:-mt-20" id="2-trước-rxjava-asynctask--giới-hạn"></span>
+    <a href="#2-tr%c6%b0%e1%bb%9bc-rxjava-asynctask--gi%e1%bb%9bi-h%e1%ba%a1n" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>AsyncTask</strong> từng là lựa chọn quen thuộc để chạy nền và cập nhật UI sau khi xong việc. Tuy nhiên, nó có nhiều hạn chế:</p>
+<ul>
+<li>Khó quản lý <strong>đa luồng</strong> và <strong>chuỗi tác vụ</strong>.</li>
+<li><strong>Không có</strong> cơ chế biến đổi/lỗi mạch lạc (error handling rời rạc).</li>
+<li>Dễ <strong>memory leak</strong> nếu giữ tham chiếu <code>Context</code> sai.</li>
+<li>Khó <strong>test</strong> và <strong>tái sử dụng</strong>.</li>
+</ul>
+<p>Reactive ra đời để giải quyết những vấn đề này bằng cách <strong>trừu tượng hóa bất đồng bộ</strong> thành <strong>chuỗi operators</strong> rõ ràng.</p>
+<hr>
+<h2>3) Các khái niệm cốt lõi: Observable, Observer, Disposable<span class="hx:absolute hx:-mt-20" id="3-các-khái-niệm-cốt-lõi-observable-observer-disposable"></span>
+    <a href="#3-c%c3%a1c-kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i-observable-observer-disposable" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li><strong>Observable/Flowable</strong>: nguồn phát ra <strong>0..n</strong> phần tử (items) và tín hiệu <strong>hoàn thành/lỗi</strong>.</li>
+<li><strong>Observer</strong>: đăng ký để <strong>nhận dữ liệu</strong> thông qua <code>onNext</code>, <code>onError</code>, <code>onComplete</code>.</li>
+<li><strong>Disposable/CompositeDisposable</strong>: đại diện cho việc <strong>đăng ký (subscription)</strong>; cần <strong>dispose</strong> để tránh rò rỉ.</li>
+</ul>
+<p>Ví dụ khởi tạo đơn giản:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Observable.<span style="color:#a6e22e">just</span>(<span style="color:#e6db74">&#34;Tiger&#34;</span>, <span style="color:#e6db74">&#34;Lion&#34;</span>, <span style="color:#e6db74">&#34;Elephant&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">subscribe</span>(
+</span></span><span style="display:flex;"><span>        item  <span style="color:#f92672">-&gt;</span> Log.<span style="color:#a6e22e">d</span>(<span style="color:#e6db74">&#34;RX&#34;</span>, <span style="color:#e6db74">&#34;onNext: &#34;</span> <span style="color:#f92672">+</span> item),
+</span></span><span style="display:flex;"><span>        error <span style="color:#f92672">-&gt;</span> Log.<span style="color:#a6e22e">e</span>(<span style="color:#e6db74">&#34;RX&#34;</span>, <span style="color:#e6db74">&#34;onError: &#34;</span> <span style="color:#f92672">+</span> error),
+</span></span><span style="display:flex;"><span>        ()    <span style="color:#f92672">-&gt;</span> Log.<span style="color:#a6e22e">d</span>(<span style="color:#e6db74">&#34;RX&#34;</span>, <span style="color:#e6db74">&#34;onComplete&#34;</span>)
+</span></span><span style="display:flex;"><span>    );</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<hr>
+<h2>4) Schedulers &amp; threading trên Android<span class="hx:absolute hx:-mt-20" id="4-schedulers--threading-trên-android"></span>
+    <a href="#4-schedulers--threading-tr%c3%aan-android" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li><code>subscribeOn(...)</code>: chỉ định <strong>luồng thực thi</strong> phần tạo dữ liệu (upstream).</li>
+<li><code>observeOn(...)</code>: chỉ định <strong>luồng nhận kết quả</strong> (downstream).</li>
+<li><code>AndroidSchedulers.mainThread()</code>: nhận kết quả trên UI Thread.</li>
+<li><code>Schedulers.io()</code>: I/O (network, file, DB).</li>
+<li><code>Schedulers.computation()</code>: CPU‑bound (tính toán).</li>
+</ul>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Observable.<span style="color:#a6e22e">fromCallable</span>(() <span style="color:#f92672">-&gt;</span> heavyWork())
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">subscribeOn</span>(Schedulers.<span style="color:#a6e22e">computation</span>())
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">observeOn</span>(AndroidSchedulers.<span style="color:#a6e22e">mainThread</span>())
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">subscribe</span>(result <span style="color:#f92672">-&gt;</span> render(result));</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>🧠 Ghi nhớ: <code>subscribeOn</code> <strong>áp dụng một lần</strong> (thường đặt sớm), còn <code>observeOn</code> có thể <strong>đổi nhiều lần</strong> trong chain.</p>
+
+</blockquote>
+<hr>
+<h2>5) Operators phổ biến (map, filter, flatMap…)<span class="hx:absolute hx:-mt-20" id="5-operators-phổ-biến-map-filter-flatmap"></span>
+    <a href="#5-operators-ph%e1%bb%95-bi%e1%ba%bfn-map-filter-flatmap" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li><code>map</code>: biến đổi 1‑1.</li>
+<li><code>filter</code>: lọc theo điều kiện.</li>
+<li><code>flatMap</code>: biến đổi 1‑n, phẳng hóa streams lồng nhau.</li>
+<li><code>switchMap</code>: hủy stream cũ khi có stream mới (hữu ích cho search).</li>
+<li><code>debounce</code>, <code>throttleFirst</code>: kiểm soát tần suất sự kiện (input, click).</li>
+<li><code>zip</code>, <code>merge</code>, <code>concat</code>: phối hợp nhiều nguồn.</li>
+</ul>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Observable.<span style="color:#a6e22e">just</span>(<span style="color:#e6db74">&#34; tiger &#34;</span>, <span style="color:#e6db74">&#34;lion&#34;</span>, <span style="color:#e6db74">&#34;ELEPHANT&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">map</span>(String::trim)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">filter</span>(s <span style="color:#f92672">-&gt;</span> s.<span style="color:#a6e22e">length</span>() <span style="color:#f92672">&gt;</span> 3)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">map</span>(String::toUpperCase)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">toList</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">toObservable</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">subscribe</span>(list <span style="color:#f92672">-&gt;</span> Log.<span style="color:#a6e22e">d</span>(<span style="color:#e6db74">&#34;RX&#34;</span>, <span style="color:#e6db74">&#34;Animals: &#34;</span> <span style="color:#f92672">+</span> list));</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<hr>
+<h2>6) Thực chiến: cập nhật RecyclerView bằng RxJava<span class="hx:absolute hx:-mt-20" id="6-thực-chiến-cập-nhật-recyclerview-bằng-rxjava"></span>
+    <a href="#6-th%e1%bb%b1c-chi%e1%ba%bfn-c%e1%ba%adp-nh%e1%ba%adt-recyclerview-b%e1%ba%b1ng-rxjava" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>CompositeDisposable bag <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CompositeDisposable();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> animals <span style="color:#f92672">=</span> Arrays.<span style="color:#a6e22e">asList</span>(<span style="color:#e6db74">&#34;Tiger&#34;</span>, <span style="color:#e6db74">&#34;Lion&#34;</span>, <span style="color:#e6db74">&#34;Elephant&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bag.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>    Observable.<span style="color:#a6e22e">just</span>(animals)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">subscribeOn</span>(Schedulers.<span style="color:#a6e22e">io</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">observeOn</span>(AndroidSchedulers.<span style="color:#a6e22e">mainThread</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">subscribe</span>(
+</span></span><span style="display:flex;"><span>            list <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                adapter.<span style="color:#a6e22e">updateList</span>(list);
+</span></span><span style="display:flex;"><span>                adapter.<span style="color:#a6e22e">notifyDataSetChanged</span>();
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            throwable <span style="color:#f92672">-&gt;</span> {
+</span></span><span style="display:flex;"><span>                Toast.<span style="color:#a6e22e">makeText</span>(context, <span style="color:#e6db74">&#34;Lỗi: &#34;</span> <span style="color:#f92672">+</span> throwable.<span style="color:#a6e22e">getMessage</span>(), Toast.<span style="color:#a6e22e">LENGTH_SHORT</span>).<span style="color:#a6e22e">show</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<hr>
+<h2>7) Tích hợp Retrofit + RxJava<span class="hx:absolute hx:-mt-20" id="7-tích-hợp-retrofit--rxjava"></span>
+    <a href="#7-t%c3%adch-h%e1%bb%a3p-retrofit--rxjava" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>Gradle (ví dụ RxJava 2 / RxAndroid 2):</strong></p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gradle" data-lang="gradle"><span style="display:flex;"><span>implementation <span style="color:#e6db74">&#34;io.reactivex.rxjava2:rxjava:2.x.x&#34;</span>
+</span></span><span style="display:flex;"><span>implementation <span style="color:#e6db74">&#34;io.reactivex.rxjava2:rxandroid:2.x.x&#34;</span>
+</span></span><span style="display:flex;"><span>implementation <span style="color:#e6db74">&#34;com.squareup.retrofit2:adapter-rxjava2:2.x.x&#34;</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<p><strong>Khai báo Retrofit với Rx:</strong></p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit.<span style="color:#a6e22e">Builder</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">baseUrl</span>(<span style="color:#e6db74">&#34;https://api.example.com/&#34;</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">addConverterFactory</span>(GsonConverterFactory.<span style="color:#a6e22e">create</span>())
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">addCallAdapterFactory</span>(RxJava2CallAdapterFactory.<span style="color:#a6e22e">create</span>())
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">build</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Api</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@GET</span>(<span style="color:#e6db74">&#34;users/{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    Observable<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getUser</span>(<span style="color:#a6e22e">@Path</span>(<span style="color:#e6db74">&#34;id&#34;</span>) String id);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Api api <span style="color:#f92672">=</span> retrofit.<span style="color:#a6e22e">create</span>(Api.<span style="color:#a6e22e">class</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>bag.<span style="color:#a6e22e">add</span>(
+</span></span><span style="display:flex;"><span>    api.<span style="color:#a6e22e">getUser</span>(<span style="color:#e6db74">&#34;42&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">subscribeOn</span>(Schedulers.<span style="color:#a6e22e">io</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">observeOn</span>(AndroidSchedulers.<span style="color:#a6e22e">mainThread</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">subscribe</span>(
+</span></span><span style="display:flex;"><span>            user <span style="color:#f92672">-&gt;</span> ui.<span style="color:#a6e22e">showUser</span>(user),
+</span></span><span style="display:flex;"><span>            error <span style="color:#f92672">-&gt;</span> ui.<span style="color:#a6e22e">showError</span>(error.<span style="color:#a6e22e">getMessage</span>())
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>);</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>🔁 Với RxJava3, thay thế dependencies/adapter tương ứng (<code>rxjava3</code>, <code>adapter-rxjava3</code>).</p>
+
+</blockquote>
+<hr>
+<h2>8) Quản lý vòng đời &amp; tránh rò rỉ bộ nhớ<span class="hx:absolute hx:-mt-20" id="8-quản-lý-vòng-đời--tránh-rò-rỉ-bộ-nhớ"></span>
+    <a href="#8-qu%e1%ba%a3n-l%c3%bd-v%c3%b2ng-%c4%91%e1%bb%9di--tr%c3%a1nh-r%c3%b2-r%e1%bb%89-b%e1%bb%99-nh%e1%bb%9b" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li>Dùng <strong>CompositeDisposable</strong> và <strong>dispose/clear</strong> ở <code>onDestroy()</code> (Activity) hoặc <code>onCleared()</code> (ViewModel).</li>
+<li>Tránh giữ <strong>Context</strong> trong stream. Nếu cần, dùng <strong>Application context</strong> an toàn hoặc <strong>WeakReference</strong>.</li>
+<li>Ưu tiên <strong>cold Observables</strong> (tạo mới cho mỗi subscriber) trừ khi cố ý dùng <strong>hot</strong> (Subjects).</li>
+</ul>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onDestroy</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>.<span style="color:#a6e22e">onDestroy</span>();
+</span></span><span style="display:flex;"><span>    bag.<span style="color:#a6e22e">clear</span>(); <span style="color:#75715e">// hoặc bag.dispose();</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<hr>
+<h2>9) So sánh nhanh với AsyncTask/Callbacks<span class="hx:absolute hx:-mt-20" id="9-so-sánh-nhanh-với-asynctaskcallbacks"></span>
+    <a href="#9-so-s%c3%a1nh-nhanh-v%e1%bb%9bi-asynctaskcallbacks" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><table>
+  <thead>
+      <tr>
+          <th>Tiêu chí</th>
+          <th>AsyncTask/Callback</th>
+          <th>RxJava</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Chuỗi tác vụ</td>
+          <td>Khó, lồng callback</td>
+          <td>Rõ ràng qua operators</td>
+      </tr>
+      <tr>
+          <td>Xử lý lỗi</td>
+          <td>Rời rạc</td>
+          <td><code>onError()</code> trong cùng chain</td>
+      </tr>
+      <tr>
+          <td>Threading</td>
+          <td>Tự quản lý</td>
+          <td><code>subscribeOn/observeOn</code></td>
+      </tr>
+      <tr>
+          <td>Huỷ tác vụ</td>
+          <td>Thủ công, cồng kềnh</td>
+          <td><code>Disposable.dispose()</code></td>
+      </tr>
+      <tr>
+          <td>Testability</td>
+          <td>Khó</td>
+          <td>Dễ mock/test từng operator</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2>10) Best practices &amp; lưu ý<span class="hx:absolute hx:-mt-20" id="10-best-practices--lưu-ý"></span>
+    <a href="#10-best-practices--l%c6%b0u-%c3%bd" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li><strong>Đặt <code>subscribeOn</code> sớm</strong>, <code>observeOn</code> ngay trước đoạn cập nhật UI.</li>
+<li><strong>Bắt lỗi</strong> ở cuối chain (<code>onError</code> hoặc <code>onErrorReturn/ResumeNext</code>).</li>
+<li>Sử dụng <strong><code>CompositeDisposable</code></strong> ở lớp sở hữu vòng đời.</li>
+<li>Tránh lạm dụng <strong>Subjects</strong>; ưu tiên <strong>streams thuần</strong> (Observable/Flowable).</li>
+<li>Với <strong>tác vụ nặng</strong>, cân nhắc <strong>backpressure</strong> (<code>Flowable</code> thay cho <code>Observable</code>).</li>
+<li><strong>debounce/throttle</strong> cho sự kiện UI nhiều: search, scroll, click.</li>
+<li>Với MVVM, kết hợp <strong>LiveData/StateFlow</strong> ở biên giới UI nếu cần.</li>
+</ul>
+<hr>
+<h2>11) Tổng kết<span class="hx:absolute hx:-mt-20" id="11-tổng-kết"></span>
+    <a href="#11-t%e1%bb%95ng-k%e1%ba%bft" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>RxJava</strong> đem lại cách tiếp cận <strong>khai báo, mạch lạc</strong> cho xử lý bất đồng bộ trên Android:</p>
+<ul>
+<li>Code <strong>ngắn gọn, dễ đọc</strong>, <strong>chuỗi hóa</strong> thao tác dữ liệu rõ ràng.</li>
+<li><strong>Threading</strong> minh bạch qua <code>Schedulers</code>.</li>
+<li><strong>Error handling</strong> &amp; <strong>lifecycle</strong> quản trị tốt hơn.</li>
+</ul>
+<p>Khi bạn tiến xa với <strong>MVP/MVVM</strong>, Rx gần như là <strong>mảnh ghép mặc định</strong> để xây dựng luồng dữ liệu <strong>ổn định và dễ test</strong>. Hãy bắt đầu từ những bài toán nhỏ (load list, search, debounce click) rồi mở rộng ra network, caching, và phối hợp nhiều nguồn dữ liệu.</p>
+<blockquote>
+  <p>✍️ <em>Reactive không chỉ là kỹ thuật, mà là cách tư duy về dòng chảy dữ liệu.</em></p>
+
+</blockquote>
+
+    </div>
+
+    
+    <div class="mt-12 rounded-2xl bg-slate-50 dark:bg-slate-800/60 p-6 shadow-inner">
+      <h3 class="text-xl font-semibold text-blue-600 mb-2">✨ Cảm ơn bạn đã đọc đến đây!</h3>
+      <p class="text-slate-600 dark:text-slate-300 text-[1rem]">
+        Nếu bạn thấy bài viết hữu ích, hãy chia sẻ để lan tỏa kiến thức nhé 💙  
+        <br> Đừng quên theo dõi blog để đọc thêm các bài viết hay về Java & JavaScript 🚀
+      </p>
+    </div>
+  </article>
+</div>
+
+        </div>
+      
+    </main>
+
+    <div class="custom-footer-wrapper">
+  <div class="custom-footer">
+    <div class="footer-column about">
+      <h3>Blog by Trần Hoàng Rinh<h3>
+      
+       <p>Liên Hệ :</p>
+     <p class="desc">
+        📞 SĐT: <strong>1911066321</strong><br>
+        📧 Email: <a href="mailto:tranhoang3622@gmail.com">tranhoang3622@gmail.com</a>
+      </p>
+      <div class="social">
+     
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../profile/">Profile</a></li>
+        
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Content</h4>
+      <ul>
+        <li><a href="../../blog/">Blog</a></li>
+ 
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Tools & Resources</h4>
+      <ul>
+        <li><a href="#">Source Code</a></li>
+        <li><a href="#">PageSpeed Insights</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Trần Hoàng Rinh. All rights reserved.</p>
+    <div class="links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">PageSpeed</a>
+    </div>
+  </div>
+</div>
+
+    
+<script defer src="../../js/main.min.js"></script>
+
+  </body>
+</html>

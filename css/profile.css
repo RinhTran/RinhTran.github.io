@@ -1,0 +1,485 @@
+/* 🌈 Profile Page - Fixed & Centered Layout by Rinh Hoang */
+
+/* Tổng thể */
+body {
+  font-family: "Inter", sans-serif;
+  background: #f8fbff;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+/* Container chính */
+.profile-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.5rem;
+  max-width: 1100px; /* 🔹 Giới hạn toàn bộ chiều rộng */
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+}
+
+.sidebar .card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 1.8rem;
+  text-align: center;
+}
+
+.sidebar .avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar h3 {
+  margin: 0.5rem 0 0.2rem;
+  font-weight: 700;
+}
+
+.sidebar p {
+  color: #555;
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.social a {
+  background: #0078ff;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.social a:hover {
+  background: #005fcc;
+}
+
+/* Nội dung chính */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.content h1 {
+  font-size: 2.3rem;
+  color: #111;
+  margin-bottom: 0.2rem;
+}
+
+.content .highlight {
+  color: #2b4eff;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 1.8rem;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  padding: 2rem 2.5rem;
+  line-height: 1.8;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card h2 {
+  color: #2b4eff;
+  margin-top: 0;
+}
+
+/* Tags / Skills */
+.tags {
+  margin-top: 1rem;
+}
+
+.tags span {
+  display: inline-block;
+  background: #eef4ff;
+  color: #2b4eff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+.tags span:hover {
+  background: #2b4eff;
+  color: #fff;
+}
+
+/* Projects */
+.project {
+  margin-top: 1.5rem;
+  padding-left: 0.5rem;
+}
+
+.project h3 {
+  color: #0078ff;
+  margin-bottom: 0.4rem;
+}
+
+.project ul {
+  margin: 0.5rem 0 0 1rem;
+  padding-left: 0.5rem;
+}
+
+.project li {
+  margin-bottom: 0.4rem;
+  color: #444;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  margin: 2.5rem auto 0;
+  padding: 2rem 2.5rem 2rem 2.5rem;
+  border-left: 4px solid #2b4eff;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  max-width: 850px;
+}
+
+.timeline h2 {
+  margin-top: 0;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.8rem;
+  padding-left: 1.5rem;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background: #2b4eff;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #2b4eff33;
+}
+
+.timeline-item .date {
+  display: block;
+  font-weight: 700;
+  color: #0078ff;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-item h3 {
+  margin: 0.3rem 0;
+  font-size: 1.1rem;
+  color: #2b4eff;
+  font-weight: 700;
+}
+
+.timeline-item p {
+  margin: 0.3rem 0 0.2rem 0;
+  color: #444;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .timeline {
+    padding: 1.5rem;
+    border-left-width: 3px;
+  }
+
+  .tags span {
+    font-size: 0.85rem;
+    margin: 4px;
+  }
+}
+
+/* ==== CHỨNG CHỈ (CERTIFICATES) ==== */
+.certificates {
+  text-align: center;
+  padding: 40px 0;
+  position: relative;
+}
+
+.certificates h2 {
+  font-size: 1.8rem;
+  color: #2563eb;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.certificates h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+/* Link bao quanh mỗi chứng chỉ */
+.cert-link {
+  text-decoration: none;
+  color: inherit;
+  width: 340px;
+  animation: fadeInUp 0.8s ease;
+}
+
+/* Card chứng chỉ */
+.cert-card {
+  background: linear-gradient(145deg, #ffffff, #f3f4f6);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: all 0.35s ease;
+  text-align: center;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Viền ánh sáng gradient */
+.cert-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(90deg, #3b82f6, #f59e0b, #ef4444);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover effect */
+.cert-card:hover {
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.cert-card:hover::before {
+  opacity: 1;
+}
+
+/* Hình ảnh */
+.cert-card img {
+  width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cert-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Tên chứng chỉ */
+.cert-card p {
+  margin-top: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Animation xuất hiện */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive cho mobile */
+@media (max-width: 600px) {
+.cert-link {
+  width: 480px; /* 👈 tăng khung tổng thể */
+}
+
+}
+
+/* ==== TIMELINE ==== */
+.timeline {
+  position: relative;
+  padding: 40px 30px;
+  border-left: 4px solid #2563eb;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.timeline h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+  padding-left: 25px;
+  animation: fadeInUp 0.8s ease;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Nút tròn đánh dấu thời gian */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -11px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  background: #2563eb;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #dbeafe;
+}
+
+/* Năm/thời gian */
+.timeline .date {
+  font-weight: 600;
+  color: #1e40af;
+  display: inline-block;
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+/* Nội dung mỗi mốc */
+.timeline .content {
+  margin-left: 15px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.timeline .content:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Ảnh minh họa */
+.timeline-img {
+  width: 100%;
+  max-width: 520px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+/* Tiêu đề & mô tả */
+.timeline .content h3 {
+  color: #1d4ed8;
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.timeline .content p {
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* Hiệu ứng xuất hiện */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+  .timeline {
+    padding: 20px;
+    border-left: 3px solid #2563eb;
+  }
+  .timeline-img {
+    max-width: 100%;
+  }
+}

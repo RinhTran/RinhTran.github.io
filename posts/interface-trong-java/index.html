@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  
+  <link rel="icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="shortcut icon" type="image/jpg" href="../../images/logo3-v2.jpg?v=8">
+  <link rel="apple-touch-icon" href="../../images/logo3-v2.jpg?v=8">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay – Blog Lập trình Java &amp; JavaScript</title>
+
+  <meta name="description" content="Hiểu &#39;bản chất&#39; của Interface trong Java (không chỉ là “khai báo method rỗng" /><link rel="canonical" href="https://rinhtran.github.io/posts/interface-trong-java/" itemprop="url" />
+
+<meta property="og:title" content="🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay">
+<meta
+  property="og:description"
+  content="
+    Hiểu &#39;bản chất&#39; của Interface trong Java (không chỉ là “khai báo method rỗng
+  ">
+<meta
+  property="og:type"
+  content="
+    article
+  ">
+<meta property="og:url" content="https://rinhtran.github.io/posts/interface-trong-java/"><meta property="article:section" content="posts">
+
+<meta
+  property="article:published_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+<meta
+  property="article:modified_time"
+  content="2025-10-24T00:00:00+00:00">
+
+
+
+  <meta itemprop="name" content="🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay">
+  <meta itemprop="description" content="Hiểu &#39;bản chất&#39; của Interface trong Java (không chỉ là “khai báo method rỗng">
+  <meta itemprop="datePublished" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-10-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1198">
+  <meta itemprop="keywords" content="JavaScript,Lodash,Thư Viện">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay">
+  <meta name="twitter:description" content="Hiểu &#39;bản chất&#39; của Interface trong Java (không chỉ là “khai báo method rỗng">
+
+ <link rel="preload" href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" as="style" />
+ <link href="../../css/compiled/main.min.f1286e08894e4edb7578e277f8af9252465cacf0a6e1ffc14d2218d4b5f80571.css" rel="stylesheet" />
+
+  
+  
+<link rel="stylesheet" href="../../css/output.8742859f879b4bff788e7b19f6201cda660ab4f9063175b7f06816404a59b1dc.css">
+   <link rel="stylesheet" href="../../css/home-grid.css">
+  <link rel="stylesheet" href="../../css/profile.css">
+
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-3h1K6HfR1jA2ZyPn+WvOG3lgNsH8yH5Tqv8aFz7NwNUfwxXf2E5ajbUV2dJShX5OKbK4up9M5fdb5vXhMHbGVA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  
+
+
+
+
+
+
+<script src="../../js/main-head.min.94da6f95b126542222dab3a6e07ffefe1aaf63ec3ca555e827b58b80e7d3f0b7.js"></script>
+
+
+  
+  
+  </head>
+<body class="bg-gray-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 leading-relaxed"><div class="hextra-nav-container hx:sticky hx:top-0 hx:z-20 hx:w-full hx:bg-transparent hx:print:hidden">
+  <div
+    class="hextra-nav-container-blur hx:pointer-events-none hx:absolute hx:z-[-1] hx:h-full hx:w-full hx:bg-white hx:dark:bg-dark hx:shadow-[0_2px_4px_rgba(0,0,0,.02),0_1px_0_rgba(0,0,0,.06)] hx:contrast-more:shadow-[0_0_0_1px_#000] hx:dark:shadow-[0_-1px_0_rgba(255,255,255,.1)_inset] hx:contrast-more:dark:shadow-[0_0_0_1px_#fff]"
+  ></div>
+
+  <nav class="hextra-max-navbar-width hx:mx-auto hx:flex hx:items-center hx:justify-end hx:gap-2 hx:h-16 hx:px-6">
+    <a class="hx:flex hx:items-center hx:hover:opacity-80 hx:ltr:mr-auto hx:rtl:ml-auto" href="../../">
+  <img class="hx:mr-3"
+       src="../../images/logo3-v2.jpg"
+       alt="Rinh Hoang Logo"
+       height="60"
+       width="60"
+       style="object-fit: cover; border-radius: 10px;" />
+  <span class="hx:font-extrabold hx:inline hx:text-lg hx:select-none" title="Blog Lập trình Java &amp; JavaScript">
+    Blog Lập trình Java &amp; JavaScript
+  </span>
+</a>
+<a
+  title=""
+  href="../../"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Home</span>
+</a><a
+  title=""
+  href="../../posts/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Blog</span>
+</a><a
+  title=""
+  href="../../profile/"
+  
+  class="hx:text-sm hx:contrast-more:text-gray-700 hx:contrast-more:dark:text-gray-100 hx:relative hx:-ml-2 hx:hidden hx:whitespace-nowrap hx:p-2 hx:md:inline-flex hx:items-center hx:gap-1 hx:text-gray-600 hx:hover:text-gray-800 hx:dark:text-gray-400 hx:dark:hover:text-gray-200"
+><span class="hx:text-center">Profile</span>
+</a><button type="button" aria-label="Menu" class="hextra-hamburger-menu hx:cursor-pointer hx:-mr-2 hx:rounded-sm hx:p-2 hx:active:bg-gray-400/20 hx:md:hidden"><svg height=24 fill="none" viewBox="0 0 24 24" stroke="currentColor"><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8H20"></path></g><g><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16H20"></path></g></svg></button>
+  </nav>
+</div>
+<main>
+      
+        <div class="max-w-4xl mx-auto px-6 mt-10">
+          
+<div class="max-w-7xl mx-auto px-4 md:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+  
+  <aside class="lg:col-span-3 hidden lg:block">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-md p-5">
+      <h2 class="text-lg font-semibold text-blue-700 dark:text-blue-300 mb-4">
+        🧭 Chuyên mục
+      </h2>
+      <ul class="space-y-3">
+        
+          <li>
+            <a href="../../posts/rxjava-lap-trinh-reactive-android/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚛️ RxJava – Thời đại *Reactive Programming* trong ứng dụng Android
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/cac-khai-niem-javascript-nang-cao/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚡️ Các Khái Niệm JavaScript Nâng Cao Mà Mọi Lập Trình Viên Cần Biết (Chắc Chắn)
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/ky-thuat-toi-uu-javascript-tang-toc-web/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              ⚡️ Kỹ thuật tối ưu **JavaScript** nhằm tăng tốc độ web gấp 2 lần
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/xu-ly-thoi-gian-va-mui-gio/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🌏 Kinh nghiệm xử lý thời gian và múi giờ trong JavaScript &amp; Các lỗi thường gặp
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/lodash-tien-ich-javascript/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              Lodash – Tiện ích dắt túi của dân lập trình JavaScript
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/8-ky-thuat-toi-uu-ma-nguon-java-android/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧠 8 kỹ thuật tối ưu hóa mã nguồn **Java** khi lập trình Android
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/javascript-truy-xuat-object-long-nhau/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 [JavaScript] Kinh nghiệm truy xuất giá trị trong object lồng nhau
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/interface-trong-java/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay
+            </a>
+          </li>
+        
+          <li>
+            <a href="../../posts/7-sai-lam-hoc-javascript/" class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              🧩 Rất nhiều bạn **nản** hoặc **bỏ cuộc** sớm vì đi sai phương pháp
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+  <article class="lg:col-span-9">
+    
+    
+      
+  <img src="../../images/hieujava.jpg" alt="🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay" class="rounded-xl w-full h-auto object-cover mb-6 shadow-lg">
+
+
+    
+
+    
+    <h1 class="text-3xl font-extrabold mb-4 text-slate-900 dark:text-slate-100 leading-tight">
+      🧩 Interface trong Java – Bạn đã hiểu đúng? Nếu chưa, mời đọc ngay
+    </h1>
+
+    
+    <div class="flex flex-wrap items-center gap-3 mb-8 text-sm">
+      <span class="text-slate-500">📅 October 24, 2025</span>
+      
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #JavaScript
+          </span>
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #Lodash
+          </span>
+        
+          <span class="bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 py-1 px-3 rounded-full hover:bg-blue-200 dark:hover:bg-slate-600 transition-colors">
+            #Thư viện
+          </span>
+        
+      
+    </div>
+
+    
+    <div class="prose prose-lg dark:prose-invert max-w-none prose-img:rounded-xl prose-img:shadow-md prose-a:text-blue-600 hover:prose-a:text-blue-500">
+      <hr>
+<h2>🎯 Mục tiêu bài viết<span class="hx:absolute hx:-mt-20" id="-mục-tiêu-bài-viết"></span>
+    <a href="#-m%e1%bb%a5c-ti%c3%aau-b%c3%a0i-vi%e1%ba%bft" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li>Hiểu <strong>bản chất</strong> của Interface trong Java (không chỉ là “khai báo method rỗng”).</li>
+<li>Phân biệt rõ <strong>Interface vs Abstract class</strong> (khi nào dùng cái nào).</li>
+<li>Thực hành với <strong>ví dụ thực tế</strong>: behaviors (bay/bơi), default/static methods, multiple inheritance of type.</li>
+<li>Nắm các <strong>best practices</strong> &amp; <strong>pitfalls</strong> khi dùng Interface trong dự án Android/Java.</li>
+</ul>
+<hr>
+<h2>📚 Mục lục<span class="hx:absolute hx:-mt-20" id="-mục-lục"></span>
+    <a href="#-m%e1%bb%a5c-l%e1%bb%a5c" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ol>
+<li><a href="#1-java-interface-l%c3%a0-g%c3%ac">Java Interface là gì?</a></li>
+<li><a href="#2-gi%e1%bb%91ng--kh%c3%a1c-interface-vs-abstract-class">Giống &amp; khác Interface vs Abstract class</a></li>
+<li><a href="#3-t%e1%ba%a1i-sao-c%e1%ba%a7n-interface-%c4%91a-k%e1%ba%bf-th%e1%bb%aba-ki%e1%bb%83u">Tại sao cần Interface (đa kế thừa kiểu)</a></li>
+<li><a href="#4-%c4%91%e1%ba%b7c-%c4%91i%e1%bb%83m--t%c3%adnh-n%c4%83ng-quan-tr%e1%bb%8dng-c%e1%bb%a7a-interface">Đặc điểm &amp; tính năng quan trọng của Interface</a></li>
+<li><a href="#5-v%c3%ad-d%e1%bb%a5-th%e1%bb%b1c-t%e1%ba%bf-behaviors-c%e1%bb%a7a-%c4%91%e1%bb%99ng-v%e1%ba%adt">Ví dụ thực tế: behaviors của động vật</a></li>
+<li><a href="#6-default-method-static-method--nested-interface">Default method, static method &amp; nested interface</a></li>
+<li><a href="#7-functional-interface--lambda-java-8">Functional Interface &amp; lambda (Java 8+)</a></li>
+<li><a href="#8-best-practices--pitfalls">Best practices &amp; Pitfalls</a></li>
+<li><a href="#9-t%e1%bb%95ng-k%e1%ba%bft">Tổng kết</a></li>
+</ol>
+<hr>
+<h2>1) Java Interface là gì?<span class="hx:absolute hx:-mt-20" id="1-java-interface-là-gì"></span>
+    <a href="#1-java-interface-l%c3%a0-g%c3%ac" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><blockquote>
+  <p><em>“In its most common form, an interface is a group of related methods with empty bodies.”</em> — Oracle</p>
+
+</blockquote>
+<p>Diễn nôm: <strong>Interface định nghĩa một <em>tập hành vi</em></strong> mà các lớp triển khai (<em>implements</em>) phải cung cấp. Nó <strong>không mô tả trạng thái</strong>, chỉ mô tả <strong>“có thể làm gì”</strong>.</p>
+<p>Ví dụ “hành vi của mèo”:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CatBehaviors</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>(<span style="color:#66d9ef">int</span> speed);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">catchMouse</span>(<span style="color:#66d9ef">int</span> count);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sleep</span>();
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<p>Một lớp “mèo” sẽ <strong>implements</strong> các hành vi trên:</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> <span style="color:#66d9ef">implements</span> CatBehaviors {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String furColor;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span>(<span style="color:#66d9ef">int</span> speed) { <span style="color:#75715e">/* ... */</span> }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">catchMouse</span>(<span style="color:#66d9ef">int</span> count) { <span style="color:#75715e">/* ... */</span> }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sleep</span>() { <span style="color:#75715e">/* ... */</span> }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<hr>
+<h2>2) Giống &amp; khác <strong>Interface vs Abstract class</strong><span class="hx:absolute hx:-mt-20" id="2-giống--khác-interface-vs-abstract-class"></span>
+    <a href="#2-gi%e1%bb%91ng--kh%c3%a1c-interface-vs-abstract-class" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><h3>Giống<span class="hx:absolute hx:-mt-20" id="giống"></span>
+    <a href="#gi%e1%bb%91ng" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><ul>
+<li>Đều mô tả <strong>hợp đồng hành vi</strong> (contract).</li>
+<li>Class con phải <strong>override</strong> method (abstract).</li>
+</ul>
+<h3>Khác (trọng tâm)<span class="hx:absolute hx:-mt-20" id="khác-trọng-tâm"></span>
+    <a href="#kh%c3%a1c-tr%e1%bb%8dng-t%c3%a2m" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><table>
+  <thead>
+      <tr>
+          <th>Tiêu chí</th>
+          <th>Interface</th>
+          <th>Abstract class</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Mục đích</td>
+          <td>Định nghĩa <strong>hành vi</strong> “có thể làm”</td>
+          <td>Khai báo <strong>bản chất</strong> của họ hàng lớp</td>
+      </tr>
+      <tr>
+          <td>Trạng thái (fields)</td>
+          <td><strong>Không</strong> có state (chỉ <code>public static final</code> constants)</td>
+          <td><strong>Có</strong> state (fields non-final), logic chung</td>
+      </tr>
+      <tr>
+          <td>Kế thừa</td>
+          <td>Class có thể <strong>implements nhiều</strong> interface</td>
+          <td>Class chỉ <strong>extends 1</strong> abstract class</td>
+      </tr>
+      <tr>
+          <td>Method triển khai sẵn</td>
+          <td>Từ Java 8 có <strong>default/static</strong> methods</td>
+          <td>Có thể có method <strong>đã triển khai</strong></td>
+      </tr>
+      <tr>
+          <td>Thay đổi hợp đồng</td>
+          <td>Thận trọng: thêm method <strong>phá vỡ</strong> backward-compat (trừ <code>default</code>)</td>
+          <td>Dễ mở rộng hơn với các method có body</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+  <p>🎯 <strong>Quy tắc nhanh:</strong></p>
+<ul>
+<li>Cần mô tả <strong>“khả năng”/hành vi</strong> → <strong>Interface</strong>.</li>
+<li>Cần chia sẻ <strong>trạng thái/logic chung</strong> giữa lớp con → <strong>Abstract class</strong>.</li>
+</ul>
+
+</blockquote>
+<hr>
+<h2>3) Tại sao cần Interface (đa kế thừa kiểu)<span class="hx:absolute hx:-mt-20" id="3-tại-sao-cần-interface-đa-kế-thừa-kiểu"></span>
+    <a href="#3-t%e1%ba%a1i-sao-c%e1%ba%a7n-interface-%c4%91a-k%e1%ba%bf-th%e1%bb%aba-ki%e1%bb%83u" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Java <strong>không hỗ trợ đa kế thừa class</strong>, nhưng <strong>hỗ trợ implements nhiều interface</strong>.<br>
+Ví dụ: bạn có <code>CanFly</code>, <code>CanSwim</code>. Một số loài <strong>vừa bay vừa bơi</strong> → class có thể <code>implements</code> <strong>cả hai</strong>.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CanFly</span> { <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fly</span>(); }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CanSwim</span> { <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swim</span>(); }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Duck</span> <span style="color:#66d9ef">implements</span> CanFly, CanSwim {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fly</span>()  { <span style="color:#75715e">/* ... */</span> }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swim</span>() { <span style="color:#75715e">/* ... */</span> }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<hr>
+<h2>4) Đặc điểm &amp; tính năng quan trọng của Interface<span class="hx:absolute hx:-mt-20" id="4-đặc-điểm--tính-năng-quan-trọng-của-interface"></span>
+    <a href="#4-%c4%91%e1%ba%b7c-%c4%91i%e1%bb%83m--t%c3%adnh-n%c4%83ng-quan-tr%e1%bb%8dng-c%e1%bb%a7a-interface" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li><strong>Không thể khởi tạo</strong>: <code>new Interface()</code> ❌</li>
+<li><strong>Khai báo constants</strong>: <code>public static final</code> ngầm định.</li>
+<li><strong>Từ Java 8</strong>: <code>default</code> methods (có body), <code>static</code> methods.</li>
+<li><strong>Từ Java 9</strong>: <code>private</code> methods trong interface (tái sử dụng trong default/static).</li>
+<li><strong>Nested interfaces</strong>: Interface có thể lồng bên trong interface khác/class khác.</li>
+</ul>
+<hr>
+<h2>5) Ví dụ thực tế: behaviors của động vật<span class="hx:absolute hx:-mt-20" id="5-ví-dụ-thực-tế-behaviors-của-động-vật"></span>
+    <a href="#5-v%c3%ad-d%e1%bb%a5-th%e1%bb%b1c-t%e1%ba%bf-behaviors-c%e1%bb%a7a-%c4%91%e1%bb%99ng-v%e1%ba%adt" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p>Thiết kế <strong>Sở thú</strong>: Một số loài <strong>bay</strong>, một số <strong>bơi</strong>, một số <strong>có tiếng kêu</strong>.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">Animal</span>(String name) { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name; }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">abstract</span> String <span style="color:#a6e22e">sound</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CanFly</span> { <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fly</span>(); }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CanSwim</span> { <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swim</span>(); }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">HasLegs</span> { <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">legs</span>(); }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Eagle</span> <span style="color:#66d9ef">extends</span> Animal <span style="color:#66d9ef">implements</span> CanFly {
+</span></span><span style="display:flex;"><span>    Eagle(String name) { <span style="color:#66d9ef">super</span>(name); }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">sound</span>() { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;screech&#34;</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fly</span>() { <span style="color:#75715e">/* logic bay */</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dolphin</span> <span style="color:#66d9ef">extends</span> Animal <span style="color:#66d9ef">implements</span> CanSwim {
+</span></span><span style="display:flex;"><span>    Dolphin(String name) { <span style="color:#66d9ef">super</span>(name); }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">sound</span>() { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;click&#34;</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swim</span>() { <span style="color:#75715e">/* logic bơi */</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Duck</span> <span style="color:#66d9ef">extends</span> Animal <span style="color:#66d9ef">implements</span> CanFly, CanSwim, HasLegs {
+</span></span><span style="display:flex;"><span>    Duck(String name) { <span style="color:#66d9ef">super</span>(name); }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">sound</span>() { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;quack&#34;</span>; }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fly</span>() { <span style="color:#75715e">/* ... */</span> }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swim</span>() { <span style="color:#75715e">/* ... */</span> }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">legs</span>() { <span style="color:#66d9ef">return</span> 2; }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>💡 <strong>Kết hợp</strong> abstract class (bản chất + state) với interfaces (khả năng) → thiết kế <strong>linh hoạt &amp; rõ ràng</strong>.</p>
+
+</blockquote>
+<hr>
+<h2>6) Default method, static method &amp; nested interface<span class="hx:absolute hx:-mt-20" id="6-default-method-static-method--nested-interface"></span>
+    <a href="#6-default-method-static-method--nested-interface" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><h3>Default method: thêm hành vi <strong>mặc định</strong> mà không phá vỡ code cũ<span class="hx:absolute hx:-mt-20" id="default-method-thêm-hành-vi-mặc-định-mà-không-phá-vỡ-code-cũ"></span>
+    <a href="#default-method-th%c3%aam-h%c3%a0nh-vi-m%e1%ba%b7c-%c4%91%e1%bb%8bnh-m%c3%a0-kh%c3%b4ng-ph%c3%a1-v%e1%bb%a1-code-c%c5%a9" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CanSleep</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sleep</span>() { System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Zzz...&#34;</span>); }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<h3>Static method: tiện ích liên quan đến hợp đồng<span class="hx:absolute hx:-mt-20" id="static-method-tiện-ích-liên-quan-đến-hợp-đồng"></span>
+    <a href="#static-method-ti%e1%bb%87n-%c3%adch-li%c3%aan-quan-%c4%91%e1%ba%bfn-h%e1%bb%a3p-%c4%91%e1%bb%93ng" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">MathOp</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">clamp</span>(<span style="color:#66d9ef">int</span> value, <span style="color:#66d9ef">int</span> min, <span style="color:#66d9ef">int</span> max) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">max</span>(min, Math.<span style="color:#a6e22e">min</span>(max, value));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<h3>Nested interface: gom nhóm các hợp đồng liên quan<span class="hx:absolute hx:-mt-20" id="nested-interface-gom-nhóm-các-hợp-đồng-liên-quan"></span>
+    <a href="#nested-interface-gom-nh%c3%b3m-c%c3%a1c-h%e1%bb%a3p-%c4%91%e1%bb%93ng-li%c3%aan-quan" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Network</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Callback</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onSuccess</span>(String body);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onError</span>(Throwable t);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fetch</span>(String url, Callback cb);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>⚠️ <strong>Tranh chấp default method</strong> (diamond): nếu 2 interface có cùng default method, <strong>class triển khai phải override</strong> để chọn hành vi.</p>
+
+</blockquote>
+<hr>
+<h2>7) Functional Interface &amp; lambda (Java 8+)<span class="hx:absolute hx:-mt-20" id="7-functional-interface--lambda-java-8"></span>
+    <a href="#7-functional-interface--lambda-java-8" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><strong>Functional Interface</strong>: interface có <strong>duy nhất 1 abstract method</strong> (SAM).<br>
+Dùng rất nhiều với <strong>lambda</strong> / <strong>method reference</strong>.</p>
+<div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@FunctionalInterface</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Transformer</span><span style="color:#f92672">&lt;</span>T, R<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    R <span style="color:#a6e22e">apply</span>(T value);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Demo</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">shout</span>(String s) { <span style="color:#66d9ef">return</span> s.<span style="color:#a6e22e">toUpperCase</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;!&#34;</span>; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Transformer<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> t1 <span style="color:#f92672">=</span> s <span style="color:#f92672">-&gt;</span> s.<span style="color:#a6e22e">trim</span>();
+</span></span><span style="display:flex;"><span>        Transformer<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> t2 <span style="color:#f92672">=</span> Demo::shout;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t1.<span style="color:#a6e22e">apply</span>(<span style="color:#e6db74">&#34;  hello &#34;</span>)); <span style="color:#75715e">// &#34;hello&#34;</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(t2.<span style="color:#a6e22e">apply</span>(<span style="color:#e6db74">&#34;java&#34;</span>));     <span style="color:#75715e">// &#34;JAVA!&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+<blockquote>
+  <p>🧠 Các functional interface sẵn có: <code>Runnable</code>, <code>Callable</code>, <code>Supplier</code>, <code>Consumer</code>, <code>Function</code>, <code>Predicate</code>, <code>BiFunction</code>, …</p>
+
+</blockquote>
+<hr>
+<h2>8) Best practices &amp; Pitfalls<span class="hx:absolute hx:-mt-20" id="8-best-practices--pitfalls"></span>
+    <a href="#8-best-practices--pitfalls" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><h3>✅ Nên<span class="hx:absolute hx:-mt-20" id="-nên"></span>
+    <a href="#-n%c3%aan" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><ul>
+<li>Dùng interface để mô tả <strong>khả năng/hợp đồng</strong>, không nhồi nhét state.</li>
+<li>Tách nhỏ interface theo <strong>SRP</strong> (<em>Interface Segregation Principle</em>).</li>
+<li>Cân nhắc <code>default</code> method khi <strong>mở rộng API</strong> mà vẫn <strong>back‑compat</strong>.</li>
+<li>Đặt tên interface theo <strong>hành vi</strong>: <code>Readable</code>, <code>Closable</code>, <code>Cacheable</code>, <code>Serializable</code>…</li>
+<li>Trong Android, interface nhỏ gọn giúp <strong>mock/test</strong> dễ hơn (DI, unit test).</li>
+</ul>
+<h3>❌ Tránh<span class="hx:absolute hx:-mt-20" id="-tránh"></span>
+    <a href="#-tr%c3%a1nh" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><ul>
+<li>Thêm method vào interface public <strong>đang dùng rộng rãi</strong> (đập vỡ backward‑compat).</li>
+<li>Lạm dụng interface cho <strong>mọi thứ</strong> (anti‑pattern <em>anemic interface</em>).</li>
+<li>Trùng tên default methods từ nhiều interface mà <strong>không override</strong> để phân giải.</li>
+<li>Dùng interface lớn kiểu “<strong>God Interface</strong>” (quá nhiều method).</li>
+</ul>
+<hr>
+<h2>9) Tổng kết<span class="hx:absolute hx:-mt-20" id="9-tổng-kết"></span>
+    <a href="#9-t%e1%bb%95ng-k%e1%ba%bft" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><ul>
+<li><strong>Interface</strong>: mô tả <strong>hành vi/capabilities</strong>, hỗ trợ <strong>đa kế thừa kiểu</strong>, rất phù hợp để thiết kế API linh hoạt.</li>
+<li><strong>Abstract class</strong>: chia sẻ <strong>trạng thái + logic chung</strong> giữa các lớp cùng bản chất.</li>
+<li>Kết hợp đúng cả hai giúp hệ thống <strong>dễ mở rộng, dễ test, dễ bảo trì</strong>.</li>
+<li>Tận dụng các tính năng <strong>Java 8+</strong>: default, static, private method trong interface; <strong>functional interface</strong> &amp; lambda để viết code <strong>gọn &amp; rõ</strong>.</li>
+</ul>
+<blockquote>
+  <p>✍️ <em>“Interface chỉ là công cụ để thực hiện đa hình — hiểu bản chất để dùng đúng chỗ, đừng thần thánh hoá.”</em></p>
+
+</blockquote>
+<hr>
+<h2>🧪 Demo nhỏ (chạy nhanh trên console)<span class="hx:absolute hx:-mt-20" id="-demo-nhỏ-chạy-nhanh-trên-console"></span>
+    <a href="#-demo-nh%e1%bb%8f-ch%e1%ba%a1y-nhanh-tr%c3%aan-console" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ExtInterface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method1</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method2</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Edureka</span> <span style="color:#66d9ef">implements</span> ExtInterface {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method1</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;implementation of method1&#34;</span>);
+</span></span><span style="display:flex;"><span>        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(System.<span style="color:#a6e22e">in</span>);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;Enter number to find square root in Java: &#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> square <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">nextDouble</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> squareRoot <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">sqrt</span>(square);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Square root of number: %f is : %f%n&#34;</span>, square, squareRoot);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method2</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;implementation of method2&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        ExtInterface obj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Edureka();
+</span></span><span style="display:flex;"><span>        obj.<span style="color:#a6e22e">method1</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx:opacity-0 hx:transition hx:group-hover/code:opacity-100 hx:flex hx:gap-1 hx:absolute hx:m-[11px] hx:right-0 hx:top-0">
+  <button
+    class="hextra-code-copy-btn hx:group/copybtn hx:cursor-pointer hx:transition-all hx:active:opacity-50 hx:bg-primary-700/5 hx:border hx:border-black/5 hx:text-gray-600 hx:hover:text-gray-900 hx:rounded-md hx:p-1.5 hx:dark:bg-primary-300/10 hx:dark:border-white/10 hx:dark:text-gray-400 hx:dark:hover:text-gray-50"
+    title="Copy code"
+  >
+    <div class="hextra-copy-icon hx:group-[.copied]/copybtn:hidden hx:pointer-events-none hx:h-4 hx:w-4"></div>
+<div class="hextra-success-icon hx:hidden hx:group-[.copied]/copybtn:block hx:pointer-events-none hx:h-4 hx:w-4"></div>
+  </button>
+</div>
+</div>
+
+    </div>
+
+    
+    <div class="mt-12 rounded-2xl bg-slate-50 dark:bg-slate-800/60 p-6 shadow-inner">
+      <h3 class="text-xl font-semibold text-blue-600 mb-2">✨ Cảm ơn bạn đã đọc đến đây!</h3>
+      <p class="text-slate-600 dark:text-slate-300 text-[1rem]">
+        Nếu bạn thấy bài viết hữu ích, hãy chia sẻ để lan tỏa kiến thức nhé 💙  
+        <br> Đừng quên theo dõi blog để đọc thêm các bài viết hay về Java & JavaScript 🚀
+      </p>
+    </div>
+  </article>
+</div>
+
+        </div>
+      
+    </main>
+
+    <div class="custom-footer-wrapper">
+  <div class="custom-footer">
+    <div class="footer-column about">
+      <h3>Blog by Trần Hoàng Rinh<h3>
+      
+       <p>Liên Hệ :</p>
+     <p class="desc">
+        📞 SĐT: <strong>1911066321</strong><br>
+        📧 Email: <a href="mailto:tranhoang3622@gmail.com">tranhoang3622@gmail.com</a>
+      </p>
+      <div class="social">
+     
+      </div>
+    </div>
+
+    <div class="footer-column">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../profile/">Profile</a></li>
+        
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Content</h4>
+      <ul>
+        <li><a href="../../blog/">Blog</a></li>
+ 
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Tools & Resources</h4>
+      <ul>
+        <li><a href="#">Source Code</a></li>
+        <li><a href="#">PageSpeed Insights</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 Trần Hoàng Rinh. All rights reserved.</p>
+    <div class="links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">PageSpeed</a>
+    </div>
+  </div>
+</div>
+
+    
+<script defer src="../../js/main.min.js"></script>
+
+  </body>
+</html>
